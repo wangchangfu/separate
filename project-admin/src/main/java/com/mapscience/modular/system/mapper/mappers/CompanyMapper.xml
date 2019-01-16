@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapscience.modular.system.mapper.CompanyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.mapscience.modular.system.model.Company">
+        <id column="company_id" property="companyId" />
+        <result column="company_name" property="companyName" />
+        <result column="parent_id" property="parentId" />
+        <result column="legal_representative" property="legalRepresentative" />
+        <result column="registered_capital" property="registeredCapital" />
+        <result column="coordinate" property="coordinate" />
+        <result column="address" property="address" />
+        <result column="website_address" property="websiteAddress" />
+        <result column="company_logo" property="companyLogo" />
+        <result column="company_phone" property="companyPhone" />
+        <result column="company_buss_range" property="companyBussRange" />
+        <result column="company_card" property="companyCard" />
+        <result column="status" property="status" />
+        <result column="remark" property="remark" />
+        <result column="crate_time" property="crateTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        company_id, company_name, parent_id, legal_representative, registered_capital, coordinate, address, website_address, company_logo, company_phone, company_buss_range, company_card, status, remark, crate_time, update_time
+    </sql>
+
+</mapper>
