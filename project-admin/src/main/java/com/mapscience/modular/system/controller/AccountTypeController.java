@@ -17,5 +17,6 @@ import org.springframework.stereotype.Controller;
 @RequestMapping("/accountType")
 public class AccountTypeController {
 
+
 }
 
