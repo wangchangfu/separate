@@ -2,6 +2,8 @@ package com.mapscience.core.log.factory;
 
 import com.mapscience.core.common.constant.state.LogSucceed;
 import com.mapscience.core.common.constant.state.LogType;
+import com.mapscience.modular.system.model.LoginLog;
+import com.mapscience.modular.system.model.OperationLog;
 
 import java.util.Date;
 

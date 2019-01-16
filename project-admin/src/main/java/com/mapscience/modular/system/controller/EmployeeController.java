@@ -1,6 +1,8 @@
 package com.mapscience.modular.system.controller;
 
 
+import com.mapscience.core.common.ResponseVal;
+import com.mapscience.modular.system.model.Employee;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
@@ -17,7 +19,10 @@ import org.springframework.stereotype.Controller;
 @RequestMapping("/employee")
 public class EmployeeController {
 
+    public ResponseVal login(Employee employee){
 
+        return null;
+    }
 
 }
 
