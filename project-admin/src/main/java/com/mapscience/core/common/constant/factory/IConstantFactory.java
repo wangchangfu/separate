@@ -84,7 +84,7 @@ public interface IConstantFactory {
     /**
      * 查询字典
      */
-    List<Dict> findInDict(String id);
+//    List<Dict> findInDict(String id);
 
     /**
      * 获取被缓存的对象(用户删除业务)

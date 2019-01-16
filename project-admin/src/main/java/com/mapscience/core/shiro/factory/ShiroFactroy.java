@@ -5,6 +5,8 @@ import com.mapscience.core.common.constant.state.ManagerStatus;
 import com.mapscience.core.shiro.ShiroUser;
 import com.mapscience.core.util.Convert;
 import com.mapscience.core.util.SpringContextHolder;
+import com.mapscience.modular.system.mapper.EmployeeMapper;
+import com.mapscience.modular.system.model.Employee;
 import org.apache.shiro.authc.CredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
@@ -24,47 +26,45 @@ import java.util.List;
 public class ShiroFactroy implements IShiro {
 
     @Autowired
-    private UserMapper userMapper;
+    private EmployeeMapper employeeMapper;
 
-    @Autowired
-    private MenuMapper menuMapper;
+//    @Autowired
+//    private MenuMapper menuMapper;
 
     public static IShiro me() {
         return SpringContextHolder.getBean(IShiro.class);
     }
 
     @Override
-    public User user(String account) {
-        User user = userMapper.getByAccount(account);
+    public Employee employee(String account) {
+        Employee user = employeeMapper.getByAccount(account);
 
         // 账号不存在
         if (null == user) {
             throw new CredentialsException();
         }
         // 账号被冻结
-        if (user.getStatus() != ManagerStatus.OK.getCode()) {
+        if (user.getType() != ManagerStatus.OK.getCode()) {
             throw new LockedAccountException();
         }
         return user;
     }
 
     @Override
-    public ShiroUser shiroUser(User user) {
+    public ShiroUser shiroUser(Employee employee) {
         ShiroUser shiroUser = new ShiroUser();
-
-        shiroUser.setId(user.getId());
-        shiroUser.setAccount(user.getAccount());
-        shiroUser.setDeptId(user.getDeptid());
-        shiroUser.setDeptName(ConstantFactory.me().getDeptName(user.getDeptid()));
-        shiroUser.setName(user.getName());
-
-        String[] roleArray = Convert.toStrArray(user.getRoleid());
+        shiroUser.setId(employee.getEmployeeId());
+        shiroUser.setAccount(employee.getAccount());
+//        shiroUser.setDeptId(employee.getDeptid());
+//        shiroUser.setDeptName(ConstantFactory.me().getDeptName(user.getDeptid()));
+        shiroUser.setName(employee.getEmployeeName());
+//        String[] roleArray = Convert.toStrArray(user.getRoleid());
         List<String> roleList = new ArrayList<String>();
         List<String> roleNameList = new ArrayList<String>();
-        for (String roleId : roleArray) {
-            roleList.add(roleId);
-            roleNameList.add(ConstantFactory.me().getSingleRoleName(roleId));
-        }
+//        for (String roleId : roleArray) {
+//            roleList.add(roleId);
+//            roleNameList.add(ConstantFactory.me().getSingleRoleName(roleId));
+//        }
         shiroUser.setRoleList(roleList);
         shiroUser.setRoleNames(roleNameList);
         return shiroUser;
@@ -72,7 +72,9 @@ public class ShiroFactroy implements IShiro {
 
     @Override
     public List<String> findPermissionsByRoleId(String roleId) {
-        return menuMapper.getResUrlsByRoleId(roleId);
+
+        return null;
+//                menuMapper.getResUrlsByRoleId(roleId);
     }
 
     @Override
@@ -81,10 +83,10 @@ public class ShiroFactroy implements IShiro {
     }
 
     @Override
-    public SimpleAuthenticationInfo info(ShiroUser shiroUser, User user, String realmName) {
-        String credentials = user.getPassword();
+    public SimpleAuthenticationInfo info(ShiroUser shiroUser, Employee employee, String realmName) {
+        String credentials = employee.getPassWord();
         // 密码加盐处理
-        String source = user.getSalt();
+        String source = employee.getPassWord();
         ByteSource credentialsSalt = new Md5Hash(source);
         return new SimpleAuthenticationInfo(shiroUser, credentials, credentialsSalt, realmName);
     }

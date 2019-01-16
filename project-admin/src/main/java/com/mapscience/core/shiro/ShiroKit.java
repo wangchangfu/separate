@@ -7,6 +7,7 @@ import com.mapscience.core.shiro.factory.IShiro;
 import com.mapscience.core.shiro.factory.ShiroFactroy;
 import com.mapscience.core.util.JwtUtil;
 import com.mapscience.core.util.ToolUtil;
+import com.mapscience.modular.system.model.Employee;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -72,7 +73,7 @@ public class ShiroKit {
         } else {
             String account = JwtUtil.getClaim((String) getSubject().getPrincipals().getPrimaryPrincipal(), Constant.ACCOUNT);
             IShiro shiroFactory = ShiroFactroy.me();
-            User user = shiroFactory.user(account);
+            Employee user = shiroFactory.employee(account);
             return shiroFactory.shiroUser(user);
         }
     }
