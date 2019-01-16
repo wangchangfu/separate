@@ -5,6 +5,10 @@ import com.mapscience.core.common.constant.state.LogSucceed;
 import com.mapscience.core.common.constant.state.LogType;
 import com.mapscience.core.log.LogManager;
 import com.mapscience.core.util.ToolUtil;
+import com.mapscience.modular.system.mapper.LoginLogMapper;
+import com.mapscience.modular.system.mapper.OperationLogMapper;
+import com.mapscience.modular.system.model.LoginLog;
+import com.mapscience.modular.system.model.OperationLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
