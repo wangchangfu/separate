@@ -13,4 +13,11 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface IEmployeeService extends IService<Employee> {
 
+    /**
+     * 通过登录账户和密码查找用户信息
+     * @param account
+     * @param passWord
+     * @return
+     */
+    Employee getEmployeeByAccountAndPasswd(String account, String passWord);
 }

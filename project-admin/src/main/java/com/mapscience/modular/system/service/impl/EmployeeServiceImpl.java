@@ -4,6 +4,7 @@ import com.mapscience.modular.system.model.Employee;
 import com.mapscience.modular.system.mapper.EmployeeMapper;
 import com.mapscience.modular.system.service.IEmployeeService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,4 +18,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> implements IEmployeeService {
 
+    @Autowired
+    private EmployeeMapper employeeMapper;
+    @Override
+    public Employee getEmployeeByAccountAndPasswd(String account, String passWord) {
+        return this.employeeMapper.getEmployeeByAccountAndPasswd(account, passWord);
+    }
 }

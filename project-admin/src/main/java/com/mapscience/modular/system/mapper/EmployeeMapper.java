@@ -19,4 +19,12 @@ public interface EmployeeMapper extends BaseMapper<Employee> {
      * @return
      */
     Employee getByAccount(String account);
+
+    /**
+     * 根据账户号和密码查询用户信息
+     * @param account
+     * @param passWord
+     * @return
+     */
+    Employee getEmployeeByAccountAndPasswd(String account, String passWord);
 }

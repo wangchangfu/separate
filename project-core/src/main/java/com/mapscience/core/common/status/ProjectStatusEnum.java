@@ -57,6 +57,7 @@ public enum ProjectStatusEnum {
     KICK_OUT_USER(606, "踢出成功"),
     KICK_OUT_ERROR(607, "剔除失败，用户不存在"),
     LOGINOUT(608, "退出登录"),
+    USE_PASSWORD_NO(609, "密码不能为空"),
 
     /**
      * 错误的请求
