@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapscience.modular.system.mapper.EducationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.mapscience.modular.system.model.Education">
+        <id column="education_id" property="educationId" />
+        <result column="employee_id" property="employeeId" />
+        <result column="education_type_id" property="educationTypeId" />
+        <result column="degree_type_id" property="degreeTypeId" />
+        <result column="degree_name" property="degreeName" />
+        <result column="admission_time" property="admissionTime" />
+        <result column="degree_date" property="degreeDate" />
+        <result column="major" property="major" />
+        <result column="degree_unit" property="degreeUnit" />
+        <result column="educationctif_code" property="educationctifCode" />
+        <result column="certif_code" property="certifCode" />
+        <result column="record_type_id" property="recordTypeId" />
+        <result column="is_highest _degree" property="isHighest Degree" />
+        <result column="remark" property="remark" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        education_id, employee_id, education_type_id, degree_type_id, degree_name, admission_time, degree_date, major, degree_unit, educationctif_code, certif_code, record_type_id, is_highest _degree, remark, create_time, update_time
+    </sql>
+
+</mapper>
