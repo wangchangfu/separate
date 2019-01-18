@@ -76,7 +76,6 @@ Code.set = function (key, value) {
 
 
 Code.getData=function () {
-    debugger
     var ajax = new $ax(MyObject.ctxPath + "/user/getUserById", function (data) {
         console.info(data);
     }, function (data) {

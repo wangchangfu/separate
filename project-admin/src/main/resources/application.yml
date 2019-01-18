@@ -2,7 +2,7 @@ server:
   port: 8081
 spring:
   datasource:
-    dbName: separate
+    dbName: yydsjpt
     url: jdbc:mysql://192.168.1.205:3306/yydsjpt?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC
     username: root
     password: 123456
