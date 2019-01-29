@@ -1,9 +1,10 @@
 package com.mapscience.modular.system.model;
 
-import java.util.Date;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -11,7 +12,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author ${author}
- * @since 2019-01-16
+ * @since 2019-01-18
  */
 @TableName("t_login_log")
 public class LoginLog extends Model<LoginLog> {

@@ -16,4 +16,10 @@
         health_id, health_name, status, crate_time, update_time
     </sql>
 
+
+    <!-- 查询所有的结果-->
+    <select id="getList"  parameterType="String" resultMap="BaseResultMap">
+        select * from t_health
+    </select>
+
 </mapper>

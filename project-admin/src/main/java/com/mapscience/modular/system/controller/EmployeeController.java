@@ -9,15 +9,15 @@ import com.mapscience.core.util.JedisUtil;
 import com.mapscience.core.util.JwtUtil;
 import com.mapscience.modular.system.model.Employee;
 import com.mapscience.modular.system.service.IEmployeeService;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.*;
-
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
@@ -72,6 +72,9 @@ public class EmployeeController {
         String token = JwtUtil.sign(emp.getAccount(), currentTimeMillis);
         return new ResponseVal(HttpStatus.OK.value(), "登录成功");
     }
+
+
+
 
 }
 

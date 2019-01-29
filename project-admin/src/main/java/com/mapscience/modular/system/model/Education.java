@@ -1,11 +1,12 @@
 package com.mapscience.modular.system.model;
 
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -83,7 +84,11 @@ public class Education extends Model<Education> {
      * 是否最高学历
      */
     @TableField("is_highest _degree")
-    private Integer isHighest Degree;
+    private Integer isHighestDegree;
+
+
+
+
     /**
      * 备注
      */
@@ -196,12 +201,13 @@ public class Education extends Model<Education> {
         this.recordTypeId = recordTypeId;
     }
 
-    public Integer getIsHighest Degree() {
-        return isHighest Degree;
+
+    public Integer getIsHighestDegree() {
+        return isHighestDegree;
     }
 
-    public void setIsHighest Degree(Integer isHighest Degree) {
-        this.isHighest Degree = isHighest Degree;
+    public void setIsHighestDegree(Integer isHighestDegree) {
+        this.isHighestDegree = isHighestDegree;
     }
 
     public String getRemark() {
@@ -248,7 +254,7 @@ public class Education extends Model<Education> {
         ", educationctifCode=" + educationctifCode +
         ", certifCode=" + certifCode +
         ", recordTypeId=" + recordTypeId +
-        ", isHighest Degree=" + isHighest Degree +
+        ", isHighest Degree=" + isHighestDegree +
         ", remark=" + remark +
         ", createTime=" + createTime +
         ", updateTime=" + updateTime +

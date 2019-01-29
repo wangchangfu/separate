@@ -7,15 +7,15 @@ import org.springframework.stereotype.Controller;
 
 /**
  * <p>
- * 登录记录 前端控制器
+ * 重要操作日志数据库 前端控制器
  * </p>
  *
  * @author ${author}
  * @since 2019-01-18
  */
 @Controller
-@RequestMapping("/loginLog")
-public class LoginLogController {
+@RequestMapping("/log")
+public class LogController {
 
 }
 

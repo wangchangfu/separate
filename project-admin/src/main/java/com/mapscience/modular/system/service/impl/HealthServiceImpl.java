@@ -1,10 +1,12 @@
 package com.mapscience.modular.system.service.impl;
 
-import com.mapscience.modular.system.model.Health;
-import com.mapscience.modular.system.mapper.HealthMapper;
-import com.mapscience.modular.system.service.IHealthService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.mapscience.modular.system.mapper.HealthMapper;
+import com.mapscience.modular.system.model.Health;
+import com.mapscience.modular.system.service.IHealthService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -17,4 +19,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class HealthServiceImpl extends ServiceImpl<HealthMapper, Health> implements IHealthService {
 
+
+
+    @Override
+    public List<Health> getList() {
+        return this.baseMapper.getList();
+    }
 }

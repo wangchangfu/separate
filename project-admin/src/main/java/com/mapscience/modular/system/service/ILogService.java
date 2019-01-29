@@ -1,16 +1,16 @@
 package com.mapscience.modular.system.service;
 
-import com.mapscience.modular.system.model.LoginLog;
+import com.mapscience.modular.system.model.Log;
 import com.baomidou.mybatisplus.service.IService;
 
 /**
  * <p>
- * 登录记录 服务类
+ * 重要操作日志数据库 服务类
  * </p>
  *
  * @author ${author}
  * @since 2019-01-18
  */
-public interface ILoginLogService extends IService<LoginLog> {
+public interface ILogService extends IService<Log> {
 
 }
