@@ -27,4 +27,9 @@
         company_id, company_name, parent_id, legal_representative, registered_capital, coordinate, address, website_address, company_logo, company_phone, company_buss_range, company_card, status, remark, crate_time, update_time
     </sql>
 
+
+    <select id="getList" parameterType="String" resultMap="BaseResultMap">
+        select * from t_company
+    </select>
+
 </mapper>

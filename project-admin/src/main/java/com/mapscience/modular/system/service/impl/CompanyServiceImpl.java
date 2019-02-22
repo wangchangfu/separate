@@ -1,10 +1,12 @@
 package com.mapscience.modular.system.service.impl;
 
-import com.mapscience.modular.system.model.Company;
-import com.mapscience.modular.system.mapper.CompanyMapper;
-import com.mapscience.modular.system.service.ICompanyService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.mapscience.modular.system.mapper.CompanyMapper;
+import com.mapscience.modular.system.model.Company;
+import com.mapscience.modular.system.service.ICompanyService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -17,4 +19,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> implements ICompanyService {
 
+
+    @Override
+    public List<Company> getList(){
+        return  this.baseMapper.getList();
+    }
 }

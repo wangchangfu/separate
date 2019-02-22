@@ -23,6 +23,7 @@ public class HealthServiceImpl extends ServiceImpl<HealthMapper, Health> impleme
 
     @Override
     public List<Health> getList() {
+
         return this.baseMapper.getList();
     }
 }

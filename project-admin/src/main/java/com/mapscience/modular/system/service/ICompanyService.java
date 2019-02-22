@@ -3,6 +3,8 @@ package com.mapscience.modular.system.service;
 import com.mapscience.modular.system.model.Company;
 import com.baomidou.mybatisplus.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  * 公司基本信息表 服务类
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface ICompanyService extends IService<Company> {
 
+    public List<Company> getList();
 }

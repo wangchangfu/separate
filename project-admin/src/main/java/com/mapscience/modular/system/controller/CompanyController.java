@@ -1,9 +1,15 @@
 package com.mapscience.modular.system.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
+import com.mapscience.core.common.ResponseVal;
+import com.mapscience.modular.system.model.Company;
+import com.mapscience.modular.system.service.ICompanyService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * <p>
@@ -16,6 +22,22 @@ import org.springframework.stereotype.Controller;
 @Controller
 @RequestMapping("/company")
 public class CompanyController {
+
+    @Autowired
+    private ICompanyService companyService;
+    /**
+     * 查找所有的公司
+     */
+    @ResponseBody
+    @RequestMapping("/getList")
+    public ResponseVal getList(){
+        List<Company> list = companyService.getList();
+
+        if (list.size()<0){
+            return new ResponseVal(201,"暂无数据");
+        }
+        return new ResponseVal(200,"查询成功",list);
+    }
 
 }
 

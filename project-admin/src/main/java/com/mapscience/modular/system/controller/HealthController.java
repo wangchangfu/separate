@@ -27,6 +27,10 @@ public class HealthController {
     @Autowired
     private IHealthService healthService;
 
+    /**
+     * 查询所有的状况
+     * @return
+     */
     @ResponseBody
     @GetMapping("/getList")
     public ResponseVal getList(){

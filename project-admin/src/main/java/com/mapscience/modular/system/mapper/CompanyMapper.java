@@ -3,6 +3,8 @@ package com.mapscience.modular.system.mapper;
 import com.mapscience.modular.system.model.Company;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
+import java.util.List;
+
 /**
  * <p>
  * 公司基本信息表 Mapper 接口
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface CompanyMapper extends BaseMapper<Company> {
 
+    List<Company> getList();
 }
