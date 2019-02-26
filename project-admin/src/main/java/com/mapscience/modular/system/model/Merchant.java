@@ -1,11 +1,12 @@
 package com.mapscience.modular.system.model;
 
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -24,7 +25,7 @@ public class Merchant extends Model<Merchant> {
      * uuid主键
      */
     @TableId("merchant_id")
-    private Integer merchantId;
+    private String merchantId;
     /**
      * 商户名称
      */
@@ -50,12 +51,17 @@ public class Merchant extends Model<Merchant> {
     @TableField("update_time")
     private Date updateTime;
 
+    public Merchant(){}
+    public Merchant(String merchantId){
+        super();
+        this.merchantId=merchantId;
+    }
 
-    public Integer getMerchantId() {
+    public String getMerchantId() {
         return merchantId;
     }
 
-    public void setMerchantId(Integer merchantId) {
+    public void setMerchantId(String merchantId) {
         this.merchantId = merchantId;
     }
 

@@ -13,4 +13,8 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface MerchantMapper extends BaseMapper<Merchant> {
 
+    /**
+     * 根据商户查找商户
+     */
+    Merchant getMerchant(Merchant merchant);
 }

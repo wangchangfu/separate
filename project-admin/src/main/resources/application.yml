@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8182
 spring:
   datasource:
     dbName: zzsres
@@ -54,3 +54,5 @@ redis:
   max-idle: 8
   min-idle: 0
 
+#高效管理外部接口
+get-url: http://192.168.1.205:8081/gateway/gateway.ht

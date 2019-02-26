@@ -32,12 +32,11 @@ public class CompanyController {
     @RequestMapping("/getList")
     public ResponseVal getList(){
         List<Company> list = companyService.getList();
-
-        if (list.size()<0){
-            return new ResponseVal(201,"暂无数据");
-        }
         return new ResponseVal(200,"查询成功",list);
     }
+
+
+
 
 }
 

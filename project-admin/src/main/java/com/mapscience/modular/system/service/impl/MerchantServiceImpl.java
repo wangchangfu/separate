@@ -17,4 +17,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class MerchantServiceImpl extends ServiceImpl<MerchantMapper, Merchant> implements IMerchantService {
 
+    @Override
+    public Merchant getMerchant(Merchant merchant) {
+       return this.baseMapper.getMerchant(merchant);
+    }
 }

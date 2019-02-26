@@ -13,4 +13,10 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface IMerchantService extends IService<Merchant> {
 
+    /**
+     * 根据商户查找商户
+     * @param merchant
+     * @return
+     */
+    Merchant getMerchant(Merchant merchant);
 }

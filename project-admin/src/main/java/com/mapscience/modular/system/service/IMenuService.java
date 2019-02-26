@@ -1,7 +1,8 @@
 package com.mapscience.modular.system.service;
 
-import com.mapscience.modular.system.model.Menu;
 import com.baomidou.mybatisplus.service.IService;
+import com.mapscience.core.common.ResponseVal;
+import com.mapscience.modular.system.model.Menu;
 
 /**
  * <p>
@@ -13,4 +14,16 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface IMenuService extends IService<Menu> {
 
+
+    /**
+     * 递归查找菜单
+     * @return
+     */
+    ResponseVal findmenuChildren();
+
+    /**
+     * 增加菜单
+     * @param t
+     */
+    ResponseVal saveMenu(Menu t);
 }

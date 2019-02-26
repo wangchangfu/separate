@@ -17,4 +17,11 @@
         merchant_id, merchant_name, merchant_key, status, create_time, update_time
     </sql>
 
+
+    <!--根据商户查找商户-->
+    <select id="getMerchant" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_merchant
+    </select>
 </mapper>

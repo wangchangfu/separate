@@ -3,6 +3,8 @@ package com.mapscience.modular.system.mapper;
 import com.mapscience.modular.system.model.Menu;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
+import java.util.List;
+
 /**
  * <p>
  * 菜单 Mapper 接口
@@ -13,4 +15,11 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface MenuMapper extends BaseMapper<Menu> {
 
+    /**
+     * 递归查询所有菜单
+     * @return
+     */
+    List<Menu> findmenuChildren();
+
+    void saveMenu(Menu t);
 }

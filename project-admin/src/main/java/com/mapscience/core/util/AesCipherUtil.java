@@ -28,9 +28,10 @@ public class AesCipherUtil {
     /**
      * AES密码加密私钥(Base64加密)
      */
+    @Value("${encrypt-aescey}")
     private static String encryptAESKey;
 
-    @Value("${encryptAESKey}")
+
     public void setEncryptAESKey(String encryptAESKey) {
         AesCipherUtil.encryptAESKey = encryptAESKey;
     }
