@@ -29,7 +29,7 @@
     <select id="findmenuChildren" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-         from t_menu where  merchant_id=#{merchant.merchantId}
+         from t_menu
     </select>
 
 

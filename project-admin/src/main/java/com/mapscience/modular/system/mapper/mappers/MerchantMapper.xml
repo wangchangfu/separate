@@ -22,6 +22,6 @@
     <select id="getMerchant" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from t_merchant
+        from t_merchant where  merchant_id=#{merchant.merchantId}
     </select>
 </mapper>
