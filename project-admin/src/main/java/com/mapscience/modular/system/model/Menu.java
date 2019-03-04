@@ -73,6 +73,9 @@ public class Menu extends Model<Menu> {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
+    /**
+     * 子菜单
+     */
     private List<Menu> children;
 
     public String getMenuId() {

@@ -15,5 +15,16 @@ import java.util.List;
  */
 public interface CompanyMapper extends BaseMapper<Company> {
 
+    /**
+     * 查找公司
+     * @return
+     */
     List<Company> getList();
+
+    /**
+     * 保存
+     * @param company
+     * @return
+     */
+    String saveCompany(Company company);
 }

@@ -15,9 +15,20 @@ public interface IEmployeeService extends IService<Employee> {
 
     /**
      * 通过登录账户和密码查找用户信息
-     * @param account
-     * @param passWord
+
      * @return
      */
-    Employee getEmployeeByAccountAndPasswd(String account, String passWord);
+    Employee getEmployeeByAccountAndPasswd(String account, String password);
+
+    /**
+     * 通过账号获取用
+     * @return
+     */
+    Employee getByAccount(Employee e);
+
+    /**
+     * 添加员工
+     * @param em
+     */
+    void add(Employee em);
 }

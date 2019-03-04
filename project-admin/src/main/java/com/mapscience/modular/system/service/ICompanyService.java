@@ -1,5 +1,6 @@
 package com.mapscience.modular.system.service;
 
+import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.model.Company;
 import com.baomidou.mybatisplus.service.IService;
 
@@ -15,5 +16,23 @@ import java.util.List;
  */
 public interface ICompanyService extends IService<Company> {
 
+    /**
+     * 查询所有公司
+     * @return
+     */
     public List<Company> getList();
+
+    /**
+     * 查询公司树
+     * @param company
+     * @return
+     */
+    public ResponseVal findComTree(Company company);
+
+    /**
+     * 保存
+     * @param company
+     * @return
+     */
+    public ResponseVal saveCompany(Company company);
 }

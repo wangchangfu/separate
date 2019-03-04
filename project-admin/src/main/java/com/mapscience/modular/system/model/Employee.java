@@ -1,11 +1,13 @@
 package com.mapscience.modular.system.model;
 
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -29,6 +31,7 @@ public class Employee extends Model<Employee> {
      * 名称
      */
     @TableField("employee_name")
+    @Excel(name = "姓名")
     private String employeeName;
     /**
      * 证件类型ID
@@ -39,15 +42,19 @@ public class Employee extends Model<Employee> {
      * 证件号
      */
     @TableField("card_id")
+    @Excel(name = "证件号码")
     private String cardId;
     /**
      * 性别
      */
+    @Excel(name = "性别")
+    @TableField("gender")
     private String gender;
     /**
      * 出生日期,格式yyyy-MM-dd
      */
     @TableField("birth_day")
+    @Excel(name = "出生日期", databaseFormat ="yyyyMMddHHmmss", format = "yyyy-MM-dd", isImportField = "true",width = 20)
     private Date birthDay;
     /**
      * 国籍id
@@ -58,6 +65,7 @@ public class Employee extends Model<Employee> {
      * 民族id
      */
     @TableField("nation_type_id")
+    @Excel(name = "民族")
     private String nationTypeId;
     /**
      * 婚姻状况id
@@ -68,26 +76,31 @@ public class Employee extends Model<Employee> {
      * 籍贯
      */
     @TableField("native_place")
+    @Excel(name = "籍贯")
     private String nativePlace;
     /**
      * 出生地
      */
     @TableField("birth_place")
+    @Excel(name = "出生地")
     private String birthPlace;
     /**
      * 政治面貌Id
      */
     @TableField("political_status_id")
+    @Excel(name = "政治面貌")
     private String politicalStatusId;
     /**
      * 入党日期,yyyy-mm-dd
      */
     @TableField("admission_day")
+    @Excel(name = "入党日期", databaseFormat ="yyyyMMddHHmmss", format = "yyyy-MM", isImportField = "true",width = 20)
     private Date admissionDay;
     /**
      * 参加工作时间,yyyy-mm
      */
     @TableField("join_work_day")
+    @Excel(name = "参加工作时间", databaseFormat ="yyyyMMddHHmmss", format = "yyyy-MM-dd", isImportField = "true",width = 20)
     private Date joinWorkDay;
     /**
      * 最高学历
@@ -103,15 +116,26 @@ public class Employee extends Model<Employee> {
      * 健康状况id
      */
     @TableField("health_id")
+    @Excel(name="健康状况")
     private String healthId;
     /**
      * 专业技术职务id
      */
     @TableField("technical_position_id")
+    @Excel(name="专业技术职务")
     private String technicalPositionId;
+
+    /**
+     * 专长
+     */
+    @TableField("zhuanchang")
+    @Excel(name="熟悉专业有何专长")
+    private String zhuanchang;
     /**
      * 职（执）业资格
      */
+    @TableField("qualification")
+    @Excel(name = "资格证书")
     private String qualification;
     /**
      * 最近进入系统时间
@@ -151,14 +175,17 @@ public class Employee extends Model<Employee> {
     /**
      * 电子邮箱
      */
+    @TableField("email")
     private String email;
     /**
      * 办公电话
      */
+    @TableField("phone")
     private String phone;
     /**
      * 手机号
      */
+    @TableField("tel")
     private String tel;
     /**
      * 紧急联系人
@@ -188,10 +215,7 @@ public class Employee extends Model<Employee> {
      * 简拼
      */
     private String jianpin;
-    /**
-     * 专长
-     */
-    private String zhuanchang;
+
     /**
      * 开户行
      */
@@ -223,6 +247,8 @@ public class Employee extends Model<Employee> {
     private Date updateTime;
 
 
+    private String token;
+    public Employee(){}
     public String getEmployeeId() {
         return employeeId;
     }
@@ -610,5 +636,13 @@ public class Employee extends Model<Employee> {
         ", crateTime=" + crateTime +
         ", updateTime=" + updateTime +
         "}";
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

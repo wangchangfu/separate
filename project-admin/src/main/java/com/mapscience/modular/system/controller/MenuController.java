@@ -2,6 +2,7 @@ package com.mapscience.modular.system.controller;
 
 
 import com.mapscience.core.common.ResponseVal;
+import com.mapscience.core.util.JedisUtil;
 import com.mapscience.modular.system.model.Menu;
 import com.mapscience.modular.system.service.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,15 +28,17 @@ public class MenuController {
     private IMenuService menuService;
 
     /**
-     * 查询菜单
+     * 查询菜单树
      * @return
      */
     @RequestMapping("menuTree")
     @ResponseBody
     public ResponseVal menuTree(){
-
+        JedisUtil.getObject("menuTree");
         return this.menuService.findmenuChildren();
     }
+
+
 
     /**
      * 菜单添加

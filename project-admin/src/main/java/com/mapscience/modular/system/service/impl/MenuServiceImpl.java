@@ -36,7 +36,8 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
              * 将List转为tree
              */
             List<Menu> bulid = bulid(menus);
-
+            //将bulid存入redis缓存
+           // JedisUtil.setObject("menuTree", bulid);
             return new ResponseVal(200,"查询成功",bulid);
         }catch (Exception e ){
             e.printStackTrace();

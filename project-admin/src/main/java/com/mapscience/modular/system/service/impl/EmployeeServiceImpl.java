@@ -20,8 +20,35 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
 
     @Autowired
     private EmployeeMapper employeeMapper;
+
+    /**
+     * 用户名密码查询用户
+     * @param account
+     * @param password
+     * @return
+     */
     @Override
-    public Employee getEmployeeByAccountAndPasswd(String account, String passWord) {
-        return this.employeeMapper.getEmployeeByAccountAndPasswd(account, passWord);
+    public Employee getEmployeeByAccountAndPasswd(String account, String password) {
+        return this.employeeMapper.getEmployeeByAccountAndPasswd(account, password);
     }
+
+    /**
+     * 通过账号获取用户
+     * @return
+     */
+    @Override
+    public Employee getByAccount(Employee e) {
+        return this.baseMapper.getByAccount(e.getAccount());
+    }
+
+    /**
+     * 添加用户
+     * @param em
+     */
+    @Override
+    public void add(Employee em) {
+
+    }
+
+
 }

@@ -28,8 +28,19 @@
     </sql>
 
 
+    <!--查询所有的公司-->
     <select id="getList" parameterType="String" resultMap="BaseResultMap">
         select * from t_company
     </select>
+    <!--保存-->
+    <insert id="saveCompany" useGeneratedKeys="true" keyProperty="companyId" parameterType="com.mapscience.modular.system.model.Company">
+        <!--生成uuid-->
+        <selectKey keyProperty="companyId" resultType="java.lang.String" order="BEFORE">
+            select REPLACE(UUID(),'-','')
+        </selectKey>
+        insert into t_company(
+        <include refid="Base_Column_List"/>) values (#{companyId},#{companyName},#{parentId},#{legalRepresentative},#{registeredCapital},#{coordinate},#{address},#{websiteAddress},#{companyLogo},#{companyBussRange},#{companyCard},#{status},#{remark},#{crateTime},#{updateTime})
+
+    </insert>
 
 </mapper>

@@ -37,6 +37,11 @@ public class ShiroDbRealm extends AuthorizingRealm {
     }
 
 
+    /**
+     * 授权
+     * @param principalCollection
+     * @return
+     */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
@@ -67,6 +72,12 @@ public class ShiroDbRealm extends AuthorizingRealm {
         return info;
     }
 
+    /**
+     * 认证
+     * @param authenticationToken
+     * @return
+     * @throws AuthenticationException
+     */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         IShiro shiroFactory = ShiroFactroy.me();

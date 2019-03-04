@@ -1,12 +1,14 @@
 package com.mapscience.modular.system.model;
 
+import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.activerecord.Model;
-import com.baomidou.mybatisplus.annotations.TableName;
-import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -98,6 +100,7 @@ public class Company extends Model<Company> {
     @TableField("update_time")
     private Date updateTime;
 
+    public List<Company> children;
 
     public String getCompanyId() {
         return companyId;
@@ -225,6 +228,14 @@ public class Company extends Model<Company> {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public List<Company> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Company> children) {
+        this.children = children;
     }
 
     @Override

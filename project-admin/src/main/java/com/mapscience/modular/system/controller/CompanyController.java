@@ -35,8 +35,26 @@ public class CompanyController {
         return new ResponseVal(200,"查询成功",list);
     }
 
+    /**
+     * 查询公司及子公司
+     * @param company
+     * @return
+     */
+    @RequestMapping("findComTree")
+    @ResponseBody
+    public ResponseVal findComTree(Company company){
+       return this.companyService.findComTree(company);
+    }
 
-
+    /**
+     * 添加公司
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("saveCompany")
+    public ResponseVal saveCompany(Company company){
+       return this.companyService.saveCompany(company);
+    }
 
 }
 

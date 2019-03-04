@@ -4,20 +4,21 @@ package com.mapscience.modular.system.controller;
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.core.common.constant.Constant;
 import com.mapscience.core.common.status.ProjectStatusEnum;
+import com.mapscience.core.exception.ProjectException;
 import com.mapscience.core.util.AesCipherUtil;
 import com.mapscience.core.util.JedisUtil;
 import com.mapscience.core.util.JwtUtil;
 import com.mapscience.modular.system.model.Employee;
 import com.mapscience.modular.system.service.IEmployeeService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 /**
  * <p>
@@ -57,6 +58,9 @@ public class EmployeeController {
         employee.setAccount(employee.getAccount().trim());
         employee.setPassWord(employee.getPassWord().trim());
         String key = AesCipherUtil.enCrypto(employee.getPassWord());
+        /**
+         * 查找用户
+         */
         Employee emp = this.employeeService.getEmployeeByAccountAndPasswd(employee.getAccount(), key);
         if (ObjectUtils.isEmpty(emp)){
             return new ResponseVal(ProjectStatusEnum.USER_NOT_EXISTED.getCode(), ProjectStatusEnum.USER_NOT_EXISTED.getMsg());
@@ -74,7 +78,33 @@ public class EmployeeController {
     }
 
 
+    /**
+     * 添加人员
+     * @param em
+     * @return
+     */
+    @RequestMapping("addEmployee")
+    @ResponseBody
+    @ApiOperation(value = "添加人员", notes = "添加人员")
+    public ResponseVal add(Employee em){
+        //查询人员是否添加  按照名称+身份证号查询
+        Employee byAccount = this.employeeService.getByAccount(em);
 
+        if (byAccount !=null){
+            throw new ProjectException(ProjectStatusEnum.USER_ALREADY_REG);
+        }
+        if (em.getPassWord().length() >Constant.PASSWORD_MAX_LEN){
+            throw new ProjectException(ProjectStatusEnum.PASSWORD_OVER_LENGTH);
+        }
+
+        em.setCrateTime(new Date());
+        //密码加密
+        String s = AesCipherUtil.enCrypto(em.getAccount() + em.getPassWord());
+        em.setPassWord(s);
+        this.employeeService.add(em);
+
+        return null;
+    }
 
 }
 

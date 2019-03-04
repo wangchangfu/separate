@@ -15,7 +15,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>project-admin</name>
-    <description>Demo project for Spring Boot</description>
+    <description>zzsres project for Spring Boot</description>
 
 
     <dependencies>
@@ -96,7 +96,23 @@
             <artifactId>ehcache</artifactId>
         </dependency>
 
-
+        <!--excel-->
+        <!-- easyPOI -->
+        <dependency>
+            <groupId>cn.afterturn</groupId>
+            <artifactId>easypoi-base</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.afterturn</groupId>
+            <artifactId>easypoi-web</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.afterturn</groupId>
+            <artifactId>easypoi-annotation</artifactId>
+            <version>3.3.0</version>
+        </dependency>
 
         <!--需要分布式session的话需要放开注释-->
         <!--<dependency>-->
