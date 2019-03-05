@@ -7,15 +7,15 @@ import org.springframework.stereotype.Controller;
 
 /**
  * <p>
- * 岗位表 前端控制器
+ * 岗位层级表 前端控制器
  * </p>
  *
  * @author ${author}
  * @since 2019-03-05
  */
 @Controller
-@RequestMapping("/post")
-public class PostController {
+@RequestMapping("/postLevel")
+public class PostLevelController {
 
 }
 

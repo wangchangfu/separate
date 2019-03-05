@@ -9,11 +9,13 @@
         <result column="status" property="status" />
         <result column="crate_time" property="crateTime" />
         <result column="update_time" property="updateTime" />
+        <result column="post_level_id" property="postLevelId" />
+        <result column="post_type_id" property="postTypeId" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        post_id, post_name, status, crate_time, update_time
+        post_id, post_name, status, crate_time, update_time, post_level_id, post_type_id
     </sql>
 
 </mapper>

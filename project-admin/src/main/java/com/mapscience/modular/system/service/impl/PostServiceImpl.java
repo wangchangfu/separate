@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- * 职务表 服务实现类
+ * 岗位表 服务实现类
  * </p>
  *
  * @author ${author}
- * @since 2019-01-16
+ * @since 2019-03-05
  */
 @Service
 public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IPostService {

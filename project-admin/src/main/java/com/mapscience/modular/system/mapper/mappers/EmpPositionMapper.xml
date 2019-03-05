@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapscience.modular.system.mapper.EmpPositionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.mapscience.modular.system.model.EmpPosition">
+        <id column="id" property="id" />
+        <result column="Com_id" property="comId" />
+        <result column="Dept_id" property="deptId" />
+        <result column="Post_id" property="postId" />
+        <result column="Emp_id" property="empId" />
+        <result column="status" property="status" />
+        <result column="crate_time" property="crateTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, Com_id, Dept_id, Post_id, Emp_id, status, crate_time, update_time
+    </sql>
+
+</mapper>

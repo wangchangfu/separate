@@ -9,67 +9,57 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 岗位表
+ * 岗位层级表
  * </p>
  *
  * @author ${author}
  * @since 2019-03-05
  */
-@TableName("t_post")
-public class Post extends Model<Post> {
+@TableName("t_post_level")
+public class PostLevel extends Model<PostLevel> {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * 唯一标志
      */
-    @TableId("post_id")
-    private String postId;
+    @TableId("post_level_id")
+    private String postLevelId;
     /**
-     * 名称
+     * 岗位层级
      */
-    @TableField("post_name")
-    private String postName;
+    @TableField("post_level_name")
+    private String postLevelName;
     /**
-     * 状态 0 禁用1启用
+     * 状态:0是删除,1是启用,2是增加,不显示查询显示
      */
     private Integer status;
     /**
-     * 创建时间
+     * 创建日期
      */
     @TableField("crate_time")
     private Date crateTime;
     /**
-     * 更新时间
+     * 修改日期
      */
     @TableField("update_time")
     private Date updateTime;
-    /**
-     * 岗位层级ID
-     */
-    @TableField("post_level_id")
-    private String postLevelId;
-    /**
-     * 岗位类别id
-     */
-    @TableField("post_type_id")
-    private String postTypeId;
 
 
-    public String getPostId() {
-        return postId;
+    public String getPostLevelId() {
+        return postLevelId;
     }
 
-    public void setPostId(String postId) {
-        this.postId = postId;
+    public void setPostLevelId(String postLevelId) {
+        this.postLevelId = postLevelId;
     }
 
-    public String getPostName() {
-        return postName;
+    public String getPostLevelName() {
+        return postLevelName;
     }
 
-    public void setPostName(String postName) {
-        this.postName = postName;
+    public void setPostLevelName(String postLevelName) {
+        this.postLevelName = postLevelName;
     }
 
     public Integer getStatus() {
@@ -96,37 +86,19 @@ public class Post extends Model<Post> {
         this.updateTime = updateTime;
     }
 
-    public String getPostLevelId() {
-        return postLevelId;
-    }
-
-    public void setPostLevelId(String postLevelId) {
-        this.postLevelId = postLevelId;
-    }
-
-    public String getPostTypeId() {
-        return postTypeId;
-    }
-
-    public void setPostTypeId(String postTypeId) {
-        this.postTypeId = postTypeId;
-    }
-
     @Override
     protected Serializable pkVal() {
-        return this.postId;
+        return this.postLevelId;
     }
 
     @Override
     public String toString() {
-        return "Post{" +
-        "postId=" + postId +
-        ", postName=" + postName +
+        return "PostLevel{" +
+        "postLevelId=" + postLevelId +
+        ", postLevelName=" + postLevelName +
         ", status=" + status +
         ", crateTime=" + crateTime +
         ", updateTime=" + updateTime +
-        ", postLevelId=" + postLevelId +
-        ", postTypeId=" + postTypeId +
         "}";
     }
 }

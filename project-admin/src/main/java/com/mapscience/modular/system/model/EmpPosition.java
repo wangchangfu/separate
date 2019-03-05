@@ -1,7 +1,6 @@
 package com.mapscience.modular.system.model;
 
 import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -9,52 +8,80 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 岗位表
+ * 公司部门岗位关系表
  * </p>
  *
  * @author ${author}
  * @since 2019-03-05
  */
-@TableName("t_post")
-public class Post extends Model<Post> {
+@TableName("t_emp_position")
+public class EmpPosition extends Model<EmpPosition> {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * 唯一标志
      */
-    @TableId("post_id")
+    private String id;
+    /**
+     * 公司Id
+     */
+    @TableField("Com_id")
+    private String comId;
+    /**
+     * 部门Id
+     */
+    @TableField("Dept_id")
+    private String deptId;
+    /**
+     * 岗位Id
+     */
+    @TableField("Post_id")
     private String postId;
     /**
-     * 名称
+     * 员工Id
      */
-    @TableField("post_name")
-    private String postName;
+    @TableField("Emp_id")
+    private String empId;
     /**
-     * 状态 0 禁用1启用
+     * 状态:0是删除,1是启用,2是增加,不显示查询显示
      */
     private Integer status;
     /**
-     * 创建时间
+     * 创建日期
      */
     @TableField("crate_time")
     private Date crateTime;
     /**
-     * 更新时间
+     * 修改日期
      */
     @TableField("update_time")
     private Date updateTime;
-    /**
-     * 岗位层级ID
-     */
-    @TableField("post_level_id")
-    private String postLevelId;
-    /**
-     * 岗位类别id
-     */
-    @TableField("post_type_id")
-    private String postTypeId;
 
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getComId() {
+        return comId;
+    }
+
+    public void setComId(String comId) {
+        this.comId = comId;
+    }
+
+    public String getDeptId() {
+        return deptId;
+    }
+
+    public void setDeptId(String deptId) {
+        this.deptId = deptId;
+    }
 
     public String getPostId() {
         return postId;
@@ -64,12 +91,12 @@ public class Post extends Model<Post> {
         this.postId = postId;
     }
 
-    public String getPostName() {
-        return postName;
+    public String getEmpId() {
+        return empId;
     }
 
-    public void setPostName(String postName) {
-        this.postName = postName;
+    public void setEmpId(String empId) {
+        this.empId = empId;
     }
 
     public Integer getStatus() {
@@ -96,37 +123,22 @@ public class Post extends Model<Post> {
         this.updateTime = updateTime;
     }
 
-    public String getPostLevelId() {
-        return postLevelId;
-    }
-
-    public void setPostLevelId(String postLevelId) {
-        this.postLevelId = postLevelId;
-    }
-
-    public String getPostTypeId() {
-        return postTypeId;
-    }
-
-    public void setPostTypeId(String postTypeId) {
-        this.postTypeId = postTypeId;
-    }
-
     @Override
     protected Serializable pkVal() {
-        return this.postId;
+        return this.id;
     }
 
     @Override
     public String toString() {
-        return "Post{" +
-        "postId=" + postId +
-        ", postName=" + postName +
+        return "EmpPosition{" +
+        "id=" + id +
+        ", comId=" + comId +
+        ", deptId=" + deptId +
+        ", postId=" + postId +
+        ", empId=" + empId +
         ", status=" + status +
         ", crateTime=" + crateTime +
         ", updateTime=" + updateTime +
-        ", postLevelId=" + postLevelId +
-        ", postTypeId=" + postTypeId +
         "}";
     }
 }
