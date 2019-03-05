@@ -17,14 +17,35 @@ project:
       - dataSourceProject
       - dataSourceBiz
 
+#  freemarker:
+#      expose-spring-macro-helpers: true
+#      allow-request-override: false
+#      check-template-location: true
+#      charset: UTF-8
+#      content-type: text/html
+#      expose-request-attributes: true
+#      expose-session-attributes: true
+#      suffix: .html
+#      template-loader-path: classpath:/WEB-INF/view/
+#      request-context-attribute: ctx
+#      settings:
+#        classic_compatible: true
 
-
+  thymeleaf:
+     cache: false
+     prefix: classpath:/templates/
+     check-template-location: true
+     suffix:  .html
+     encoding: utf-8
+     mode: HTML5
+     servlet:
+        content-type: text/html
   profiles:
       active: @spring.active@
   mvc:
     static-path-pattern: /static/**
     view:
-      prefix: /templates
+        prefix: /WEB-INF/view/
 mybatis-plus:
   mapper-locations: classpath*:com/mapscience/modular/*/mapper/mappers/*.xml
   type-aliases-package: com.mapscience.modular.*.model

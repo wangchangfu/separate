@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>人力资源登录</title>
+    <link href="../static/common/css/bootstrap.css" th:href="@{/common/css/bootstrap.css}" rel="stylesheet"/>
+    <link href="../static/modular/login/css/login.css" th:href="@{/modular/login/css/login.css}" rel="stylesheet"/>
+    <link rel="shortcut icon" href="../static/favicon.ico" th:href="@{favicon.ico}"/>
+    <script type="text/javascript">
+        if (window.top !== window.self) {
+            window.top.location = window.location;
+        };
+    </script>
+</head>
+<body>
+<!---->
+<div class="loginCont">
+    <h1 class="title">人力资源后台管理系统<span>Human Resource Backstage Management System</span></h1>
+    <div class="loginMain">
+        <div class="loginBox">
+            <div class="login-title">登录账户</div>
+            <form>
+                <div class="form-item">
+                    <input id="account" name="account" type="text" class="login-input" placeholder="请输入用户名"  value="5002"/>
+                    <label for="account" class="login-icon"><i class="fa fa-user-o"></i></label>
+                </div>
+                <div class="form-item">
+                    <input id="password" name="password" type="password" class="login-input" placeholder="请输入密码"  value="123456"/>
+                    <label for="password" class="login-icon"><i class="fa fa-key"></i></label>
+                </div>
+                <label class="messagepass"></label>
+                <div class="form-item">
+                    <div class="pull-left login-btn" id="btnSubmit" data-loading="正在验证登录，请稍后...">登录</div>
+                    <!---<a href="#" class="pull-right">忘记密码?</a>-->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!---->
+
+
+<!--全局js-->
+<script src="../static/common/js/jquery-3.3.1.js" th:src="@{/common/js/jquery-3.3.1.js}"></script>
+<script src="../static/common/plugins/layui/layui.js" th:src="@{/common/plugins/layui/layui.js}"></script>
+<!--私有js-->
+<script src="../static/modular/login/js/login.js" th:src="@{/modular/login/js/login.js}"></script>
+
+</body>
+</html>

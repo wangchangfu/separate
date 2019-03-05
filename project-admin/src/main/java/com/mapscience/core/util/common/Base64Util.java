@@ -1,6 +1,6 @@
 package com.mapscience.core.util.common;
 
-import freemarker.template.utility.StringUtil;
+//import freemarker.template.utility.StringUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
