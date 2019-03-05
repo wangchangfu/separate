@@ -18,7 +18,7 @@ import org.springframework.stereotype.Controller;
 public class CredentialsTypeController {
 
 	
-	
+	private String aa;
 	
 }
 
