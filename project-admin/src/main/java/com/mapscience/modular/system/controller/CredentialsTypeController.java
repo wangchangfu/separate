@@ -17,5 +17,8 @@ import org.springframework.stereotype.Controller;
 @RequestMapping("/credentialsType")
 public class CredentialsTypeController {
 
+	
+	
+	
 }
 
