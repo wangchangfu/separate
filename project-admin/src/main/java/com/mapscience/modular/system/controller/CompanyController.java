@@ -3,6 +3,7 @@ package com.mapscience.modular.system.controller;
 
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.model.Company;
+import com.mapscience.modular.system.model.Department;
 import com.mapscience.modular.system.service.ICompanyService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,31 +60,11 @@ public class CompanyController {
     }
     
 	/**
-	 * 通过Id查找公司
-	 * @author zhoux
+	 * 根据id删除
 	 */
-	@RequestMapping(value = "findCompanyById")
+	@RequestMapping(value = "deleteById")
 	@ResponseBody
-	public ResponseVal findCompanyById(String id) {
-		try {
-			Company company = companyService.selectById(id);
-			if(ObjectUtils.isEmpty(company)) {
-				return new ResponseVal(500,"fail");
-			}else {
-				return new ResponseVal(200,"success");
-			}
-		} catch (Exception e) {
-			return new ResponseVal(500,"erro");
-		}
-	}
-	
-	/**
-	 * 通过Id删除公司
-	 * @author zhoux
-	 */
-	@RequestMapping(value = "deleteCompanyById")
-	@ResponseBody
-	public ResponseVal deleteCompanyById(String id) {
+	public ResponseVal deleteById(String id) {
 		try {
 			boolean flag = companyService.deleteById(id);
 			if(flag) {
@@ -92,26 +73,46 @@ public class CompanyController {
 				return new ResponseVal(500,"fail");
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseVal(500,"erro");
 		}
 	}
 	
 	/**
-	 * 通过Id修改公司
-	 * @author zhoux
+	 * 根据id修改
 	 */
-	@RequestMapping(value = "updateCompanyById")
+	@RequestMapping(value = "updateById")
 	@ResponseBody
-	public ResponseVal updateCompanyById(Company company) {
+	public ResponseVal updateById(Company entity) {
 		try {
-			boolean flag = companyService.updateById(company);
+			boolean flag = companyService.updateById(entity);
 			if(flag) {
 				return new ResponseVal(200,"success");
 			}else {
 				return new ResponseVal(500,"fail");
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseVal(500,"erro");
+		}
+	}
+	
+	/**
+	 * 根据Id查询
+	 */
+	@RequestMapping(value = "selectById")
+	@ResponseBody
+	public ResponseVal selectById(String id) {
+		try {
+			Company selectById = companyService.selectById(id);
+			if(ObjectUtils.isEmpty(selectById)) {
+				return new ResponseVal(500,"fail",null);
+			}else {
+				return new ResponseVal(200,"success",selectById);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseVal(500,"erro",null);
 		}
 	}
 
