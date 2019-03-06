@@ -35,7 +35,7 @@ public class CodeController {
     @ResponseBody
     @PostMapping(value = "/generate")
     public ResponseVal generate(CodeProperties codeProperties) {
-        codeProperties.setUrl("jdbc:mysql://192.168.1.205:3306/yydsjpt?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC");
+        codeProperties.setUrl("jdbc:mysql://192.168.1.247:3306/zzsres?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC");
         codeProperties.setUserName("root");
         codeProperties.setPassword("123456");
         WebGeneratorConfig webGeneratorConfig = new WebGeneratorConfig(codeProperties);

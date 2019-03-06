@@ -45,9 +45,8 @@ public class UserController {
 //        }
         // 完善账号信息
         user.setSalt(ShiroKit.getRandomSalt(5));
-        //user.setPassword(ShiroKit.md5(user.getPassword(), user.getSalt()));
-        user.setPassword(user.getPassword());
-        user.setPassword(user.getPassword());
+        user.setPassword(ShiroKit.md5(user.getPassword(), user.getSalt()));
+
         user.setStatus(ManagerStatus.OK.getCode());
         user.setCreateTime(new Date());
         user.setUpdateTime(new Date());

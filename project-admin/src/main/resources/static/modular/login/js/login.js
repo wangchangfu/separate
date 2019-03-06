@@ -30,9 +30,12 @@ function login() {
         success: function(result){
 
             if(result.code == 200){
-
+               var cur= window.document.location.href;
+               var path =window.document.location.pathname;
+                var s=cur.indexOf(path);
+                window.location =cur.substring(0,s)+"/home";
             }else{
-                $('.messagepass').html(result.message);
+                $('.messagepass').html(result.msg);
 
             }
         }
