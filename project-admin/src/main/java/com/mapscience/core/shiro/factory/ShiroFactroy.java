@@ -3,10 +3,9 @@ package com.mapscience.core.shiro.factory;
 import com.mapscience.core.common.constant.factory.ConstantFactory;
 import com.mapscience.core.common.constant.state.ManagerStatus;
 import com.mapscience.core.shiro.ShiroUser;
-import com.mapscience.core.util.Convert;
 import com.mapscience.core.util.SpringContextHolder;
-import com.mapscience.modular.system.mapper.EmployeeMapper;
-import com.mapscience.modular.system.model.Employee;
+import com.mapscience.modular.system.mapper.UserMapper;
+import com.mapscience.modular.system.model.User;
 import org.apache.shiro.authc.CredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
@@ -25,8 +24,11 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class ShiroFactroy implements IShiro {
 
+    //@Autowired
+    //private EmployeeMapper employeeMapper;
+
     @Autowired
-    private EmployeeMapper employeeMapper;
+    private UserMapper userMapper;
 
 //    @Autowired
 //    private MenuMapper menuMapper;
@@ -35,29 +37,36 @@ public class ShiroFactroy implements IShiro {
         return SpringContextHolder.getBean(IShiro.class);
     }
 
+    /**
+     * 查找账号是否存在
+     * @param account 账号
+     * @return
+     */
     @Override
-    public Employee employee(String account) {
-        Employee user = employeeMapper.getByAccount(account);
+    public User user(String account) {
+        User user = userMapper.getByAccount(account);
 
         // 账号不存在
         if (null == user) {
             throw new CredentialsException();
         }
         // 账号被冻结
-        if (user.getType() != ManagerStatus.OK.getCode()) {
+        if (user.getStatus() != ManagerStatus.OK.getCode()) {
             throw new LockedAccountException();
         }
         return user;
     }
 
+
+
     @Override
-    public ShiroUser shiroUser(Employee employee) {
+    public ShiroUser shiroUser(User user) {
         ShiroUser shiroUser = new ShiroUser();
-        shiroUser.setId(employee.getEmployeeId());
-        shiroUser.setAccount(employee.getAccount());
+        shiroUser.setId(user.getUserId());
+        shiroUser.setAccount(user.getAccount());
 //        shiroUser.setDeptId(employee.getDeptid());
 //        shiroUser.setDeptName(ConstantFactory.me().getDeptName(user.getDeptid()));
-        shiroUser.setName(employee.getEmployeeName());
+        shiroUser.setName(user.getEmpName());
 //        String[] roleArray = Convert.toStrArray(user.getRoleid());
         List<String> roleList = new ArrayList<String>();
         List<String> roleNameList = new ArrayList<String>();
@@ -70,6 +79,11 @@ public class ShiroFactroy implements IShiro {
         return shiroUser;
     }
 
+    /**
+     * 获取权限列表通过角色id
+     * @param roleId 角色id
+     * @return
+     */
     @Override
     public List<String> findPermissionsByRoleId(String roleId) {
 
@@ -77,16 +91,28 @@ public class ShiroFactroy implements IShiro {
 //                menuMapper.getResUrlsByRoleId(roleId);
     }
 
+    /**
+     * 根据角色id获取角色名称
+     * @param roleId 角色id
+     * @return
+     */
     @Override
     public String findRoleNameByRoleId(String roleId) {
         return ConstantFactory.me().getSingleRoleTip(roleId);
     }
 
+    /**
+     * 获取shiro的认证信息
+     * @param shiroUser
+     * @param employee
+     * @param realmName
+     * @return
+     */
     @Override
-    public SimpleAuthenticationInfo info(ShiroUser shiroUser, Employee employee, String realmName) {
-        String credentials = employee.getPassWord();
+    public SimpleAuthenticationInfo info(ShiroUser shiroUser, User employee, String realmName) {
+        String credentials = employee.getPassword();
         // 密码加盐处理
-        String source = employee.getPassWord();
+        String source = employee.getPassword();
         ByteSource credentialsSalt = new Md5Hash(source);
         return new SimpleAuthenticationInfo(shiroUser, credentials, credentialsSalt, realmName);
     }

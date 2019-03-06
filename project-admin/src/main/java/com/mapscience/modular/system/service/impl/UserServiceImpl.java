@@ -1,5 +1,6 @@
 package com.mapscience.modular.system.service.impl;
 
+import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.model.User;
 import com.mapscience.modular.system.mapper.UserMapper;
 import com.mapscience.modular.system.service.IUserService;
@@ -17,4 +18,32 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
+    /**
+     * 添加
+     * @param user
+     * @return
+     */
+    @Override
+    public ResponseVal addUser(User user) {
+        try{
+             this.baseMapper.addUser(user);
+
+            return new ResponseVal(200,"保存成功");
+        }catch (Exception e){
+           return new ResponseVal(500,"",e);
+        }
+
+
+    }
+
+    /**
+     * 查询管理员是否存在
+     *
+     * @return
+     */
+    @Override
+    public User getByAccount(String account) {
+        User us = this.baseMapper.getByAccount(account);
+        return us;
+    }
 }

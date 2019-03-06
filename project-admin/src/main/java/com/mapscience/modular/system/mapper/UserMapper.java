@@ -13,4 +13,17 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface UserMapper extends BaseMapper<User> {
 
+    /**
+     * 添加
+     * @param user
+     * @return
+     */
+    void addUser(User user);
+
+    /**
+     * 查找账号是否存在
+     * @param accect
+     * @return
+     */
+    User getByAccount(String accect);
 }

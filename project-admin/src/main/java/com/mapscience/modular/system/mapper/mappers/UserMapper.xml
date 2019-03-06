@@ -19,4 +19,21 @@
         user_id, account, password, salt, emp_id, status, create_time, update_time
     </sql>
 
+    <!--查找用户-->
+    <select id="getByAccount" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user where account=#{account}
+    </select>
+
+    <!--保存用户-->
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="userId" parameterType="com.mapscience.modular.system.model.User">
+
+        <selectKey keyProperty="userId" resultType="java.lang.String" order="BEFORE">
+            select REPLACE(UUID(),'-','')
+        </selectKey>
+        insert into t_user(user_id, account, password, salt, emp_id, status, create_time, update_time)
+        value(#{userId},#{account},#{password},#{salt},#{empId},#{status},#{createTime},#{updateTime})
+    </insert>
+
 </mapper>

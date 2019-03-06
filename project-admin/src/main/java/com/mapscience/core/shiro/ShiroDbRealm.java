@@ -8,7 +8,7 @@ import com.mapscience.core.support.StrKit;
 import com.mapscience.core.util.JedisUtil;
 import com.mapscience.core.util.JwtUtil;
 import com.mapscience.core.util.ToolUtil;
-import com.mapscience.modular.system.model.Employee;
+import com.mapscience.modular.system.model.User;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -26,6 +26,7 @@ import java.util.Set;
  * 自定义realm
  */
 public class ShiroDbRealm extends AuthorizingRealm {
+
 
 
     /**
@@ -47,7 +48,9 @@ public class ShiroDbRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
         String account = JwtUtil.getClaim(principalCollection.toString(), Constant.ACCOUNT);
         IShiro shiroFactory = ShiroFactroy.me();
-        Employee user = shiroFactory.employee(account);
+
+        //获取到用户
+        User user = shiroFactory.user(account);
         ShiroUser shiroUser = shiroFactory.shiroUser(user);
         /*IShiro shiroFactory = ShiroFactroy.me();
         ShiroUser shiroUser = (ShiroUser) principalCollection.getPrimaryPrincipal();*/
@@ -88,7 +91,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
         if (StrKit.isBlank(account)) {
             throw new AuthenticationException("Token中帐号为空(The account in Token is empty.)");
         }
-        Employee user = shiroFactory.employee(account);
+        User user = shiroFactory.user(account);
 
 
         // 开始认证，要AccessToken认证通过，且Redis中存在RefreshToken，且两个Token时间戳一致

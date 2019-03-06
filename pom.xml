@@ -15,7 +15,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>separate</name>
-    <description>前后端分离框架</description>
+    <description>前后端分离框架父类</description>
 
 
     <modules>

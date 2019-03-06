@@ -1,7 +1,7 @@
 package com.mapscience.core.shiro.factory;
 
 import com.mapscience.core.shiro.ShiroUser;
-import com.mapscience.modular.system.model.Employee;
+import com.mapscience.modular.system.model.User;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 
 import java.util.List;
@@ -15,14 +15,14 @@ public interface IShiro {
      *
      * @param account 账号
      */
-    Employee employee(String account);
+    User user(String account);
 
     /**
      * 根据系统用户获取Shiro的用户
      *
-     * @param employee 系统用户
+     * @param user 系统用户
      */
-    ShiroUser shiroUser(Employee employee);
+    ShiroUser shiroUser(User user);
 
     /**
      * 获取权限列表通过角色id
@@ -41,6 +41,6 @@ public interface IShiro {
     /**
      * 获取shiro的认证信息
      */
-    SimpleAuthenticationInfo info(ShiroUser shiroUser, Employee employee, String realmName);
+    SimpleAuthenticationInfo info(ShiroUser shiroUser, User user, String realmName);
 
 }

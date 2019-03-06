@@ -28,7 +28,7 @@ public class AesCipherUtil {
     /**
      * AES密码加密私钥(Base64加密)
      */
-    @Value("${encrypt-aescey}")
+    @Value("${encryptAESKey}")
     private static String encryptAESKey;
 
 

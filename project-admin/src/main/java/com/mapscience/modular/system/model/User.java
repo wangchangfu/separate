@@ -1,11 +1,12 @@
 package com.mapscience.modular.system.model;
 
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -40,6 +41,10 @@ public class User extends Model<User> {
     @TableField("emp_id")
     private String empId;
     /**
+     * 员工姓名
+     */
+    private String empName;
+    /**
      * 状态 1 启动 2 冻结 3 删除
      */
     private Integer status;
@@ -54,6 +59,7 @@ public class User extends Model<User> {
     @TableField("update_time")
     private Date updateTime;
 
+    private String token;
 
     public String getUserId() {
         return userId;
@@ -136,5 +142,35 @@ public class User extends Model<User> {
         ", createTime=" + createTime +
         ", updateTime=" + updateTime +
         "}";
+    }
+
+    public User() {
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getEmpName() {
+        return empName;
+    }
+
+    public void setEmpName(String empName) {
+        this.empName = empName;
+    }
+
+    public User(String userId, String account, String password, String salt, String empId, Integer status, Date createTime, Date updateTime) {
+        this.userId = userId;
+        this.account = account;
+        this.password = password;
+        this.salt = salt;
+        this.empId = empId;
+        this.status = status;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
     }
 }

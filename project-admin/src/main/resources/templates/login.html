@@ -39,7 +39,7 @@
 </div>
 <!---->
 
-
+<script th:inline="javascript"> var ctx = [[@{/}]]; var captchaType = [[${captchaType}]]; </script>
 <!--全局js-->
 <script src="../static/common/js/jquery-3.3.1.js" th:src="@{/common/js/jquery-3.3.1.js}"></script>
 <script src="../static/common/plugins/layui/layui.js" th:src="@{/common/plugins/layui/layui.js}"></script>
