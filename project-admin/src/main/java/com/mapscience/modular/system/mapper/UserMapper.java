@@ -1,7 +1,10 @@
 package com.mapscience.modular.system.mapper;
 
-import com.mapscience.modular.system.model.User;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.mapscience.modular.system.dto.UserDTO;
+import com.mapscience.modular.system.model.User;
+
+import java.util.List;
 
 /**
  * <p>
@@ -26,4 +29,10 @@ public interface UserMapper extends BaseMapper<User> {
      * @return
      */
     User getByAccount(String accect);
+
+    /**
+     * 按照公司查找
+     * @return
+     */
+    List<User> findByComUser(UserDTO user);
 }

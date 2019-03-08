@@ -53,6 +53,12 @@ public class User extends Model<User> {
      */
     @TableField("create_time")
     private Date createTime;
+
+    /**
+     * 公司id
+     */
+    @TableField("com_id")
+    private String comId;
     /**
      * 更新时间
      */
@@ -161,6 +167,14 @@ public class User extends Model<User> {
 
     public void setEmpName(String empName) {
         this.empName = empName;
+    }
+
+    public String getComId() {
+        return comId;
+    }
+
+    public void setComId(String comId) {
+        this.comId = comId;
     }
 
     public User(String userId, String account, String password, String salt, String empId, Integer status, Date createTime, Date updateTime) {

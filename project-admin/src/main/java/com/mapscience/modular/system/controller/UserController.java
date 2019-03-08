@@ -4,6 +4,7 @@ package com.mapscience.modular.system.controller;
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.core.common.constant.state.ManagerStatus;
 import com.mapscience.core.shiro.ShiroKit;
+import com.mapscience.modular.system.dto.UserDTO;
 import com.mapscience.modular.system.model.User;
 import com.mapscience.modular.system.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,7 @@ public class UserController {
 //            throw new ProjectException(ProjectStatusEnum.USER_ALREADY_REG);
 //        }
         // 完善账号信息
+        user.setComId(user.getComId());
         user.setSalt(ShiroKit.getRandomSalt(5));
         user.setPassword(ShiroKit.md5(user.getPassword(), user.getSalt()));
 
@@ -53,6 +55,18 @@ public class UserController {
         //添加用户
         ResponseVal responseVal = userService.addUser(user);
         return responseVal;
+    }
+
+    /**
+     * 按照公司查找管理员
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "/findByComUser" ,method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public ResponseVal findByComUser(UserDTO user){
+        this.userService.findByComUser(user);
+        return null;
     }
 
 }

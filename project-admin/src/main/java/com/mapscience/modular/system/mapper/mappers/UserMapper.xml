@@ -35,5 +35,9 @@
         insert into t_user(user_id, account, password, salt, emp_id, status, create_time, update_time)
         value(#{userId},#{account},#{password},#{salt},#{empId},#{status},#{createTime},#{updateTime})
     </insert>
+    
+    <!--<select id="findByComUser" resultMap="BaseResultMap">
+        SELECT * FROM t_user where com_id=#{comId}
+    </select>-->
 
 </mapper>
