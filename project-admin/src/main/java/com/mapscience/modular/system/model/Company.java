@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -31,6 +33,7 @@ public class Company extends Model<Company> {
     /**
      * 公司名
      */
+    @Excel(name = "公司名")
     @TableField("company_name")
     private String companyName;
     /**
@@ -42,10 +45,12 @@ public class Company extends Model<Company> {
      * 法定代表人
      */
     @TableField("legal_representative")
+    @Excel(name = "法定代表人")
     private String legalRepresentative;
     /**
      * 注册资本（万元）
      */
+    @Excel(name = "注册资本（万元）")
     @TableField("registered_capital")
     private BigDecimal registeredCapital;
     /**
@@ -59,26 +64,31 @@ public class Company extends Model<Company> {
     /**
      * 官网地址
      */
+    @Excel(name = "官网地址")
     @TableField("website_address")
     private String websiteAddress;
     /**
      * 公司图标地址
      */
+    @Excel(name = "公司图标地址")
     @TableField("company_logo")
     private String companyLogo;
     /**
      * 公司电话（可以多个如023-44951826,0236-954217451）
      */
+    @Excel(name = "公司电话")
     @TableField("company_phone")
     private String companyPhone;
     /**
      * 业务范围
      */
+    @Excel(name = "业务范围")
     @TableField("company_buss_range")
     private String companyBussRange;
     /**
      * 公司发票号
      */
+    @Excel(name = "公司发票号")
     @TableField("company_card")
     private String companyCard;
     /**
