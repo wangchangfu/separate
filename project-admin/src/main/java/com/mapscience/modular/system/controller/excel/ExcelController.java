@@ -126,7 +126,6 @@ public class ExcelController {
 	 */
 	@PostMapping("/importExcelCompany")
 	@ResponseBody
-	@Transactional
 	public ResponseVal importExcelCompany(@RequestParam(value = "file", required = false) MultipartFile files) {
 		try {
 			ImportParams params = new ImportParams();
