@@ -44,8 +44,8 @@ public class Company extends Model<Company> {
     /**
      * 法定代表人
      */
-    @TableField("legal_representative")
     @Excel(name = "法定代表人")
+    @TableField("legal_representative")
     private String legalRepresentative;
     /**
      * 注册资本（万元）
