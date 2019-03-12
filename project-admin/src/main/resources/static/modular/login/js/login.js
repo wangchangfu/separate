@@ -2,7 +2,6 @@
  * 登陆
  */
 $(function() {
-
     //点击登陆
     $('#btnSubmit').click(function() {
         login();
@@ -23,7 +22,7 @@ function login() {
     }
     $.ajax({
         type: 'POST',
-        url: ctx + "ajaxlogin",
+        url: rootPath + "ajaxlogin",
         dataType: "json",
         async:true,
         data: data,

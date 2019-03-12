@@ -1,12 +1,14 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<#assign basePath=request.contextPath />
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>人力资源登录</title>
-    <link href="../static/common/css/bootstrap.css" th:href="@{/common/css/bootstrap.css}" rel="stylesheet"/>
-    <link href="../static/modular/login/css/login.css" th:href="@{/modular/login/css/login.css}" rel="stylesheet"/>
-    <link rel="shortcut icon" href="../static/favicon.ico" th:href="@{favicon.ico}"/>
+    <link href="${basePath}/static/common/css/bootstrap.css" />
+    <link href="${basePath}/static/modular/login/css/login.css" />
+    <!--背景图-->
+    <link rel="shortcut icon" href="${basePath}/static/favicon.ico"/>
     <script type="text/javascript">
+        var rootPath = '${basePath}';
         if (window.top !== window.self) {
             window.top.location = window.location;
         };
@@ -39,12 +41,11 @@
 </div>
 <!---->
 
-<script th:inline="javascript"> var ctx = [[@{/}]]; var captchaType = [[${captchaType}]]; </script>
 <!--全局js-->
-<script src="../static/common/js/jquery-3.3.1.js" th:src="@{/common/js/jquery-3.3.1.js}"></script>
-<script src="../static/common/plugins/layui/layui.js" th:src="@{/common/plugins/layui/layui.js}"></script>
+<script src="${basePath}/static/common/js/jquery-3.3.1.js" ></script>
+<script src="${basePath}/static/common/plugins/layui/layui.js"></script>
 <!--私有js-->
-<script src="../static/modular/login/js/login.js" th:src="@{/modular/login/js/login.js}"></script>
+<script src="${basePath}/static/modular/login/js/login.js" ></script>
 
 </body>
 </html>

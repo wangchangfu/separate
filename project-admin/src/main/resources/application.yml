@@ -7,6 +7,25 @@ spring:
     username: root
     password: 123456
     filters: wall,mergeStat
+  freemarker:
+      expose-spring-macro-helpers: true
+      allow-request-override: false
+      check-template-location: true
+      charset: UTF-8
+      content-type: text/html
+      expose-request-attributes: true
+      expose-session-attributes: true
+      suffix: .html
+      template-loader-path: classpath:/templates/
+      request-context-attribute: ctx
+      settings:
+        classic_compatible: true
+  profiles:
+    active: @spring.active@
+  mvc:
+    static-path-pattern: /static/**
+    view:
+      prefix: /templates/
 project:
   muti-datasource:
     open: true
@@ -17,35 +36,7 @@ project:
       - dataSourceProject
       - dataSourceBiz
 
-#  freemarker:
-#      expose-spring-macro-helpers: true
-#      allow-request-override: false
-#      check-template-location: true
-#      charset: UTF-8
-#      content-type: text/html
-#      expose-request-attributes: true
-#      expose-session-attributes: true
-#      suffix: .html
-#      template-loader-path: classpath:/WEB-INF/view/
-#      request-context-attribute: ctx
-#      settings:
-#        classic_compatible: true
 
-  thymeleaf:
-     cache: false
-     prefix: classpath:/templates/
-     check-template-location: true
-     suffix:  .html
-     encoding: utf-8
-     mode: HTML5
-     servlet:
-        content-type: text/html
-  profiles:
-      active: @spring.active@
-  mvc:
-    static-path-pattern: /static/**
-    view:
-        prefix: /WEB-INF/view/
 mybatis-plus:
   mapper-locations: classpath*:com/mapscience/modular/*/mapper/mappers/*.xml
   type-aliases-package: com.mapscience.modular.*.model
@@ -67,8 +58,8 @@ mybatis-plus:
 #jedis配置
 redis:
   host: 192.168.1.225
-  port: 6379
-  password:
+  port: 6380
+  password: 123456
   timeout: 10000
   max-active: 200
   max-wait: -1

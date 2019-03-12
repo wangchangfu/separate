@@ -1,0 +1,12 @@
+/*
+	Copyright (c) 2004-2011, The Dojo Foundation All Rights Reserved.
+	Available via Academic Free License >= 2.1 OR the modified BSD license.
+	see: http://dojotoolkit.org/license for details
+*/
+
+//>>built
+define("dojo/cldr/nls/et/islamic",{"field-dayperiod":"e.l./p.l.","dateFormatItem-yyyyMMMEd":"E, dd.MM.yy G","field-minute":"Minut","dateFormatItem-MMMEd":"E, dd.MM","dateTimeFormat-full":"{1} kell {0}","field-day-relative+-1":"Eile","field-weekday":"N\u00e4dalap\u00e4ev","dateTimeFormats-appendItem-Year":"{0} {1}","dateTimeFormat-short":"{1}, {0}","field-era":"Ajaj\u00e4rk","dateFormatItem-Gy":"y G","field-hour":"Tund","dateTimeFormat-medium":"{1}, {0}","dateFormatItem-y":"y G","timeFormat-full":"H:mm:ss zzzz",
+"dateFormatItem-yyyy":"y G","dateFormatItem-Ed":"d E","field-day-relative+0":"T\u00e4na","field-day-relative+1":"Homme",eraAbbr:["AH"],"dateFormatItem-GyMMMd":"dd.MM.yy G","dateFormat-long":"dd. MMMM yy G","timeFormat-medium":"H:mm:ss","field-zone":"Ajav\u00f6\u00f6nd","field-week-relative+-1":"Eelmine n\u00e4dal","dateFormat-medium":"dd.MM.yy G","dayPeriods-format-narrow-pm":"p.l.","field-year-relative+0":"See aasta","field-year-relative+1":"J\u00e4rgmine aasta","field-year-relative+-1":"Eelmine aasta",
+"field-year":"Aasta","dateFormatItem-yyyyQQQQ":"QQQQ y G","dayPeriods-format-narrow-am":"e.l.","dateTimeFormat-long":"{1} kell {0}","field-week":"N\u00e4dal","dateFormatItem-yyyyMMMd":"dd.MM.yy G","dateFormatItem-yyyyMd":"dd.MM.yy GGGGG","dateFormatItem-yyyyMEd":"E, dd.MM.yy GGGGG","field-week-relative+0":"See n\u00e4dal","field-week-relative+1":"J\u00e4rgmine n\u00e4dal","timeFormat-long":"H:mm:ss z","field-month-relative+0":"See kuu","field-month":"Kuu","field-month-relative+1":"J\u00e4rgmine kuu",
+"timeFormat-short":"H:mm","field-second":"Sekund","dateFormatItem-GyMMMEd":"E, dd.MM.yy G","dateFormatItem-GyMMM":"MMM y G","field-day":"P\u00e4ev","dateFormatItem-yyyyQQQ":"QQQ y G","dateFormatItem-MEd":"E, dd.MM","dateFormat-short":"dd.MM.yy GGGGG","dateFormatItem-yyyyM":"MM.yy GGGGG","dateFormat-full":"EEEE, d, MMMM y G","dateFormatItem-Md":"K/kp","days-format-short":"ETKNRLP".split(""),"dateFormatItem-yyyyMMM":"MMM y G","dateTimeFormats-appendItem-Era":"{0} {1}","field-month-relative+-1":"Eelmine kuu",
+"quarters-format-wide":["Esimene kvartal","Teine kvartal","Kolmas kvartal","Neljas kvartal"],"days-format-wide":"Esmasp\u00e4ev Teisip\u00e4ev Kolmap\u00e4ev Neljap\u00e4ev Reede Laup\u00e4ev P\u00fchap\u00e4ev".split(" ")});
