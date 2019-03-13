@@ -113,7 +113,7 @@ public class LoginController extends BaseController {
                 // 从Header中Authorization返回AccessToken，时间戳为当前时间戳
                 String token1 = JwtUtil.sign(user.getUsername(), currentTimeMillis);
                 users.setToken(token1);
-                return new ResponseVal(HttpStatus.OK.value(), "登陆成功", users);
+                return new ResponseVal(0, "登陆成功", users);
             }else{
                 return new ResponseVal(500,"密码错误");
             }

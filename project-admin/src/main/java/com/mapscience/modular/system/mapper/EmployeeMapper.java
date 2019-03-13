@@ -2,7 +2,10 @@ package com.mapscience.modular.system.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.mapscience.modular.system.model.Employee;
-import com.mapscience.modular.system.model.Employee;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * <p>
@@ -49,10 +52,10 @@ public interface EmployeeMapper extends BaseMapper<Employee> {
      * 模糊查询
      * @return
      */
-    List<Employee> fuzzyQuery(@Param("comId")String comId,@Param("empName")String empName,@Param("tel")String tel,
-    		@Param("starWorkTime")String starWorkTime,@Param("endWorkTime")String endWorkTime,
-    		@Param("startBirthTime")String startBirthTime,@Param("endBirthTime")String endBirthTime,
-    		@Param("education")String education);
+    List<Employee> fuzzyQuery(@Param("comId")String comId, @Param("empName")String empName, @Param("tel")String tel,
+                              @Param("starWorkTime")String starWorkTime, @Param("endWorkTime")String endWorkTime,
+                              @Param("startBirthTime")String startBirthTime, @Param("endBirthTime")String endBirthTime,
+                              @Param("education")String education);
 
     /**
      * 通过公司id查询员工
@@ -67,5 +70,10 @@ public interface EmployeeMapper extends BaseMapper<Employee> {
      * @return
      */
     int deleteEmployeeStatusById(String id);
+
+
+
+
+
 
 }
