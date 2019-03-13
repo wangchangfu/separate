@@ -43,4 +43,12 @@
 
     </insert>
 
+    <!--查询所有的公司-->
+    <select id="findComList" parameterType="String" resultMap="BaseResultMap">
+        select * from t_company where status='1'
+        <if test="Company.companyId!=null and Company.companyId!='' ">
+            and company_id=#{Company.companyId}
+        </if>
+    </select>
+
 </mapper>

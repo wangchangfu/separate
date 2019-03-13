@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.service.IService;
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.model.Menu;
 
+import java.util.List;
+
 /**
  * <p>
  * 菜单 服务类
@@ -26,4 +28,11 @@ public interface IMenuService extends IService<Menu> {
      * @param t
      */
     ResponseVal saveMenu(Menu t);
+
+    /**
+     * 获取当前用户的菜单
+     * @param menu
+     * @return
+     */
+    List<Menu> findMenus(Menu menu, String roleId);
 }

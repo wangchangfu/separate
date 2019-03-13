@@ -96,4 +96,15 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
 
     }
 
+    /**
+     * 根据菜单ID查询当前用户的菜单
+     * @param menu
+     * @return
+     */
+    @Override
+    public List<Menu> findMenus(Menu menu, String  roleId) {
+        this.baseMapper.findMenus(menu.getMenuId(),roleId);
+        return null;
+    }
+
 }

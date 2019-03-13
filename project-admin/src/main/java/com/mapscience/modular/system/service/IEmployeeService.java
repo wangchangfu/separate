@@ -1,5 +1,7 @@
 package com.mapscience.modular.system.service;
 
+import com.mapscience.core.common.ResponseVal;
+import com.mapscience.modular.system.model.Company;
 import com.mapscience.modular.system.model.Employee;
 import com.baomidou.mybatisplus.service.IService;
 
@@ -31,4 +33,11 @@ public interface IEmployeeService extends IService<Employee> {
      * @param em
      */
     void add(Employee em);
+
+    /**
+     * 统计公司人员
+     * @param company
+     * @return
+     */
+    ResponseVal getEmpCount(Company company);
 }

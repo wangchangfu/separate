@@ -1,5 +1,7 @@
 package com.mapscience.modular.system.service.impl;
 
+import com.mapscience.core.common.ResponseVal;
+import com.mapscience.modular.system.model.Company;
 import com.mapscience.modular.system.model.Education;
 import com.mapscience.modular.system.mapper.EducationMapper;
 import com.mapscience.modular.system.service.IEducationService;
@@ -17,4 +19,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class EducationServiceImpl extends ServiceImpl<EducationMapper, Education> implements IEducationService {
 
+    /**
+     * 查询学历分布
+     * @param company
+     * @return
+     */
+    @Override
+    public ResponseVal findEducationt(Company company) {
+        return null;
+    }
 }

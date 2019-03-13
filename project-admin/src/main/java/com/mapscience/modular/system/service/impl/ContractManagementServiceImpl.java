@@ -1,5 +1,7 @@
 package com.mapscience.modular.system.service.impl;
 
+import com.mapscience.core.common.ResponseVal;
+import com.mapscience.modular.system.model.Company;
 import com.mapscience.modular.system.model.ContractManagement;
 import com.mapscience.modular.system.mapper.ContractManagementMapper;
 import com.mapscience.modular.system.service.IContractManagementService;
@@ -17,4 +19,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class ContractManagementServiceImpl extends ServiceImpl<ContractManagementMapper, ContractManagement> implements IContractManagementService {
 
+    /**
+     * 查询公司合同分布
+     * @param company
+     * @return
+     */
+    @Override
+    public ResponseVal findContract(Company company) {
+        return null;
+    }
 }

@@ -69,8 +69,7 @@ public class ShiroConfig {
         // 自定义url规则
         Map<String, String> filterRuleMap = new HashMap<>(16);
         // 所有请求通过我们自己的JWTFilter
-        //filterRuleMap.put("/static/**","anon");
-        //filterRuleMap.put("/modular/*","anon");
+        filterRuleMap.put("/**", "anon");
         filterRuleMap.put("/**", "jwt");
         //未授权界面：
         //factoryBean.setUnauthorizedUrl("/403");

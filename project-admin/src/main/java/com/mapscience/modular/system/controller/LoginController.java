@@ -21,10 +21,10 @@ import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,6 +33,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @PropertySource("classpath:jwt.properties")
 public class LoginController extends BaseController {
 
+    /**
+     * 普通用户
+     */
     @Autowired
     private IEmployeeService employeeService;
 
@@ -43,12 +46,11 @@ public class LoginController extends BaseController {
     private IUserService userService;
 
 
-    @Value("refreshTokenExpireTime")
-    private String refreshTokenExcepireTime;
+   // @Value("refreshTokenExpireTime")
+    private String refreshTokenExcepireTime="1800";
 
     //默认路径
     private final String PREFIX = "/modular/";
-
 
 
     /**
@@ -76,40 +78,40 @@ public class LoginController extends BaseController {
     @ApiOperation(value = "用户登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVal login(User user){
-     if (user!=null){
-            if(user.getAccount()!=null && "".equals(user.getAccount())) {
-                user.setAccount(user.getAccount().trim());
+    public ResponseVal login(@RequestBody User user){
+        if (user!=null){
+            if(user.getUsername()!=null && "".equals(user.getUsername())) {
+                user.setUsername(user.getUsername().trim());
             }
             if (user.getPassword() !=null && "".equals(user.getPassword())){
                 user.setPassword(user.getPassword().trim());
             }
         }
         //查询用户
-        User users = userService.getByAccount(user.getAccount());
+        User users = userService.getByAccount(user.getUsername());
 
         if(users==null){
             return new ResponseVal(HttpStatus.FOUND.value(),"账号不存在");
         }
         //验证
-        UsernamePasswordToken token = new UsernamePasswordToken(user.getAccount(),user.getPassword().toCharArray());
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(),user.getPassword().toCharArray());
         SimpleAuthenticationInfo sim = new SimpleAuthenticationInfo( new ShiroUser(), users.getPassword(), new Md5Hash(users.getSalt()), "");
         //校验账号
         HashedCredentialsMatcher md5CredentialsMatcher = new HashedCredentialsMatcher();
         md5CredentialsMatcher.setHashAlgorithmName(ShiroKit.hashAlgorithmName);//MD5
         md5CredentialsMatcher.setHashIterations(ShiroKit.hashIterations);//1024
-        boolean passwordTrueFlag = md5CredentialsMatcher.doCredentialsMatch( token, sim);//验证
+        boolean passwordTrueFlag = md5CredentialsMatcher.doCredentialsMatch(token, sim);//验证
 
             if(passwordTrueFlag) {
                 // 清除可能存在的Shiro权限信息缓存
-                if (JedisUtil.exists(Constant.PREFIX_SHIRO_CACHE + user.getAccount())) {
-                    JedisUtil.delKey(Constant.PREFIX_SHIRO_CACHE + user.getAccount());
+                if (JedisUtil.exists(Constant.PREFIX_SHIRO_CACHE + user.getUsername())) {
+                    JedisUtil.delKey(Constant.PREFIX_SHIRO_CACHE + user.getUsername());
                 }
                 // 设置RefreshToken，时间戳为当前时间戳，直接设置即可(不用先删后设，会覆盖已有的RefreshToken)
                 String currentTimeMillis = String.valueOf(System.currentTimeMillis());
-                JedisUtil.setObject(Constant.PREFIX_SHIRO_REFRESH_TOKEN + user.getAccount(), currentTimeMillis, Integer.parseInt(refreshTokenExcepireTime));
+                JedisUtil.setObject(Constant.PREFIX_SHIRO_REFRESH_TOKEN + user.getUsername(), currentTimeMillis, Integer.parseInt(refreshTokenExcepireTime));
                 // 从Header中Authorization返回AccessToken，时间戳为当前时间戳
-                String token1 = JwtUtil.sign(user.getAccount(), currentTimeMillis);
+                String token1 = JwtUtil.sign(user.getUsername(), currentTimeMillis);
                 users.setToken(token1);
                 return new ResponseVal(HttpStatus.OK.value(), "登陆成功", users);
             }else{

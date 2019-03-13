@@ -3,9 +3,7 @@ package com.mapscience.modular.system.controller;
 
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.model.Company;
-import com.mapscience.modular.system.model.Department;
 import com.mapscience.modular.system.service.ICompanyService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
@@ -56,7 +54,8 @@ public class CompanyController {
     @ResponseBody
     @RequestMapping("saveCompany")
     public ResponseVal saveCompany(Company company){
-       return this.companyService.saveCompany(company);
+
+    	return this.companyService.saveCompany(company);
     }
     
 	/**

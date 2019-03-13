@@ -7,6 +7,7 @@ import com.mapscience.modular.system.model.Company;
 import com.mapscience.modular.system.service.ICompanyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -35,6 +36,24 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> impl
         return  this.baseMapper.getList();
     }
 
+    /**
+     * 查询公司信息
+     * @param company
+     * @return
+     */
+    @Override
+    public ResponseVal findComList(Company company) {
+        try{
+            //查询所有公司
+            List<Company> comList = this.baseMapper.findComList(company);
+            //将list转换为tree
+            List<Company> bulid = bulid(comList);
+            return new ResponseVal(HttpStatus.OK.value(),"查询成功",bulid);
+        }catch (Exception e){
+            return new ResponseVal(HttpStatus.INTERNAL_SERVER_ERROR.value(),"查询错误",e.getMessage());
+        }
+
+    }
     /**
      * 查询公司树
      * @param company
@@ -108,5 +127,31 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> impl
             }
         }
         return t;
+    }
+
+
+    /**
+     * 根据管理员ID查找所在公司信息
+     * @param employeeId
+     * @return
+     */
+    @Override
+    public List<Company> findComByEmp(String employeeId) {
+        List<Company> comByEmp = this.baseMapper.findComByEmp(employeeId);
+        if (!comByEmp.isEmpty()){
+            return comByEmp;
+
+        }
+        return null;
+    }
+
+    /**
+     * 根据ID查询公司
+     * @param
+     * @return
+     */
+    @Override
+    public Company findComById(String id) {
+        return this.baseMapper.findComById(id);
     }
 }

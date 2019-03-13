@@ -35,4 +35,15 @@ public interface ICompanyService extends IService<Company> {
      * @return
      */
     public ResponseVal saveCompany(Company company);
+
+    /**
+     * 根据员工ID查询公司
+     * @param employeeId
+     * @return
+     */
+    List<Company> findComByEmp(String employeeId);
+
+    Company findComById(String s);
+
+    ResponseVal findComList(Company company);
 }
