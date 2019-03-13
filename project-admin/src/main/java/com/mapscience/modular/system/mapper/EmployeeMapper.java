@@ -2,7 +2,7 @@ package com.mapscience.modular.system.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.mapscience.modular.system.model.Employee;
-import org.apache.ibatis.annotations.Select;
+import com.mapscience.modular.system.model.Employee;
 
 /**
  * <p>
@@ -44,4 +44,28 @@ public interface EmployeeMapper extends BaseMapper<Employee> {
      */
     @Select("SELECT count(DISTINCT(e.employee_id)) as count from t_employee e  JOIN t_emp_position ecd  on e.employee_id=ecd.emp_id  where ecd.com_id=#{companyId}")
     Integer getEmpCount(String companyId);
+
+    /**
+     * 模糊查询
+     * @return
+     */
+    List<Employee> fuzzyQuery(@Param("comId")String comId,@Param("empName")String empName,@Param("tel")String tel,
+    		@Param("starWorkTime")String starWorkTime,@Param("endWorkTime")String endWorkTime,
+    		@Param("startBirthTime")String startBirthTime,@Param("endBirthTime")String endBirthTime,
+    		@Param("education")String education);
+
+    /**
+     * 通过公司id查询员工
+     * @param companyId
+     * @return
+     */
+    List<Employee> getEmployeeByCompanyId(String companyId);
+
+    /**
+     * 通过员工id删除员工状态
+     * @param id
+     * @return
+     */
+    int deleteEmployeeStatusById(String id);
+
 }

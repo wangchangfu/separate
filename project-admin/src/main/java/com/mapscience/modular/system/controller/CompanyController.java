@@ -1,16 +1,23 @@
 package com.mapscience.modular.system.controller;
 
 
+import java.util.List;
+
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.model.Company;
 import com.mapscience.modular.system.service.ICompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.mapscience.core.common.ResponseVal;
+import com.mapscience.modular.system.model.Company;
+import com.mapscience.modular.system.service.ICompanyService;
+
+import io.swagger.annotations.ApiOperation;
 
 /**
  * <p>
@@ -20,7 +27,7 @@ import java.util.List;
  * @author ${author}
  * @since 2019-01-16
  */
-@Controller
+@RestController
 @RequestMapping("/company")
 public class CompanyController {
 
@@ -29,11 +36,15 @@ public class CompanyController {
     /**
      * 查找所有的公司
      */
-    @ResponseBody
-    @RequestMapping("/getList")
-    public ResponseVal getList(){
-        List<Company> list = companyService.getList();
-        return new ResponseVal(200,"查询成功",list);
+    @ApiOperation(value = "查找所有的公司")
+    @GetMapping("/getAllCompany")
+    public ResponseVal getAllCompany(){
+    	try {
+    		 List<Company> list = companyService.getList();
+    	     return new ResponseVal(200,"success",list);
+		} catch (Exception e) {
+			return new ResponseVal(200,"erro",null);
+		}
     }
 
     /**
@@ -54,8 +65,7 @@ public class CompanyController {
     @ResponseBody
     @RequestMapping("saveCompany")
     public ResponseVal saveCompany(Company company){
-
-    	return this.companyService.saveCompany(company);
+       return this.companyService.saveCompany(company);
     }
     
 	/**
@@ -64,9 +74,9 @@ public class CompanyController {
 	@RequestMapping(value = "deleteById")
 	@ResponseBody
 	public ResponseVal deleteById(String id) {
-		try {
-			boolean flag = companyService.deleteById(id);
-			if(flag) {
+    	try {
+			boolean deleteById = companyService.deleteById(id);
+			if(deleteById) {
 				return new ResponseVal(200,"success");
 			}else {
 				return new ResponseVal(500,"fail");

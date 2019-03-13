@@ -65,5 +65,43 @@
          <include refid="Base_Column_List"/>
          from t_employee where account=#{account}
     </select>
-
+    
+    <!--模糊查询-->
+    <select id="fuzzyQuery" resultMap="BaseResultMap">
+        select * from t_employee e
+        <choose>
+		    <when test="comId != null and comId !=''">
+		    	join t_emp_position p on e.employee_id = p.Emp_id where p.Com_id = #{comId}
+		    </when>
+		    <otherwise>
+		    	where 1=1
+		    </otherwise>
+	    </choose>
+        <if test="empName != null and empName !=''">
+        and e.employee_name like concat('%',#{empName},'%')
+        </if>
+        <if test="tel != null and tel !=''">
+        and e.tel like concat('%',#{tel},'%')
+        </if>
+        <if test="starWorkTime != null and starWorkTime !='' and endWorkTime != null and endWorkTime !=''">
+        and e.join_work_day between #{starWorkTime} and #{endWorkTime}
+        </if>
+        <if test="startBirthTime != null and endBirthTime !='' and endWorkTime != null and endWorkTime !=''">
+        and e.birth_day between #{startBirthTime} and #{endBirthTime}
+        </if>
+        <if test="education != null and education !=''">
+        and e.highest_education = #{education}
+        </if>
+    </select>
+        
+    <!--通过公司id查询员工-->
+    <select id="getEmployeeByCompanyId" resultMap="BaseResultMap">
+        select e.* from t_employee e join t_emp_position p on e.employee_id = p.Emp_id 
+        where p.Com_id = #{companyId}
+    </select>
+    
+    <update id="deleteEmployeeStatusById">
+    	update t_employee set employee_state_id = 0 where employee_id = #{id}
+    </update>
+	
 </mapper>
