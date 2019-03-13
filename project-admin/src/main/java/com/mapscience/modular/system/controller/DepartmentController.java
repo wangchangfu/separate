@@ -1,16 +1,20 @@
 package com.mapscience.modular.system.controller;
 
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.model.Department;
 import com.mapscience.modular.system.service.IDepartmentService;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.util.ObjectUtils;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * <p>
@@ -20,12 +24,27 @@ import org.springframework.util.ObjectUtils;
  * @author ${author}
  * @since 2019-01-16
  */
-@Controller
+@RestController
 @RequestMapping("/department")
 public class DepartmentController {
 	
 	 @Autowired
 	 private IDepartmentService service;
+	 
+    /**
+     * 查找所有的部门
+     */
+	@ApiOperation(value = "查找所有的部门")
+	@GetMapping("/getAllDepartment")
+	public ResponseVal getAllDepartment() {
+		try {
+			List<Department> selectList = service.selectList(null);
+			return new ResponseVal(200, "success", selectList);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseVal(500, "erro", null);
+		}
+	}
 	
     /**
      * 增加

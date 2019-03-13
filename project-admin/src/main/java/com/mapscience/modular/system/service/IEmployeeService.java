@@ -1,6 +1,9 @@
 package com.mapscience.modular.system.service;
 
 import com.mapscience.modular.system.model.Employee;
+
+import java.util.List;
+
 import com.baomidou.mybatisplus.service.IService;
 
 /**
@@ -25,10 +28,20 @@ public interface IEmployeeService extends IService<Employee> {
      * @return
      */
     Employee getByAccount(Employee e);
-
+    
     /**
-     * 添加员工
-     * @param em
+     * 模糊查询
      */
-    void add(Employee em);
+    List<Employee> fuzzyQuery(String comId, String empName, String tel, String starWorkTime, String endWorkTime, String startBirthTime, String endBirthTime, String education);
+    
+    /**
+     * 通过公司id查询员工
+     */
+    List<Employee> getEmployeeByCompanyId(String companyId);
+    
+    /**
+     * 通过ids批量删除员工状态
+     */
+    void batchDeleteEmployeeStatusByIds(String ids);
+
 }

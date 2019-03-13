@@ -4,8 +4,12 @@ import com.mapscience.modular.system.model.Employee;
 import com.mapscience.modular.system.mapper.EmployeeMapper;
 import com.mapscience.modular.system.service.IEmployeeService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
@@ -40,15 +44,25 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
     public Employee getByAccount(Employee e) {
         return this.baseMapper.getByAccount(e.getAccount());
     }
-
-    /**
-     * 添加用户
-     *  em
-     */
+    
     @Override
-    public void add(Employee em) {
-
+    public List<Employee> fuzzyQuery(String comId, String empName, String tel, String starWorkTime, String endWorkTime, String startBirthTime, String endBirthTime, String education) {
+        return employeeMapper.fuzzyQuery(comId, empName, tel, starWorkTime, endWorkTime, startBirthTime, endBirthTime, education);
     }
+
+	@Override
+	public List<Employee> getEmployeeByCompanyId(String companyId) {
+		return employeeMapper.getEmployeeByCompanyId(companyId);
+	}
+
+	@Transactional
+	@Override
+	public void batchDeleteEmployeeStatusByIds(String ids) {
+		String[] split = ids.split(",");
+		for (String string : split) {
+			employeeMapper.deleteEmployeeStatusById(string);
+		}
+	}
 
 
 }

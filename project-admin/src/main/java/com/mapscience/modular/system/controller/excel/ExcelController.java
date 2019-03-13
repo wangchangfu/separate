@@ -3,6 +3,8 @@ package com.mapscience.modular.system.controller.excel;
 import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
 import cn.afterturn.easypoi.excel.entity.result.ExcelImportResult;
+import io.swagger.annotations.ApiOperation;
+
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.core.util.excel.EasyPOIExcelUtile;
 import com.mapscience.modular.system.dto.EmployeeDTO;
@@ -124,6 +126,7 @@ public class ExcelController {
 	 * 导入excel公司
 	 * @param files(标题0行，表头1行)
 	 */
+	@ApiOperation(value = "导入excel公司")
 	@PostMapping("/importExcelCompany")
 	@ResponseBody
 	public ResponseVal importExcelCompany(@RequestParam(value = "file", required = false) MultipartFile files) {

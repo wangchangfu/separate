@@ -205,6 +205,7 @@ public class Employee extends Model<Employee> {
     /**
      * 登录账号
      */
+    @TableField(exist = false)
     private String account;
     /**
      * 密码
@@ -214,6 +215,7 @@ public class Employee extends Model<Employee> {
     /**
      * 简拼
      */
+    @TableField(exist = false)
     private String jianpin;
 
     /**
@@ -229,6 +231,7 @@ public class Employee extends Model<Employee> {
     /**
      * 类型 1是普通用户 2 超级用户（查看自己公司）3可以查看自己子公司 4 全部 5程序猿的
      */
+    @TableField(exist = false)
     private Integer type;
     /**
      * 开户行地址
@@ -245,8 +248,8 @@ public class Employee extends Model<Employee> {
      */
     @TableField("update_time")
     private Date updateTime;
-
-
+    
+    @TableField(exist = false)
     private String token;
     public Employee(){}
     public String getEmployeeId() {
