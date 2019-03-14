@@ -1,21 +1,26 @@
 package com.mapscience.modular.system.controller.excel;
 
-import cn.afterturn.easypoi.excel.ExcelImportUtil;
-import cn.afterturn.easypoi.excel.entity.ImportParams;
-import cn.afterturn.easypoi.excel.entity.result.ExcelImportResult;
-import io.swagger.annotations.ApiOperation;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import com.mapscience.core.common.ResponseVal;
-import com.mapscience.core.util.excel.EasyPOIExcelUtile;
-import com.mapscience.modular.system.dto.EmployeeDTO;
-import com.mapscience.modular.system.model.Company;
-import com.mapscience.modular.system.service.ICompanyService;
-import com.mapscience.modular.system.service.IEmployeeService;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,11 +28,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import com.mapscience.core.common.ResponseVal;
+import com.mapscience.core.util.excel.EasyPOIExcelUtile;
+import com.mapscience.modular.system.dto.EmployeeDTO;
+import com.mapscience.modular.system.model.Company;
+import com.mapscience.modular.system.model.ContactRelationship;
+import com.mapscience.modular.system.model.Education;
+import com.mapscience.modular.system.model.Employee;
+import com.mapscience.modular.system.model.WorkHistory;
+import com.mapscience.modular.system.service.ICompanyService;
+import com.mapscience.modular.system.service.IContactRelationshipService;
+import com.mapscience.modular.system.service.IEducationService;
+import com.mapscience.modular.system.service.IEmployeeService;
+import com.mapscience.modular.system.service.IWorkHistoryService;
+
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.ExcelImportUtil;
+import cn.afterturn.easypoi.excel.entity.ImportParams;
+import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 操作表格
@@ -44,6 +63,15 @@ public class ExcelController {
 	
 	@Autowired
 	private ICompanyService companyService;
+	
+	@Autowired
+	private IEducationService educationService;
+	
+	@Autowired
+	private IWorkHistoryService workHistoryService;
+	
+	@Autowired
+	private IContactRelationshipService contactRelationshipService;
 	
 	/**
 	 * 获取导出模板 /数据
@@ -94,30 +122,29 @@ public class ExcelController {
 			Sheet sh = null;
 			// 循环工作表获取sheet
 			for (int n = 0; n < workBook.getNumberOfSheets(); n++) {
-				// 表头在第几行
-				params.setTitleRows(0);
+				params.setTitleRows(1);
+				params.setHeadRows(1);
 				params.setStartSheetIndex(n);
-				ExcelImportResult<Object> result = null;
 				// 循环表获取页
 				sh = workBook.getSheetAt(n);
 				String sheetName = sh.getSheetName();
 				if ("基本信息".equals(sheetName)) {
-					result = ExcelImportUtil.importExcelMore(files.getInputStream(), EmployeeDTO.class, params);
-
+				    List<Employee> list = ExcelImportUtil.importExcel(files.getInputStream(), Employee.class, params);
+				    employeeService.insertBatch(list);
 				} else if ("教育".equals(sheetName)) {
-					result = ExcelImportUtil.importExcelMore(files.getInputStream(), EmployeeDTO.class, params);
+					List<Education> list = ExcelImportUtil.importExcel(files.getInputStream(), Education.class, params);
+					educationService.insertBatch(list);
 				} else if ("工作经历".equals(sheetName)) {
-
+					List<WorkHistory> list = ExcelImportUtil.importExcel(files.getInputStream(), WorkHistory.class, params);
+					workHistoryService.insertBatch(list);
 				} else if ("家庭成员社会关系".equals(sheetName)) {
-
+					List<ContactRelationship> list = ExcelImportUtil.importExcel(files.getInputStream(), ContactRelationship.class, params);
+					contactRelationshipService.insertBatch(list);
 				}
-
 			}
-
-			return null;
-
+			return new ResponseVal(500, "success");
 		} catch (Exception e) {
-			return new ResponseVal(500, "上传失败！");
+			return new ResponseVal(500, "erro");
 		}
 
 	}
@@ -151,5 +178,35 @@ public class ExcelController {
 			return new ResponseVal(500, "erro");
 		}
 	}
+	
+	@ApiOperation(value = "导出员工信息模板")
+	@RequestMapping("/exportEmployeeInfoTemplate")
+	@ResponseBody
+	public void exportEmployeeInfoTemplate(HttpServletResponse response){
+		try {
+			Map<String,Object> map = new HashMap<String, Object>() ;
+			TemplateExportParams params = new TemplateExportParams("static/excelTemplate/员工信息模板.xlsx", true);
+	        Workbook workbook = ExcelExportUtil.exportExcel(params, map);
+	        // 设置excel的文件名称
+	        String excelName = "员工信息模板" ;
+	        // 重置响应对象
+	        response.reset();
+	        // 指定下载的文件名--设置响应头
+			response.setHeader("Content-Disposition", "attachment; filename=" + java.net.URLEncoder.encode(excelName, "UTF-8")+".xlsx");
+	        response.setContentType("application/vnd.ms-excel;charset=UTF-8");
+	        response.setHeader("Pragma", "no-cache");
+	        response.setHeader("Cache-Control", "no-cache");
+	        response.setDateHeader("Expires", 0);
+	        // 写出数据输出流到页面
+            OutputStream output = response.getOutputStream();
+            BufferedOutputStream bufferedOutPut = new BufferedOutputStream(output);
+            workbook.write(bufferedOutPut);
+            bufferedOutPut.flush();
+            bufferedOutPut.close();
+            output.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    }
 	
 }
