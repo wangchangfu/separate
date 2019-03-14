@@ -179,7 +179,10 @@ public class ExcelController {
 	public void exportEmployeeInfoTemplate(HttpServletResponse response){
 		try {
 			Map<String,Object> map = new HashMap<String, Object>() ;
-			TemplateExportParams params = new TemplateExportParams("static/excelTemplate/员工信息模板.xlsx", true);
+			//本地资源
+			TemplateExportParams params = new TemplateExportParams("d:/static/excelTemplate/员工信息模板.xlsx", true);
+			//resource下资源
+			//TemplateExportParams params = new TemplateExportParams("static/excelTemplate/员工信息模板.xlsx", true);
 	        Workbook workbook = ExcelExportUtil.exportExcel(params, map);
 	        // 设置excel的文件名称
 	        String excelName = "员工信息模板" ;
