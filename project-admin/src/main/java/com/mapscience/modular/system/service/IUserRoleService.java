@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface IUserRoleService extends IService<UserRole> {
 
+    UserRole findByEmp(String employeeId);
 }

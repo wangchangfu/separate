@@ -1,5 +1,7 @@
 package com.mapscience.modular.system.service;
 
+import com.mapscience.core.common.ResponseVal;
+import com.mapscience.modular.system.model.Company;
 import com.mapscience.modular.system.model.ContractManagement;
 import com.baomidou.mybatisplus.service.IService;
 
@@ -13,4 +15,10 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface IContractManagementService extends IService<ContractManagement> {
 
+    /**
+     * 根据公司ID查询员工合同分布
+     * @param company
+     * @return
+     */
+    ResponseVal findContract(Company company);
 }

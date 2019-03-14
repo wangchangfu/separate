@@ -5,7 +5,7 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.mapscience.modular.system.model.User">
         <id column="user_id" property="userId" />
-        <result column="account" property="account" />
+        <result column="username" property="username" />
         <result column="password" property="password" />
         <result column="salt" property="salt" />
         <result column="emp_id" property="empId" />
@@ -16,14 +16,14 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        user_id, account, password, salt, emp_id, status, create_time, update_time
+        user_id, username, password, salt, emp_id, status, create_time, update_time
     </sql>
 
     <!--查找用户-->
     <select id="getByAccount" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from t_user where account=#{account}
+        from t_user where username=#{account}
     </select>
 
     <!--保存用户-->
@@ -32,7 +32,7 @@
         <selectKey keyProperty="userId" resultType="java.lang.String" order="BEFORE">
             select REPLACE(UUID(),'-','')
         </selectKey>
-        insert into t_user(user_id, account, password, salt, emp_id, status, create_time, update_time)
+        insert into t_user(user_id, username, password, salt, emp_id, status, create_time, update_time)
         value(#{userId},#{account},#{password},#{salt},#{empId},#{status},#{createTime},#{updateTime})
     </insert>
     

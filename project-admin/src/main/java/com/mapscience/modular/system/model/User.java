@@ -26,7 +26,7 @@ public class User extends Model<User> {
     /**
      * 账号 
      */
-    private String account;
+    private String username;
     /**
      * 密码
      */
@@ -75,12 +75,12 @@ public class User extends Model<User> {
         this.userId = userId;
     }
 
-    public String getAccount() {
-        return account;
+    public String getUsername() {
+        return username;
     }
 
-    public void setAccount(String account) {
-        this.account = account;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -140,7 +140,7 @@ public class User extends Model<User> {
     public String toString() {
         return "User{" +
         "userId=" + userId +
-        ", account=" + account +
+        ", account=" + username +
         ", password=" + password +
         ", salt=" + salt +
         ", empId=" + empId +
@@ -179,7 +179,7 @@ public class User extends Model<User> {
 
     public User(String userId, String account, String password, String salt, String empId, Integer status, Date createTime, Date updateTime) {
         this.userId = userId;
-        this.account = account;
+        this.username = account;
         this.password = password;
         this.salt = salt;
         this.empId = empId;

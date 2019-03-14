@@ -1,5 +1,7 @@
 package com.mapscience.modular.system.service;
 
+import com.mapscience.core.common.ResponseVal;
+import com.mapscience.modular.system.model.Company;
 import com.mapscience.modular.system.model.Education;
 import com.baomidou.mybatisplus.service.IService;
 
@@ -13,4 +15,10 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface IEducationService extends IService<Education> {
 
+    /**
+     * 学历分布
+     * @param company
+     * @return
+     */
+    ResponseVal findEducationt(Company company);
 }

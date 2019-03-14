@@ -63,7 +63,7 @@ public class ShiroFactroy implements IShiro {
     public ShiroUser shiroUser(User user) {
         ShiroUser shiroUser = new ShiroUser();
         shiroUser.setId(user.getUserId());
-        shiroUser.setAccount(user.getAccount());
+        shiroUser.setAccount(user.getUsername());
 //        shiroUser.setDeptId(employee.getDeptid());
 //        shiroUser.setDeptName(ConstantFactory.me().getDeptName(user.getDeptid()));
         shiroUser.setName(user.getEmpName());

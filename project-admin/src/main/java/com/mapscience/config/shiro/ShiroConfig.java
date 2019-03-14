@@ -58,7 +58,7 @@ public class ShiroConfig {
      * @author Wang926454
      * @date 2018/8/31 10:57
      */
-    @Bean("shiroFilter")
+    //@Bean("shiroFilter")
     public ShiroFilterFactoryBean factory(SecurityManager securityManager) {
         ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
         // 添加自己的过滤器取名为jwt
@@ -69,10 +69,10 @@ public class ShiroConfig {
         // 自定义url规则
         Map<String, String> filterRuleMap = new HashMap<>(16);
         // 所有请求通过我们自己的JWTFilter
-        filterRuleMap.put("/**","anon");
+        filterRuleMap.put("/**", "anon");
         filterRuleMap.put("/**", "jwt");
         //未授权界面：
-        factoryBean.setUnauthorizedUrl("/403");
+        //factoryBean.setUnauthorizedUrl("/403");
         factoryBean.setFilterChainDefinitionMap(filterRuleMap);
         return factoryBean;
     }

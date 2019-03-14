@@ -17,4 +17,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> implements IUserRoleService {
 
+    @Override
+    public UserRole findByEmp(String employeeId) {
+        return this.baseMapper.findByEmp(employeeId);
+    }
 }
