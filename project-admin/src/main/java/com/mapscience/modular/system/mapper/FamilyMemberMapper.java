@@ -1,6 +1,9 @@
 package com.mapscience.modular.system.mapper;
 
 import com.mapscience.modular.system.model.FamilyMember;
+
+import java.util.List;
+
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
@@ -12,5 +15,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * @since 2019-03-14
  */
 public interface FamilyMemberMapper extends BaseMapper<FamilyMember> {
+	
+	List<FamilyMember> getFamilyMemberByEmpId(String empId);
 
 }

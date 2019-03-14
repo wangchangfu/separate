@@ -20,5 +20,10 @@
     <sql id="Base_Column_List">
         id, borth_date, call, create_time, emp_id, name, political_look, update_time, work_unit, contact_relationship_id
     </sql>
+    
+     <!--通过员工id查询家庭成员-->
+    <select id="getFamilyMemberByEmpId" resultMap="BaseResultMap">
+        select * from t_family_member where emp_id = #{empId}
+    </select>
 
 </mapper>

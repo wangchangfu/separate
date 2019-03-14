@@ -1,7 +1,9 @@
 package com.mapscience.modular.system.service;
 
-import com.mapscience.modular.system.model.FamilyMember;
+import java.util.List;
+
 import com.baomidou.mybatisplus.service.IService;
+import com.mapscience.modular.system.model.FamilyMember;
 
 /**
  * <p>
@@ -12,5 +14,7 @@ import com.baomidou.mybatisplus.service.IService;
  * @since 2019-03-14
  */
 public interface IFamilyMemberService extends IService<FamilyMember> {
+	
+	List<FamilyMember> getFamilyMemberByEmpId(String empId);
 
 }

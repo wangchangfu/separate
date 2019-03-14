@@ -1,10 +1,14 @@
 package com.mapscience.modular.system.service.impl;
 
-import com.mapscience.modular.system.model.FamilyMember;
-import com.mapscience.modular.system.mapper.FamilyMemberMapper;
-import com.mapscience.modular.system.service.IFamilyMemberService;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.mapscience.modular.system.mapper.FamilyMemberMapper;
+import com.mapscience.modular.system.model.FamilyMember;
+import com.mapscience.modular.system.service.IFamilyMemberService;
 
 /**
  * <p>
@@ -16,5 +20,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class FamilyMemberServiceImpl extends ServiceImpl<FamilyMemberMapper, FamilyMember> implements IFamilyMemberService {
+	
+	@Autowired
+    private FamilyMemberMapper mapper;
+
+	@Override
+	public List<FamilyMember> getFamilyMemberByEmpId(String empId) {
+		return mapper.getFamilyMemberByEmpId(empId);
+	}
 
 }
