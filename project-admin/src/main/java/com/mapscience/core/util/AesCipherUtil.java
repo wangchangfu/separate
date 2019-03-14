@@ -5,7 +5,6 @@ import com.mapscience.core.util.common.Base64ConvertUtil;
 import com.mapscience.core.util.common.HexConvertUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.*;
@@ -28,8 +27,8 @@ public class AesCipherUtil {
     /**
      * AES密码加密私钥(Base64加密)
      */
-    @Value("${encryptAESKey}")
-    private static String encryptAESKey;
+    //@Value("${encryptAESKey}")
+    private static String encryptAESKey="V2FuZzkyNjQ1NGRTQkFQSUpXVA==";
 
 
     public void setEncryptAESKey(String encryptAESKey) {

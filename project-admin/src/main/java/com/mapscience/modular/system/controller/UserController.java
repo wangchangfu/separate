@@ -3,7 +3,9 @@ package com.mapscience.modular.system.controller;
 
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.core.common.constant.state.ManagerStatus;
-import com.mapscience.core.shiro.ShiroKit;
+import com.mapscience.core.common.status.ProjectStatusEnum;
+import com.mapscience.core.exception.ProjectException;
+import com.mapscience.core.util.AesCipherUtil;
 import com.mapscience.modular.system.dto.UserDTO;
 import com.mapscience.modular.system.model.User;
 import com.mapscience.modular.system.service.IUserService;
@@ -40,14 +42,14 @@ public class UserController {
     @ResponseBody
     public ResponseVal addUser(@RequestBody User user){
         //验证用户是否被注册
-//        User byAccount = userService.getByAccount(user);
-//        if (byAccount != null) {
-//            throw new ProjectException(ProjectStatusEnum.USER_ALREADY_REG);
-//        }
+            User byAccount = userService.getByAccount(user.getUsername());
+            if (byAccount != null) {
+                 throw new ProjectException(ProjectStatusEnum.USER_ALREADY_REG);
+            }
         // 完善账号信息
-        user.setComId(user.getComId());
-        user.setSalt(ShiroKit.getRandomSalt(5));
-        user.setPassword(ShiroKit.md5(user.getPassword(), user.getSalt()));
+        //user.setComId(user.getComId());
+        //user.setSalt(ShiroKit.getRandomSalt(5));
+        user.setPassword(AesCipherUtil.enCrypto(user.getUsername()+user.getPassword()));
 
         user.setStatus(ManagerStatus.OK.getCode());
         user.setCreateTime(new Date());

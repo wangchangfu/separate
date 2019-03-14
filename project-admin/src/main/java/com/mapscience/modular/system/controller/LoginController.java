@@ -4,30 +4,26 @@ import com.mapscience.core.base.controller.BaseController;
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.core.common.constant.Constant;
 import com.mapscience.core.common.status.ProjectStatusEnum;
-import com.mapscience.core.shiro.ShiroKit;
-import com.mapscience.core.shiro.ShiroUser;
+import com.mapscience.core.util.AesCipherUtil;
 import com.mapscience.core.util.JedisUtil;
 import com.mapscience.core.util.JwtUtil;
-import com.mapscience.modular.system.model.Employee;
 import com.mapscience.modular.system.model.User;
 import com.mapscience.modular.system.service.IEmployeeService;
 import com.mapscience.modular.system.service.IUserService;
 import io.swagger.annotations.ApiOperation;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
-import org.apache.shiro.crypto.hash.Md5Hash;
-import org.apache.shiro.session.Session;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 @Controller
 @PropertySource("classpath:jwt.properties")
@@ -89,20 +85,8 @@ public class LoginController extends BaseController {
         }
         //查询用户
         User users = userService.getByAccount(user.getUsername());
-
-        if(users==null){
-            return new ResponseVal(HttpStatus.FOUND.value(),"账号不存在");
-        }
-        //验证
-        UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(),user.getPassword().toCharArray());
-        SimpleAuthenticationInfo sim = new SimpleAuthenticationInfo( new ShiroUser(), users.getPassword(), new Md5Hash(users.getSalt()), "");
-        //校验账号
-        HashedCredentialsMatcher md5CredentialsMatcher = new HashedCredentialsMatcher();
-        md5CredentialsMatcher.setHashAlgorithmName(ShiroKit.hashAlgorithmName);//MD5
-        md5CredentialsMatcher.setHashIterations(ShiroKit.hashIterations);//1024
-        boolean passwordTrueFlag = md5CredentialsMatcher.doCredentialsMatch(token, sim);//验证
-
-            if(passwordTrueFlag) {
+        String key = AesCipherUtil.deCrypto(users.getPassword());
+        if(key.equals(user.getUsername()+user.getPassword())) {
                 // 清除可能存在的Shiro权限信息缓存
                 if (JedisUtil.exists(Constant.PREFIX_SHIRO_CACHE + user.getUsername())) {
                     JedisUtil.delKey(Constant.PREFIX_SHIRO_CACHE + user.getUsername());
@@ -124,19 +108,38 @@ public class LoginController extends BaseController {
      * 退出登录
      */
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public ResponseVal logOut() {
-        /*LogManager.me().executeLog(LogTaskFactory.exitLog(ShiroKit.getUser().getId(), getIp()));
-        ShiroKit.getSubject().logout();
-        deleteAllCookie();*/
-        Subject subject = SecurityUtils.getSubject();
-        Session session = subject.getSession();
-        Employee employee = (Employee)session.getAttribute("emp");
-        if (JedisUtil.exists(Constant.PREFIX_SHIRO_REFRESH_TOKEN + employee.getAccount())) {
-            if (JedisUtil.delKey(Constant.PREFIX_SHIRO_REFRESH_TOKEN + employee.getAccount()) > 0) {
+    @ResponseBody
+    public ResponseVal logOut(@RequestBody String id) {
+
+        //查询用户
+        User users = userService.getByAccount("admin");
+        if (JedisUtil.exists(Constant.PREFIX_SHIRO_REFRESH_TOKEN + users.getUsername())) {
+            if (JedisUtil.delKey(Constant.PREFIX_SHIRO_REFRESH_TOKEN + users.getUsername()) > 0) {
                 return super.responseBody(ProjectStatusEnum.SUCCESS);
             }
         }
         return super.responseBody(ProjectStatusEnum.KICK_OUT_ERROR);
     }
+
+
+    private Map<String, Object> getParamMap(HttpServletRequest request){
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map map=request.getParameterMap();
+        Set keSet=map.entrySet();
+        for(Iterator itr = keSet.iterator(); itr.hasNext();){
+            Map.Entry me=(Map.Entry)itr.next();
+            Object ok=me.getKey();
+            Object ov=me.getValue();
+            String[] value=new String[1];
+            if(ov instanceof String[]){
+                value=(String[])ov;
+            }else{
+                value[0]=ov.toString();
+            }
+            paramMap.put(ok.toString(), value.toString());
+        }
+        return paramMap;
+    }
+
 
 }

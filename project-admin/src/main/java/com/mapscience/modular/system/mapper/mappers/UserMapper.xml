@@ -33,7 +33,7 @@
             select REPLACE(UUID(),'-','')
         </selectKey>
         insert into t_user(user_id, username, password, salt, emp_id, status, create_time, update_time)
-        value(#{userId},#{account},#{password},#{salt},#{empId},#{status},#{createTime},#{updateTime})
+        value(#{userId},#{username},#{password},#{salt},#{empId},#{status},#{createTime},#{updateTime})
     </insert>
     
     <!--<select id="findByComUser" resultMap="BaseResultMap">
