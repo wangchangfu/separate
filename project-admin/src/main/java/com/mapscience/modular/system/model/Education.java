@@ -83,7 +83,7 @@ public class Education extends Model<Education> {
     /**
      * 是否最高学历
      */
-    @TableField("is_highest _degree")
+    @TableField("is_highest_degree")
     private Integer isHighestDegree;
 
 
@@ -254,7 +254,7 @@ public class Education extends Model<Education> {
         ", educationctifCode=" + educationctifCode +
         ", certifCode=" + certifCode +
         ", recordTypeId=" + recordTypeId +
-        ", isHighest Degree=" + isHighestDegree +
+        ", isHighestDegree=" + isHighestDegree +
         ", remark=" + remark +
         ", createTime=" + createTime +
         ", updateTime=" + updateTime +

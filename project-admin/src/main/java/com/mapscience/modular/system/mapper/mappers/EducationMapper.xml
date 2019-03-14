@@ -16,7 +16,7 @@
         <result column="educationctif_code" property="educationctifCode" />
         <result column="certif_code" property="certifCode" />
         <result column="record_type_id" property="recordTypeId" />
-        <result column="is_highest _degree" property="isHighest Degree" />
+        <result column="is_highest_degree" property="isHighestDegree" />
         <result column="remark" property="remark" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
@@ -24,7 +24,12 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        education_id, employee_id, education_type_id, degree_type_id, degree_name, admission_time, degree_date, major, degree_unit, educationctif_code, certif_code, record_type_id, is_highest _degree, remark, create_time, update_time
+        education_id, employee_id, education_type_id, degree_type_id, degree_name, admission_time, degree_date, major, degree_unit, educationctif_code, certif_code, record_type_id, is_highest_degree, remark, create_time, update_time
     </sql>
+    
+    <!--通过员工id查询最高学历-->
+    <select id="getHighestDegreeByEmpId" resultMap="BaseResultMap">
+        select * from t_education where is_highest_degree = 1 and employee_id = #{empId}
+    </select>
 
 </mapper>
