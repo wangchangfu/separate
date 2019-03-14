@@ -1,7 +1,7 @@
 package com.mapscience.modular.system.mapper;
 
-import com.mapscience.modular.system.model.Menu;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.mapscience.modular.system.model.Menu;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -30,10 +30,12 @@ public interface MenuMapper extends BaseMapper<Menu> {
 
     /**
      * 根据当前的菜单ID查询用户的菜单
-     * @param menuId
-     * @param employeeId
      * @return
      */
-    @Select("")
-    List<Menu> findMenus(String menuId, String employeeId);
+
+    @Select("select * from t_menu where status=1 and parent_id=#{menuId}")
+    List<Menu> findMenus(String parentId);
+
+
+    List<String> getResUrlsByRoleId(String roleId);
 }

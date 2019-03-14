@@ -35,4 +35,12 @@ public interface UserMapper extends BaseMapper<User> {
      * @return
      */
     List<User> findByComUser(UserDTO user);
+
+    /**
+     * 根据ID查询管理
+     * @param id
+     * @return
+     */
+
+    User getById(String id);
 }

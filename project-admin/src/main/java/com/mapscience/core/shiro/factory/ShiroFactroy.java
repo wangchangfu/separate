@@ -4,6 +4,7 @@ import com.mapscience.core.common.constant.factory.ConstantFactory;
 import com.mapscience.core.common.constant.state.ManagerStatus;
 import com.mapscience.core.shiro.ShiroUser;
 import com.mapscience.core.util.SpringContextHolder;
+import com.mapscience.modular.system.mapper.MenuMapper;
 import com.mapscience.modular.system.mapper.UserMapper;
 import com.mapscience.modular.system.model.User;
 import org.apache.shiro.authc.CredentialsException;
@@ -24,14 +25,13 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class ShiroFactroy implements IShiro {
 
-    //@Autowired
-    //private EmployeeMapper employeeMapper;
+
 
     @Autowired
     private UserMapper userMapper;
 
-//    @Autowired
-//    private MenuMapper menuMapper;
+    @Autowired
+    private MenuMapper menuMapper;
 
     public static IShiro me() {
         return SpringContextHolder.getBean(IShiro.class);
@@ -67,7 +67,7 @@ public class ShiroFactroy implements IShiro {
 //        shiroUser.setDeptId(employee.getDeptid());
 //        shiroUser.setDeptName(ConstantFactory.me().getDeptName(user.getDeptid()));
         shiroUser.setName(user.getEmpName());
-//        String[] roleArray = Convert.toStrArray(user.getRoleid());
+       // String[] roleArray = Convert.toStrArray(user.getRoleid());
         List<String> roleList = new ArrayList<String>();
         List<String> roleNameList = new ArrayList<String>();
 //        for (String roleId : roleArray) {
@@ -87,8 +87,8 @@ public class ShiroFactroy implements IShiro {
     @Override
     public List<String> findPermissionsByRoleId(String roleId) {
 
-        return null;
-//                menuMapper.getResUrlsByRoleId(roleId);
+        return menuMapper.getResUrlsByRoleId(roleId);
+//
     }
 
     /**

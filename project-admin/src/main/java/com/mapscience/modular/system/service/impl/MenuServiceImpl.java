@@ -103,8 +103,15 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
      */
     @Override
     public List<Menu> findMenus(Menu menu, String  roleId) {
-        this.baseMapper.findMenus(menu.getMenuId(),roleId);
-        return null;
+        List<Menu> menus = this.baseMapper.findMenus(menu.getMenuId());
+        for (Menu m: menus) {
+
+            List<Menu> menus1 = this.baseMapper.findMenus(m.getMenuId());
+            m.setChildren(menus1);
+        }
+        return menus;
     }
+
+
 
 }

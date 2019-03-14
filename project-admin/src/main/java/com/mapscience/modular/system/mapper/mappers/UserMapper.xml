@@ -23,7 +23,7 @@
     <select id="getByAccount" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from t_user where username=#{account}
+        from t_user where username=#{username}
     </select>
 
     <!--保存用户-->
@@ -39,5 +39,11 @@
     <!--<select id="findByComUser" resultMap="BaseResultMap">
         SELECT * FROM t_user where com_id=#{comId}
     </select>-->
+
+    <select id="getById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user where user_id=#{userId}
+    </select>
 
 </mapper>

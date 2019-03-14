@@ -61,4 +61,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         this.baseMapper.findByComUser(user);
         return null;
     }
+
+    /**
+     * 根据ID查询管理员
+     * @param id
+     * @return
+     */
+    @Override
+    public User getById(String id) {
+        User byId = this.baseMapper.getById(id);
+        return byId;
+    }
 }

@@ -35,6 +35,8 @@ public class User extends Model<User> {
      * MD5密码盐
      */
     private String salt;
+
+
     /**
      * 员工ID
      */
@@ -153,6 +155,7 @@ public class User extends Model<User> {
     public User() {
     }
 
+
     public String getToken() {
         return token;
     }
@@ -177,14 +180,5 @@ public class User extends Model<User> {
         this.comId = comId;
     }
 
-    public User(String userId, String account, String password, String salt, String empId, Integer status, Date createTime, Date updateTime) {
-        this.userId = userId;
-        this.username = account;
-        this.password = password;
-        this.salt = salt;
-        this.empId = empId;
-        this.status = status;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-    }
+
 }

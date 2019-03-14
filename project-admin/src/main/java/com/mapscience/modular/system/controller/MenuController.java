@@ -2,15 +2,20 @@ package com.mapscience.modular.system.controller;
 
 
 import com.mapscience.core.common.ResponseVal;
+import com.mapscience.core.shiro.ShiroKit;
+import com.mapscience.core.shiro.ShiroUser;
 import com.mapscience.core.util.JedisUtil;
 import com.mapscience.modular.system.model.Menu;
 import com.mapscience.modular.system.service.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * <p>
@@ -34,8 +39,15 @@ public class MenuController {
     @RequestMapping("menuTree")
     @ResponseBody
     public ResponseVal menuTree(){
-        JedisUtil.getObject("menuTree");
-        return this.menuService.findmenuChildren();
+        //JedisUtil.getObject("menuTree");
+        //获取当前用户
+            ShiroUser shiroUser = ShiroKit.getUser();
+
+            String menuTree = JedisUtil.getJson("menuTree");
+            if (menuTree==null) {
+                return this.menuService.findmenuChildren();
+            }
+            return new ResponseVal(0,"",menuTree);
     }
 
 
@@ -49,6 +61,23 @@ public class MenuController {
     public ResponseVal saveMenu(@RequestBody Menu t){
 
         return  this.menuService.saveMenu(t);
+    }
+
+    /**
+     * 根据菜单ID返回菜单树
+     * @param menu
+     * @return
+     */
+    @RequestMapping("modelIndex")
+    @ResponseBody
+    public ResponseVal modelIndex(@RequestBody Menu menu) {
+        //获取当前用户
+        ShiroUser shiroUser = ShiroKit.getUser();
+        String account = shiroUser.getAccount();
+        //查询当前用户角色
+        List<Menu> menus = this.menuService.findMenus(menu,shiroUser.getId());
+
+        return new ResponseVal(HttpStatus.OK.value(),"查找成功",menus);
     }
 }
 

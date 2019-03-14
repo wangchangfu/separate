@@ -19,12 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-
 @Controller
 @PropertySource("classpath:jwt.properties")
 public class LoginController extends BaseController {
@@ -95,8 +89,8 @@ public class LoginController extends BaseController {
                 String currentTimeMillis = String.valueOf(System.currentTimeMillis());
                 JedisUtil.setObject(Constant.PREFIX_SHIRO_REFRESH_TOKEN + user.getUsername(), currentTimeMillis, Integer.parseInt(refreshTokenExcepireTime));
                 // 从Header中Authorization返回AccessToken，时间戳为当前时间戳
-                String token1 = JwtUtil.sign(user.getUsername(), currentTimeMillis);
-                users.setToken(token1);
+                String token = JwtUtil.sign(user.getUsername(), currentTimeMillis);
+                users.setToken(token);
                 return new ResponseVal(0, "登陆成功", users);
             }else{
                 return new ResponseVal(500,"密码错误");
@@ -107,12 +101,12 @@ public class LoginController extends BaseController {
     /**
      * 退出登录
      */
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVal logOut(@RequestBody String id) {
+    public ResponseVal logOut(@RequestBody User user) {
 
         //查询用户
-        User users = userService.getByAccount("admin");
+        User users = userService.getById(user.getUserId());
         if (JedisUtil.exists(Constant.PREFIX_SHIRO_REFRESH_TOKEN + users.getUsername())) {
             if (JedisUtil.delKey(Constant.PREFIX_SHIRO_REFRESH_TOKEN + users.getUsername()) > 0) {
                 return super.responseBody(ProjectStatusEnum.SUCCESS);
@@ -120,26 +114,4 @@ public class LoginController extends BaseController {
         }
         return super.responseBody(ProjectStatusEnum.KICK_OUT_ERROR);
     }
-
-
-    private Map<String, Object> getParamMap(HttpServletRequest request){
-        Map<String, Object> paramMap = new HashMap<String, Object>();
-        Map map=request.getParameterMap();
-        Set keSet=map.entrySet();
-        for(Iterator itr = keSet.iterator(); itr.hasNext();){
-            Map.Entry me=(Map.Entry)itr.next();
-            Object ok=me.getKey();
-            Object ov=me.getValue();
-            String[] value=new String[1];
-            if(ov instanceof String[]){
-                value=(String[])ov;
-            }else{
-                value[0]=ov.toString();
-            }
-            paramMap.put(ok.toString(), value.toString());
-        }
-        return paramMap;
-    }
-
-
 }
