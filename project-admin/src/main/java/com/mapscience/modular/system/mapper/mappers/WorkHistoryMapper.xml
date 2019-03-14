@@ -21,5 +21,10 @@
     <sql id="Base_Column_List">
         work_history_id, work_history_name, employee_id, post, post_remark, witness, tel, start_time, leave_time, create_time, update_time
     </sql>
+    
+    <!--通过员工id查询最高学历-->
+    <select id="getWorkHistoryByEmpId" resultMap="BaseResultMap">
+        select * from t_work_history where employee_id = #{empId}
+    </select>
 
 </mapper>

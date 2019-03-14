@@ -21,4 +21,6 @@ public interface IEducationService extends IService<Education> {
      * @return
      */
     ResponseVal findEducationt(Company company);
+    
+    Education getHighestDegreeByEmpId(String empId);
 }
