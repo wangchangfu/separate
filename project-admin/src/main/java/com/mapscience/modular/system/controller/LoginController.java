@@ -103,13 +103,14 @@ public class LoginController extends BaseController {
      */
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVal logOut(@RequestBody User user) {
+    public ResponseVal logOut(@RequestBody  User user) {
 
         //查询用户
         User users = userService.getById(user.getUserId());
+        //User users = userService.getById("efe62f43460711e9b753000c292bf6bc");
         if (JedisUtil.exists(Constant.PREFIX_SHIRO_REFRESH_TOKEN + users.getUsername())) {
             if (JedisUtil.delKey(Constant.PREFIX_SHIRO_REFRESH_TOKEN + users.getUsername()) > 0) {
-                return super.responseBody(ProjectStatusEnum.SUCCESS);
+                return new ResponseVal(0,"删除成功");
             }
         }
         return super.responseBody(ProjectStatusEnum.KICK_OUT_ERROR);

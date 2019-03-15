@@ -51,7 +51,6 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
         // 判断用户是否想要登入
-
         if (this.isLoginAttempt(request, response)) {
             try {
                 // 进行Shiro的登录UserRealm
@@ -112,6 +111,8 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
         String token = this.getAuthzHeader(request);
         return token != null;
     }
+
+
 
     /**
      * 进行AccessToken登录认证授权
