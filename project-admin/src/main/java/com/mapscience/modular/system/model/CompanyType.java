@@ -1,11 +1,12 @@
 package com.mapscience.modular.system.model;
 
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -20,10 +21,13 @@ public class CompanyType extends Model<CompanyType> {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     *行业类型类型
+     */
     @TableId("company_type_id")
     private String companyTypeId;
     /**
-     * 公司类型名
+     * 公司行业类型名称
      */
     @TableField("company_type_name")
     private String companyTypeName;

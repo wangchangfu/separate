@@ -26,6 +26,17 @@ public class ResponseVal<T> implements Serializable {
         this.data = data;
     }
 
+    public ResponseVal(String msg, T data){
+        super();
+        this.code=0;
+        this.msg = msg;
+        this.data = data;
+    }
+    public ResponseVal(String msg){
+        super();
+        this.code=0;
+        this.msg = msg;
+    }
 
     /**
      * 不带数据返回

@@ -2,6 +2,9 @@ package com.mapscience.modular.system.mapper;
 
 import com.mapscience.modular.system.model.CompanyType;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,6 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface CompanyTypeMapper extends BaseMapper<CompanyType> {
 
+    @Select("select * from t_company_type ")
+    List<CompanyType> findComType();
 }

@@ -1,10 +1,15 @@
 package com.mapscience.modular.system.service.impl;
 
+import com.mapscience.core.common.ResponseVal;
+import com.mapscience.core.util.ObjectUtil;
 import com.mapscience.modular.system.model.CompanyType;
 import com.mapscience.modular.system.mapper.CompanyTypeMapper;
 import com.mapscience.modular.system.service.ICompanyTypeService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -17,4 +22,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class CompanyTypeServiceImpl extends ServiceImpl<CompanyTypeMapper, CompanyType> implements ICompanyTypeService {
 
+    /**
+     * 查询公司行业分类
+     * @return
+     */
+    @Override
+    public ResponseVal findComType() {
+        List<CompanyType> comType = this.baseMapper.findComType();
+            if (ObjectUtil.isNotEmpty(comType)){
+                return new ResponseVal("查询成功",comType);
+            }
+        return new ResponseVal(HttpStatus.FOUND.value(),"暂无数据");
+    }
 }
