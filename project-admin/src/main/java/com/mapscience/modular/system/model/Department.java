@@ -1,6 +1,8 @@
 package com.mapscience.modular.system.model;
 
 import java.util.Date;
+import java.util.List;
+
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
@@ -54,8 +56,10 @@ public class Department extends Model<Department> {
      */
     @TableField("update_time")
     private Date updateTime;
-
-
+    
+    @TableField(exist = false)
+    public List<Object> objectChildren;
+    
     public String getDepartmentId() {
         return departmentId;
     }
@@ -116,8 +120,16 @@ public class Department extends Model<Department> {
     protected Serializable pkVal() {
         return this.departmentId;
     }
+    
+	public List<Object> getObjectChildren() {
+		return objectChildren;
+	}
 
-    @Override
+	public void setObjectChildren(List<Object> objectChildren) {
+		this.objectChildren = objectChildren;
+	}
+
+	@Override
     public String toString() {
         return "Department{" +
         "departmentId=" + departmentId +

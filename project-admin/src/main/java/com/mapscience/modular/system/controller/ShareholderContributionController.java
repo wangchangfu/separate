@@ -2,14 +2,19 @@ package com.mapscience.modular.system.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.model.ShareholderContribution;
 import com.mapscience.modular.system.service.IShareholderContributionService;
+
+import io.swagger.annotations.ApiOperation;
 
 /**
  * <p>
@@ -19,19 +24,16 @@ import com.mapscience.modular.system.service.IShareholderContributionService;
  * @author ${author}
  * @since 2019-01-18
  */
-@Controller
+@RestController
 @RequestMapping("/shareholderContribution")
 public class ShareholderContributionController {
 	
 	 @Autowired
 	 private IShareholderContributionService service;
 	
-    /**
-     * 增加
-     */
-    @ResponseBody
-    @RequestMapping("insert")
-    public ResponseVal insert(ShareholderContribution entity){
+	@ApiOperation("添加股东出资信息")
+    @PostMapping("/insertShareholderContribution")
+    public ResponseVal insertShareholderContribution(ShareholderContribution entity){
 		try {
 			boolean flag = service.insert(entity);
 			if(flag) {
@@ -45,12 +47,9 @@ public class ShareholderContributionController {
 		}
     }
     
-	/**
-	 * 根据id删除
-	 */
-	@RequestMapping(value = "deleteById")
-	@ResponseBody
-	public ResponseVal deleteById(String id) {
+	@ApiOperation("根据id删除股东出资信息")
+	@DeleteMapping("/deleteShareholderContributionById")
+	public ResponseVal deleteShareholderContributionById(String id) {
 		try {
 			boolean flag = service.deleteById(id);
 			if(flag) {
@@ -64,12 +63,9 @@ public class ShareholderContributionController {
 		}
 	}
 	
-	/**
-	 * 根据id修改
-	 */
-	@RequestMapping(value = "updateById")
-	@ResponseBody
-	public ResponseVal updateById(ShareholderContribution entity) {
+	@ApiOperation("修改股东出资信息")
+	@PutMapping("/updateShareholderContribution")
+	public ResponseVal updateShareholderContribution(ShareholderContribution entity) {
 		try {
 			boolean flag = service.updateById(entity);
 			if(flag) {
@@ -83,12 +79,9 @@ public class ShareholderContributionController {
 		}
 	}
 	
-	/**
-	 * 根据Id查询
-	 */
-	@RequestMapping(value = "selectById")
-	@ResponseBody
-	public ResponseVal selectById(String id) {
+	@ApiOperation("根据Id查询股东出资信息")
+	@GetMapping("/selectShareholderContributionById")
+	public ResponseVal selectShareholderContributionById(String id) {
 		try {
 			ShareholderContribution selectById = service.selectById(id);
 			if(ObjectUtils.isEmpty(selectById)) {

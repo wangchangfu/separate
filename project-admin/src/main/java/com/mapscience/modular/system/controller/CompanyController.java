@@ -1,18 +1,22 @@
 package com.mapscience.modular.system.controller;
 
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.model.Company;
 import com.mapscience.modular.system.service.ICompanyService;
-import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * <p>
@@ -28,10 +32,8 @@ public class CompanyController {
 
     @Autowired
     private ICompanyService companyService;
-    /**
-     * 查找所有的公司
-     */
-    @ApiOperation(value = "查找所有的公司")
+    
+    @ApiOperation("查找所有的公司")
     @GetMapping("/getAllCompany")
     public ResponseVal getAllCompany(){
     	try {
@@ -42,33 +44,21 @@ public class CompanyController {
 		}
     }
 
-    /**
-     * 查询公司及子公司
-     * @param company
-     * @return
-     */
-    @RequestMapping("findComTree")
-    @ResponseBody
-    public ResponseVal findComTree(Company company){
+    @ApiOperation("查询公司及子公司")
+    @GetMapping("/findComTreeAndChidren")
+    public ResponseVal findComTreeAndChidren(Company company){
        return this.companyService.findComTree(company);
     }
 
-    /**
-     * 添加公司
-     * @return
-     */
-    @ResponseBody
-    @RequestMapping("saveCompany")
+    @ApiOperation("添加公司")
+    @PostMapping("/saveCompany")
     public ResponseVal saveCompany(Company company){
        return this.companyService.saveCompany(company);
     }
     
-	/**
-	 * 根据id删除
-	 */
-	@RequestMapping(value = "deleteById")
-	@ResponseBody
-	public ResponseVal deleteById(String id) {
+    @ApiOperation(value = "通过id删除公司")
+	@DeleteMapping(value = "/deleteCompanyById")
+	public ResponseVal deleteCompanyById(String id) {
     	try {
 			boolean deleteById = companyService.deleteById(id);
 			if(deleteById) {
@@ -82,14 +72,11 @@ public class CompanyController {
 		}
 	}
 	
-	/**
-	 * 根据id修改
-	 */
-	@RequestMapping(value = "updateById")
-	@ResponseBody
-	public ResponseVal updateById(Company entity) {
+	@ApiOperation(value = "通过id修改公司")
+	@PutMapping(value = "/updateCompanyById")
+	public ResponseVal updateCompanyById(Company entity) {
 		try {
-			boolean flag = companyService.updateById(entity);
+			boolean flag = companyService.updateAllColumnById(entity);
 			if(flag) {
 				return new ResponseVal(200,"success");
 			}else {
@@ -101,12 +88,9 @@ public class CompanyController {
 		}
 	}
 	
-	/**
-	 * 根据Id查询
-	 */
-	@RequestMapping(value = "selectById")
-	@ResponseBody
-	public ResponseVal selectById(String id) {
+	@ApiOperation(value = "通过id查询公司")
+	@GetMapping(value = "/selectCompanyById")
+	public ResponseVal selectCompanyById(String id) {
 		try {
 			Company selectById = companyService.selectById(id);
 			if(ObjectUtils.isEmpty(selectById)) {
@@ -119,6 +103,17 @@ public class CompanyController {
 			return new ResponseVal(500,"erro",null);
 		}
 	}
+	
+    @ApiOperation("查询公司部门树")
+    @GetMapping("/findCompanyAndDepartmentTree")
+    public ResponseVal findCompanyAndDepartmentTree(){
+    	try {
+			List<Object> findCompanyAndDepartmentTree = companyService.findCompanyAndDepartmentTree();
+			return new ResponseVal(200,"success",findCompanyAndDepartmentTree);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseVal(500,"erro",null);
+		}
+    }
 
 }
-

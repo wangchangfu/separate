@@ -109,9 +109,13 @@ public class Company extends Model<Company> {
      */
     @TableField("update_time")
     private Date updateTime;
-
+    
+    @TableField(exist = false)
     public List<Company> children;
-
+    
+    @TableField(exist = false)
+    public List<Object> objectChildren;
+    
     public String getCompanyId() {
         return companyId;
     }
@@ -241,19 +245,27 @@ public class Company extends Model<Company> {
     }
 
     public List<Company> getChildren() {
-        return children;
-    }
+		return children;
+	}
 
-    public void setChildren(List<Company> children) {
-        this.children = children;
-    }
+	public void setChildren(List<Company> children) {
+		this.children = children;
+	}
 
-    @Override
+	public List<Object> getObjectChildren() {
+		return objectChildren;
+	}
+
+	public void setObjectChildren(List<Object> objectChildren) {
+		this.objectChildren = objectChildren;
+	}
+
+	@Override
     protected Serializable pkVal() {
         return this.companyId;
     }
 
-    @Override
+	@Override
     public String toString() {
         return "Company{" +
         "companyId=" + companyId +
