@@ -46,4 +46,6 @@ public interface ICompanyService extends IService<Company> {
     Company findComById(String s);
 
     ResponseVal findComList(Company company);
+    
+    List<Object> findCompanyAndDepartmentTree();
 }

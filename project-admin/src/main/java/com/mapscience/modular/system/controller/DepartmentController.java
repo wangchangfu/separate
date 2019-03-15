@@ -5,9 +5,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mapscience.core.common.ResponseVal;
@@ -28,13 +30,10 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/department")
 public class DepartmentController {
 	
-	 @Autowired
-	 private IDepartmentService service;
+	@Autowired
+	private IDepartmentService service;
 	 
-    /**
-     * 查找所有的部门
-     */
-	@ApiOperation(value = "查找所有的部门")
+	@ApiOperation("查询所有部门")
 	@GetMapping("/getAllDepartment")
 	public ResponseVal getAllDepartment() {
 		try {
@@ -46,12 +45,9 @@ public class DepartmentController {
 		}
 	}
 	
-    /**
-     * 增加
-     */
-    @ResponseBody
-    @RequestMapping("insert")
-    public ResponseVal insert(Department entity){
+	@ApiOperation("添加部门")
+    @PostMapping("/insertDepartment")
+    public ResponseVal insertDepartment(Department entity){
 		try {
 			boolean flag = service.insert(entity);
 			if(flag) {
@@ -65,12 +61,9 @@ public class DepartmentController {
 		}
     }
     
-	/**
-	 * 根据id删除
-	 */
-	@RequestMapping(value = "deleteById")
-	@ResponseBody
-	public ResponseVal deleteById(String id) {
+	@ApiOperation("根据id删除部门")
+	@DeleteMapping("/deleteDepartmentById")
+	public ResponseVal deleteDepartmentById(String id) {
 		try {
 			boolean flag = service.deleteById(id);
 			if(flag) {
@@ -84,12 +77,9 @@ public class DepartmentController {
 		}
 	}
 	
-	/**
-	 * 根据id修改
-	 */
-	@RequestMapping(value = "updateById")
-	@ResponseBody
-	public ResponseVal updateById(Department entity) {
+	@ApiOperation("修改部门")
+	@PutMapping("/updateDepartment")
+	public ResponseVal updateDepartment(Department entity) {
 		try {
 			boolean flag = service.updateById(entity);
 			if(flag) {
@@ -103,12 +93,9 @@ public class DepartmentController {
 		}
 	}
 	
-	/**
-	 * 根据Id查询
-	 */
-	@RequestMapping(value = "selectById")
-	@ResponseBody
-	public ResponseVal selectById(String id) {
+	@ApiOperation("根据Id查询部门")
+	@GetMapping("/selectDepartmentById")
+	public ResponseVal selectDepartmentById(String id) {
 		try {
 			Department selectById = service.selectById(id);
 			if(ObjectUtils.isEmpty(selectById)) {
