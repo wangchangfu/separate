@@ -199,12 +199,8 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> impl
 				}
 			}
 			thisCompany.setObjectChildren(objectList);
-			if(!ObjectUtils.isEmpty(objectList)) {
-				for (Object object : objectList) {
-					addObjectChidren(object, aLLCompanyList, allDepartmentList);
-				}
-			}
 		}
+		
 		if(thisObject instanceof Department) {
 			thisDepartment = (Department)thisObject;
 			String thisDepartmentId = thisDepartment.getDepartmentId();
@@ -214,10 +210,11 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> impl
 				}
 			}
 			thisDepartment.setObjectChildren(objectList);
-			if(!ObjectUtils.isEmpty(objectList)) {
-				for (Object object : objectList) {
-					addObjectChidren(object, aLLCompanyList, allDepartmentList);
-				}
+		}
+		
+		if(!ObjectUtils.isEmpty(objectList)) {
+			for (Object object : objectList) {
+				addObjectChidren(object, aLLCompanyList, allDepartmentList);
 			}
 		}
 		
