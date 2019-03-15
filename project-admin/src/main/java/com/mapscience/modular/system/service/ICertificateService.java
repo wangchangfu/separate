@@ -1,7 +1,9 @@
 package com.mapscience.modular.system.service;
 
-import com.mapscience.modular.system.model.Certificate;
+import java.util.List;
+
 import com.baomidou.mybatisplus.service.IService;
+import com.mapscience.modular.system.model.Certificate;
 
 /**
  * <p>
@@ -12,5 +14,7 @@ import com.baomidou.mybatisplus.service.IService;
  * @since 2019-01-18
  */
 public interface ICertificateService extends IService<Certificate> {
+	
+	List<Certificate> getCertificateByEmpId(String empId);
 
 }

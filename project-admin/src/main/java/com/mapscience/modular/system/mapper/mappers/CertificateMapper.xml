@@ -21,5 +21,10 @@
     <sql id="Base_Column_List">
         certificate_id, employee_id, cer_type, cer_name, issuing_agency, issuing_date, expiry_date, remark, cer_image, create_time, update_time
     </sql>
+    
+     <!--通过员工id查询证书经历-->
+    <select id="getCertificateByEmpId" resultMap="BaseResultMap">
+        select * from t_certificate where employee_id = #{empId}
+    </select>
 
 </mapper>
