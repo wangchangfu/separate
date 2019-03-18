@@ -34,9 +34,9 @@ public class CompanyController {
     public ResponseVal<List<Company>> getAllCompany(){
     	try {
     		 List<Company> list = companyService.getList();
-    	     return new ResponseVal<List<Company>>(200,"success",list);
+    	     return new ResponseVal<List<Company>>(0,"success",list);
 		} catch (Exception e) {
-			return new ResponseVal<List<Company>>(200,"erro",null);
+			return new ResponseVal<List<Company>>(500,"erro",null);
 		}
     }
 
@@ -60,7 +60,7 @@ public class CompanyController {
     	try {
 			boolean deleteById = companyService.deleteById(id);
 			if(deleteById) {
-				return new ResponseVal(200,"success");
+				return new ResponseVal(0,"success");
 			}else {
 				return new ResponseVal(500,"fail");
 			}
@@ -76,7 +76,7 @@ public class CompanyController {
 		try {
 			boolean flag = companyService.updateAllColumnById(entity);
 			if(flag) {
-				return new ResponseVal(200,"success");
+				return new ResponseVal(0,"success");
 			}else {
 				return new ResponseVal(500,"fail");
 			}
@@ -94,7 +94,7 @@ public class CompanyController {
 			if(ObjectUtils.isEmpty(selectById)) {
 				return new ResponseVal<Company>(500,"fail",null);
 			}else {
-				return new ResponseVal<Company>(200,"success",selectById);
+				return new ResponseVal<Company>(0,"success",selectById);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -107,7 +107,7 @@ public class CompanyController {
     public ResponseVal<List<Object>> findCompanyAndDepartmentTree(){
     	try {
 			List<Object> findCompanyAndDepartmentTree = companyService.findCompanyAndDepartmentTree();
-			return new ResponseVal<List<Object>>(200,"success",findCompanyAndDepartmentTree);
+			return new ResponseVal<List<Object>>(0,"success",findCompanyAndDepartmentTree);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseVal<List<Object>>(500,"erro",null);

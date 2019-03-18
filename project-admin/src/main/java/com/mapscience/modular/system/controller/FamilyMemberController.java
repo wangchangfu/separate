@@ -43,7 +43,7 @@ public class FamilyMemberController {
 			if (ObjectUtils.isEmpty(getFamilyMemberByEmpId)) {
 				return new ResponseVal<List<FamilyMember>>(500, "fail", null);
 			} else {
-				return new ResponseVal<List<FamilyMember>>(200, "success", getFamilyMemberByEmpId);
+				return new ResponseVal<List<FamilyMember>>(0, "success", getFamilyMemberByEmpId);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

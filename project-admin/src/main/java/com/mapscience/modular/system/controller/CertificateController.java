@@ -38,7 +38,7 @@ public class CertificateController {
 			if (ObjectUtils.isEmpty(getCertificateByEmpId)) {
 				return new ResponseVal<List<Certificate>>(500, "fail", null);
 			} else {
-				return new ResponseVal<List<Certificate>>(200, "success", getCertificateByEmpId);
+				return new ResponseVal<List<Certificate>>(0, "success", getCertificateByEmpId);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
