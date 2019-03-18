@@ -1,16 +1,5 @@
 package com.mapscience.modular.system.service.impl;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
-
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.google.common.collect.Lists;
 import com.mapscience.core.common.ResponseVal;
@@ -19,6 +8,16 @@ import com.mapscience.modular.system.model.Company;
 import com.mapscience.modular.system.model.Department;
 import com.mapscience.modular.system.service.ICompanyService;
 import com.mapscience.modular.system.service.IDepartmentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * <p>

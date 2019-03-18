@@ -1,9 +1,9 @@
 package com.mapscience.modular.system.service;
 
+import com.baomidou.mybatisplus.service.IService;
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.model.Company;
 import com.mapscience.modular.system.model.Education;
-import com.baomidou.mybatisplus.service.IService;
 
 /**
  * <p>

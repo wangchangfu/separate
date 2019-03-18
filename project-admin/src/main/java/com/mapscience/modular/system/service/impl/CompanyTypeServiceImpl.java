@@ -1,11 +1,11 @@
 package com.mapscience.modular.system.service.impl;
 
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.core.util.ObjectUtil;
-import com.mapscience.modular.system.model.CompanyType;
 import com.mapscience.modular.system.mapper.CompanyTypeMapper;
+import com.mapscience.modular.system.model.CompanyType;
 import com.mapscience.modular.system.service.ICompanyTypeService;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 

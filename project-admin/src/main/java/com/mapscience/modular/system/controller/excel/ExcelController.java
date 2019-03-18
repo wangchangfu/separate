@@ -1,46 +1,27 @@
 package com.mapscience.modular.system.controller.excel;
 
-import java.io.BufferedOutputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-
-import com.mapscience.core.common.ResponseVal;
-import com.mapscience.core.util.excel.EasyPOIExcelUtile;
-import com.mapscience.modular.system.dto.EmployeeDTO;
-import com.mapscience.modular.system.model.Company;
-import com.mapscience.modular.system.model.ContactRelationship;
-import com.mapscience.modular.system.model.Education;
-import com.mapscience.modular.system.model.Employee;
-import com.mapscience.modular.system.model.WorkHistory;
-import com.mapscience.modular.system.service.ICompanyService;
-import com.mapscience.modular.system.service.IContactRelationshipService;
-import com.mapscience.modular.system.service.IEducationService;
-import com.mapscience.modular.system.service.IEmployeeService;
-import com.mapscience.modular.system.service.IWorkHistoryService;
-
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
 import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
+import com.mapscience.core.common.ResponseVal;
+import com.mapscience.core.util.excel.EasyPOIExcelUtile;
+import com.mapscience.modular.system.dto.EmployeeDTO;
+import com.mapscience.modular.system.model.*;
+import com.mapscience.modular.system.service.*;
 import io.swagger.annotations.ApiOperation;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedOutputStream;
+import java.io.OutputStream;
+import java.util.*;
 
 /**
  * 操作表格
@@ -78,7 +59,7 @@ public class ExcelController {
 	@RequestMapping("getModelExcel")
 	@ResponseBody
 	public ResponseVal exportEmploy(HttpServletRequest request, Integer method, Integer type, String ids,
-			HttpServletResponse response) {
+									HttpServletResponse response) {
 
 		return new ResponseVal(200, "测试", null);
 	}

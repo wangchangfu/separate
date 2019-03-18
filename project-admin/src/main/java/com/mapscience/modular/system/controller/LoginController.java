@@ -1,14 +1,5 @@
 package com.mapscience.modular.system.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.mapscience.core.base.controller.BaseController;
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.core.common.constant.Constant;
@@ -19,8 +10,15 @@ import com.mapscience.core.util.JwtUtil;
 import com.mapscience.modular.system.model.User;
 import com.mapscience.modular.system.service.IEmployeeService;
 import com.mapscience.modular.system.service.IUserService;
-
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @PropertySource("classpath:jwt.properties")
