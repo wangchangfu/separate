@@ -9,6 +9,7 @@ import com.mapscience.core.util.JedisUtil;
 import com.mapscience.core.util.JwtUtil;
 import com.mapscience.modular.system.model.Employee;
 import com.mapscience.modular.system.service.IEmployeeService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,6 +29,7 @@ import java.util.List;
  * @author ${author}
  * @since 2019-01-16
  */
+@Api(tags="员工信息控制器")
 @RestController
 @RequestMapping("/employee")
 @PropertySource("classpath:jwt.properties")
@@ -129,7 +131,7 @@ public class EmployeeController {
 	}
 
 	@ApiOperation(value = "通过id查询员工")
-	@GetMapping("/getEmployeeById")
+	@PostMapping("/getEmployeeById")
 	public ResponseVal findEmployeeById(String id) {
 		try {
 			Employee selectById = employeeService.selectById(id);
@@ -145,7 +147,7 @@ public class EmployeeController {
 	}
 
 	@ApiOperation(value = "模糊查询")
-	@GetMapping("/fuzzyQuery")
+	@PostMapping("/fuzzyQuery")
 	public ResponseVal fuzzyQuery(String comId, String empName, String tel, String starWorkTime, String endWorkTime, String startBirthTime, String endBirthTime, String education) {
 		try {
 			List<Employee> fuzzyQuery = employeeService.fuzzyQuery(comId, empName, tel, starWorkTime, endWorkTime, startBirthTime, endBirthTime, education);
@@ -157,7 +159,7 @@ public class EmployeeController {
 	}
 	
 	@ApiOperation(value = "通过公司id查询员工")
-	@GetMapping("/getEmployeeByCompanyId")
+	@PostMapping("/getEmployeeByCompanyId")
 	public ResponseVal getEmployeeByCompanyId(String companyId) {
 		try {
 			List<Employee> getEmployeeByCompanyId = employeeService.getEmployeeByCompanyId(companyId);
@@ -169,7 +171,7 @@ public class EmployeeController {
 	}
 	
 	@ApiOperation(value = "通过id批量删除员工")
-	@GetMapping("/batchDeleteEmployeeById")
+	@PostMapping("/batchDeleteEmployeeById")
 	public ResponseVal batchDeleteEmployeeByIds(String ids) {
 		try {
 			employeeService.batchDeleteEmployeeStatusByIds(ids);

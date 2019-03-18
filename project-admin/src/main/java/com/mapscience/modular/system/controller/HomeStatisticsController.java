@@ -4,6 +4,7 @@ package com.mapscience.modular.system.controller;
 import com.mapscience.core.base.controller.BaseController;
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.model.Company;
+import com.mapscience.modular.system.model.CompanyType;
 import com.mapscience.modular.system.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * 前端大屏控制器
@@ -54,9 +57,9 @@ public class HomeStatisticsController extends BaseController {
     @ApiOperation(value = "查询公司信息及坐标")
     @RequestMapping(value="findOrgList",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVal findComList(Company company){
-
-        return  this.companyService.findComList(company);
+    public ResponseVal<List<Company>> findComList(Company company){
+        ResponseVal<List<Company>> comList = this.companyService.findComList(company);
+        return  comList;
     }
 
 
@@ -104,9 +107,8 @@ public class HomeStatisticsController extends BaseController {
     @ApiOperation(value = "查询公司行业类别")
     @RequestMapping(value = "findComType",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVal findComType(){
-        ResponseVal comType = this.companyTypeService.findComType();
-        System.out.println(comType);
+    public ResponseVal<List<CompanyType>> findComType(){
+        ResponseVal<List<CompanyType>> comType = this.companyTypeService.findComType();
         return comType;
     }
 

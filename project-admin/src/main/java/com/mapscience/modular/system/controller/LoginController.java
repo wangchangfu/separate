@@ -10,6 +10,7 @@ import com.mapscience.core.util.JwtUtil;
 import com.mapscience.modular.system.model.User;
 import com.mapscience.modular.system.service.IEmployeeService;
 import com.mapscience.modular.system.service.IUserService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+@Api(tags="登陆")
 @Controller
 @PropertySource("classpath:jwt.properties")
 public class LoginController extends BaseController {
