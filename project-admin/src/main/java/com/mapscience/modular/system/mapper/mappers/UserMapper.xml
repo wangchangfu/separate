@@ -21,8 +21,7 @@
 
     <!--查找用户-->
     <select id="getByAccount" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
+        select *
         from t_user where username=#{username}
     </select>
 
