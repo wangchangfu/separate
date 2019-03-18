@@ -19,4 +19,5 @@ public interface RoleMapper extends BaseMapper<Role> {
      * @param rule
      */
     void addRole(Role rule);
+
 }

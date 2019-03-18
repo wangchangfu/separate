@@ -102,7 +102,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
      * @return
      */
     @Override
-    public List<Menu> findMenus(Menu menu, String  roleId) {
+    public List<Menu> findMenus(Menu menu, String roleId) {
         List<Menu> menus = this.baseMapper.findMenus(menu.getMenuId());
         for (Menu m: menus) {
 
@@ -112,6 +112,16 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
         return menus;
     }
 
+    @Override
+    public ResponseVal findChind(Menu m) {
+        List<Menu> menus = this.baseMapper.findMenus(m.getMenuId());
+        for (Menu me: menus) {
+
+            List<Menu> menus1 = this.baseMapper.findMenus(me.getMenuId());
+            m.setChildren(menus1);
+        }
+        return new ResponseVal("查询成功",menus);
+    }
 
 
 }

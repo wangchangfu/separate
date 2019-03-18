@@ -38,4 +38,7 @@ public interface MenuMapper extends BaseMapper<Menu> {
 
 
     List<String> getResUrlsByRoleId(String roleId);
+
+    @Select("select * from t_menu where status=1 and parent_id=#{menuId}")
+    List<Menu> findChind(Menu m);
 }

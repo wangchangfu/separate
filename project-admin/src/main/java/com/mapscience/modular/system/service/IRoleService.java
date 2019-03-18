@@ -20,10 +20,5 @@ public interface IRoleService extends IService<Role> {
      */
     ResponseVal addRole(Role rule);
 
-    /**
-     * 分配菜单
-     * @param ruleId
-     * @param menuId
-     */
-    void distrMenu(String ruleId, String menuId);
+
 }

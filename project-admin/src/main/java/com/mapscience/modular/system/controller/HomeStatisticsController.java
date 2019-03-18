@@ -5,15 +5,13 @@ import com.mapscience.core.base.controller.BaseController;
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.model.Company;
 import com.mapscience.modular.system.model.CompanyType;
+import com.mapscience.modular.system.model.Menu;
 import com.mapscience.modular.system.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,7 +20,8 @@ import java.util.List;
  */
 @Api(tags="大屏显示")
 @Controller
-@RequestMapping("/homeStatistics/")
+@CrossOrigin
+@RequestMapping("homeStatistics")
 public class HomeStatisticsController extends BaseController {
 
     /**
@@ -31,6 +30,11 @@ public class HomeStatisticsController extends BaseController {
     @Autowired
     private ICompanyService companyService;
 
+    /**
+     * 角色
+     */
+    @Autowired
+    private IRoleService roleService;
     /**
      * 人员
      */
@@ -50,6 +54,13 @@ public class HomeStatisticsController extends BaseController {
      */
     @Autowired
     private IContractManagementService contractManagementService;
+
+    /**
+     *
+     * 菜单
+     */
+    @Autowired
+    private IMenuService menuService;
     /**
      * 查询公司信息及坐标
      * @param company
@@ -118,9 +129,9 @@ public class HomeStatisticsController extends BaseController {
      * @return
      */
     @ApiOperation(value = "根据菜单ID返回菜单树")
-    @RequestMapping("modelIndex")
+    @RequestMapping(value = "/modelIndex",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVal modelIndex(@RequestBody String menuId, @RequestBody String userId) {
+    public ResponseVal modelIndex(@RequestBody Menu menu) {
         //获取当前用户
         /*ShiroUser shiroUser = ShiroKit.getUser();
         String account = shiroUser.getAccount();*/
@@ -129,7 +140,10 @@ public class HomeStatisticsController extends BaseController {
         //根据当前用户查找角色
         //this.
         //return new ResponseVal("查找成功",menus);
-        return null;
+
+        //查询角色Id
+        ResponseVal chind = this.menuService.findChind(menu);
+        return chind;
     }
 
 }

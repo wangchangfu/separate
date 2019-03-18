@@ -3,15 +3,14 @@ package com.mapscience.modular.system.controller;
 
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.model.Role;
+import com.mapscience.modular.system.model.RolePermission;
+import com.mapscience.modular.system.service.IRolePermissionService;
 import com.mapscience.modular.system.service.IRoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -30,6 +29,8 @@ public class RoleController {
     private IRoleService roleService;
 
 
+    @Autowired
+    private IRolePermissionService rolePermissionService;
     /**
      * 添加角色
      * @return
@@ -47,11 +48,12 @@ public class RoleController {
      * @return
      */
     @ApiOperation(value = "根据角色分配菜单")
-    @PostMapping("distrMenu")
+    @RequestMapping(value = "distrMenu",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVal distrMenu(@RequestBody  String ruleId,@RequestBody String menuId){
-        this.roleService.distrMenu(ruleId,menuId);
-        return null;
+    public ResponseVal distrMenu(@RequestBody RolePermission m){
+        ResponseVal responseVal = this.rolePermissionService.distrMenu(m.getRoleId(), m.getMenuId());
+        return responseVal;
+
     }
 }
 

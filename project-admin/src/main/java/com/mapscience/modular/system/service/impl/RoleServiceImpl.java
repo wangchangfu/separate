@@ -39,15 +39,5 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
         }
     }
 
-    /**
-     * 分配菜单
-     * @param ruleId
-     * @param menuId
-     */
-    @Override
-    public void distrMenu(String ruleId, String menuId) {
-
-    }
-
 
 }
