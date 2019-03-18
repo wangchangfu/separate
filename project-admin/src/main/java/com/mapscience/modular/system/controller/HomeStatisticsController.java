@@ -10,12 +10,13 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 前端大屏控制器
  */
-@Api(value ="大屏显示")
+@Api(tags="大屏显示")
 @Controller
 @RequestMapping("/homeStatistics/")
 public class HomeStatisticsController extends BaseController {
@@ -51,7 +52,7 @@ public class HomeStatisticsController extends BaseController {
      * @return
      */
     @ApiOperation(value = "查询公司信息及坐标")
-    @RequestMapping("findOrgList")
+    @RequestMapping(value="findOrgList",method = RequestMethod.POST)
     @ResponseBody
     public ResponseVal findComList(Company company){
 
@@ -64,7 +65,7 @@ public class HomeStatisticsController extends BaseController {
      * @return
      */
     @ApiOperation(value = "查询员工合同分布")
-    @RequestMapping("findContract")
+    @RequestMapping(value = "findContract",method = RequestMethod.POST)
     @ResponseBody
     public ResponseVal findContract(Company company){
         return this.contractManagementService.findContract(company);
@@ -77,7 +78,7 @@ public class HomeStatisticsController extends BaseController {
      * @return
      */
     @ApiOperation(value = "员工学历分布")
-    @RequestMapping("findEducationt")
+    @RequestMapping(value = "findEducationt",method = RequestMethod.POST)
     @ResponseBody
     public ResponseVal findEducationt(Company company){
         return this.educationService.findEducationt(company);
@@ -89,7 +90,7 @@ public class HomeStatisticsController extends BaseController {
      * @return
      */
     @ApiOperation(value = "统计公司人员")
-    @RequestMapping("getEmpCount")
+    @RequestMapping(value = "getEmpCount",method = RequestMethod.POST)
     @ResponseBody
     public ResponseVal getEmpCount(Company company){
         return this.employeeService.getEmpCount(company);
@@ -101,10 +102,12 @@ public class HomeStatisticsController extends BaseController {
      * @return
      */
     @ApiOperation(value = "查询公司行业类别")
-    @RequestMapping("findComType")
+    @RequestMapping(value = "findComType",method = RequestMethod.POST)
     @ResponseBody
     public ResponseVal findComType(){
-       return this.companyTypeService.findComType();
+        ResponseVal comType = this.companyTypeService.findComType();
+        System.out.println(comType);
+        return comType;
     }
 
 }
