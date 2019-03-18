@@ -102,7 +102,7 @@ public class EmployeeController {
 			entity.setPassWord(s);
 			boolean insert = this.employeeService.insert(entity);
 			if (insert) {
-				return new ResponseVal(200, "success");
+				return new ResponseVal(0, "success");
 			} else {
 				return new ResponseVal(500, "fail");
 			}
@@ -118,7 +118,7 @@ public class EmployeeController {
 		try {
 			boolean updateById = employeeService.updateAllColumnById(entity);
 			if (updateById) {
-				return new ResponseVal(200, "success");
+				return new ResponseVal(0, "success");
 			} else {
 				return new ResponseVal(500, "fail");
 			}
@@ -136,7 +136,7 @@ public class EmployeeController {
 			if (ObjectUtils.isEmpty(selectById)) {
 				return new ResponseVal(500, "fail", null);
 			} else {
-				return new ResponseVal(200, "success", selectById);
+				return new ResponseVal(0, "success", selectById);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -149,7 +149,7 @@ public class EmployeeController {
 	public ResponseVal fuzzyQuery(String comId, String empName, String tel, String starWorkTime, String endWorkTime, String startBirthTime, String endBirthTime, String education) {
 		try {
 			List<Employee> fuzzyQuery = employeeService.fuzzyQuery(comId, empName, tel, starWorkTime, endWorkTime, startBirthTime, endBirthTime, education);
-			return new ResponseVal(200, "success", fuzzyQuery);
+			return new ResponseVal(0, "success", fuzzyQuery);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseVal(500, "erro", null);
@@ -161,7 +161,7 @@ public class EmployeeController {
 	public ResponseVal getEmployeeByCompanyId(String companyId) {
 		try {
 			List<Employee> getEmployeeByCompanyId = employeeService.getEmployeeByCompanyId(companyId);
-			return new ResponseVal(200, "success", getEmployeeByCompanyId);
+			return new ResponseVal(0, "success", getEmployeeByCompanyId);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseVal(500, "erro", null);
@@ -173,7 +173,7 @@ public class EmployeeController {
 	public ResponseVal batchDeleteEmployeeByIds(String ids) {
 		try {
 			employeeService.batchDeleteEmployeeStatusByIds(ids);
-			return new ResponseVal(200, "success");
+			return new ResponseVal(0, "success");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseVal(500, "erro");

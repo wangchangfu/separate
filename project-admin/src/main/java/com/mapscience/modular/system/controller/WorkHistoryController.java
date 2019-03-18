@@ -38,7 +38,7 @@ public class WorkHistoryController {
 			if (ObjectUtils.isEmpty(getWorkHistoryByEmpId)) {
 				return new ResponseVal<List<WorkHistory>>(500, "fail", null);
 			} else {
-				return new ResponseVal<List<WorkHistory>>(200, "success", getWorkHistoryByEmpId);
+				return new ResponseVal<List<WorkHistory>>(0, "success", getWorkHistoryByEmpId);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

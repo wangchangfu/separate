@@ -34,7 +34,7 @@ public class DepartmentController {
 	public ResponseVal<List<Department>> getAllDepartment() {
 		try {
 			List<Department> selectList = service.selectList(null);
-			return new ResponseVal<List<Department>>(200, "success", selectList);
+			return new ResponseVal<List<Department>>(0, "success", selectList);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseVal<List<Department>>(500, "erro", null);
@@ -47,7 +47,7 @@ public class DepartmentController {
 		try {
 			boolean flag = service.insert(entity);
 			if(flag) {
-				return new ResponseVal(200,"success");
+				return new ResponseVal(0,"success");
 			}else {
 				return new ResponseVal(500,"fail");
 			}
@@ -63,7 +63,7 @@ public class DepartmentController {
 		try {
 			boolean flag = service.deleteById(id);
 			if(flag) {
-				return new ResponseVal(200,"success");
+				return new ResponseVal(0,"success");
 			}else {
 				return new ResponseVal(500,"fail");
 			}
@@ -79,7 +79,7 @@ public class DepartmentController {
 		try {
 			boolean flag = service.updateById(entity);
 			if(flag) {
-				return new ResponseVal(200,"success");
+				return new ResponseVal(0,"success");
 			}else {
 				return new ResponseVal(500,"fail");
 			}
@@ -97,7 +97,7 @@ public class DepartmentController {
 			if(ObjectUtils.isEmpty(selectById)) {
 				return new ResponseVal<Department>(500,"fail",null);
 			}else {
-				return new ResponseVal<Department>(200,"success",selectById);
+				return new ResponseVal<Department>(0,"success",selectById);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
