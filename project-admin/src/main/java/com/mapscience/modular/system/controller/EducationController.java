@@ -38,7 +38,7 @@ public class EducationController {
 			if (ObjectUtils.isEmpty(getHighestDegreeByEmpId)) {
 				return new ResponseVal<Education>(500, "fail", null);
 			} else {
-				return new ResponseVal<Education>(200, "success", getHighestDegreeByEmpId);
+				return new ResponseVal<Education>(0, "success", getHighestDegreeByEmpId);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

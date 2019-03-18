@@ -40,10 +40,6 @@ public class LoginController extends BaseController {
    // @Value("refreshTokenExpireTime")
     private String refreshTokenExcepireTime="1800";
 
-    //默认路径
-    private final String PREFIX = "/modular/";
-
-
     /**
      * 登陆验证
      * @param user

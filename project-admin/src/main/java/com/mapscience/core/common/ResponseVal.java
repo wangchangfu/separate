@@ -39,7 +39,12 @@ public class ResponseVal<T> implements Serializable {
         this.data = data;
     }
 
-
+    public ResponseVal(String msg, T data) {
+        super();
+        this.code = 0;
+        this.msg = msg;
+        this.data = data;
+    }
     /**
      * 不带数据返回
      *
