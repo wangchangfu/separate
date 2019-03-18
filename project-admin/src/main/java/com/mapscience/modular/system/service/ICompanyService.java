@@ -27,7 +27,7 @@ public interface ICompanyService extends IService<Company> {
      * @param company
      * @return
      */
-    public ResponseVal findComTree(Company company);
+    public ResponseVal<List<Company>> findComTree(Company company);
 
     /**
      * 保存

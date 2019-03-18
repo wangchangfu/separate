@@ -5,10 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +13,7 @@ import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.model.Company;
 import com.mapscience.modular.system.service.ICompanyService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 /**
@@ -26,6 +24,7 @@ import io.swagger.annotations.ApiOperation;
  * @author ${author}
  * @since 2019-01-16
  */
+@Api(tags="公司控制器")
 @RestController
 @RequestMapping("/company")
 public class CompanyController {
@@ -34,19 +33,19 @@ public class CompanyController {
     private ICompanyService companyService;
     
     @ApiOperation("查找所有的公司")
-    @GetMapping("/getAllCompany")
-    public ResponseVal getAllCompany(){
+    @PostMapping("/getAllCompany")
+    public ResponseVal<List<Company>> getAllCompany(){
     	try {
     		 List<Company> list = companyService.getList();
-    	     return new ResponseVal(200,"success",list);
+    	     return new ResponseVal<List<Company>>(200,"success",list);
 		} catch (Exception e) {
-			return new ResponseVal(200,"erro",null);
+			return new ResponseVal<List<Company>>(200,"erro",null);
 		}
     }
 
     @ApiOperation("查询公司及子公司")
-    @GetMapping("/findComTreeAndChidren")
-    public ResponseVal findComTreeAndChidren(Company company){
+    @PostMapping("/findComTreeAndChidren")
+    public ResponseVal<List<Company>> findComTreeAndChidren(Company company){
        return this.companyService.findComTree(company);
     }
 
@@ -57,7 +56,7 @@ public class CompanyController {
     }
     
     @ApiOperation(value = "通过id删除公司")
-	@DeleteMapping(value = "/deleteCompanyById")
+    @PostMapping(value = "/deleteCompanyById")
 	public ResponseVal deleteCompanyById(String id) {
     	try {
 			boolean deleteById = companyService.deleteById(id);
@@ -73,7 +72,7 @@ public class CompanyController {
 	}
 	
 	@ApiOperation(value = "通过id修改公司")
-	@PutMapping(value = "/updateCompanyById")
+	@PostMapping(value = "/updateCompanyById")
 	public ResponseVal updateCompanyById(Company entity) {
 		try {
 			boolean flag = companyService.updateAllColumnById(entity);
@@ -89,30 +88,30 @@ public class CompanyController {
 	}
 	
 	@ApiOperation(value = "通过id查询公司")
-	@GetMapping(value = "/selectCompanyById")
-	public ResponseVal selectCompanyById(String id) {
+	@PostMapping(value = "/selectCompanyById")
+	public ResponseVal<Company> selectCompanyById(String id) {
 		try {
 			Company selectById = companyService.selectById(id);
 			if(ObjectUtils.isEmpty(selectById)) {
-				return new ResponseVal(500,"fail",null);
+				return new ResponseVal<Company>(500,"fail",null);
 			}else {
-				return new ResponseVal(200,"success",selectById);
+				return new ResponseVal<Company>(200,"success",selectById);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseVal(500,"erro",null);
+			return new ResponseVal<Company>(500,"erro",null);
 		}
 	}
 	
     @ApiOperation("查询公司部门树")
-    @GetMapping("/findCompanyAndDepartmentTree")
-    public ResponseVal findCompanyAndDepartmentTree(){
+    @PostMapping("/findCompanyAndDepartmentTree")
+    public ResponseVal<List<Object>> findCompanyAndDepartmentTree(){
     	try {
 			List<Object> findCompanyAndDepartmentTree = companyService.findCompanyAndDepartmentTree();
-			return new ResponseVal(200,"success",findCompanyAndDepartmentTree);
+			return new ResponseVal<List<Object>>(200,"success",findCompanyAndDepartmentTree);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseVal(500,"erro",null);
+			return new ResponseVal<List<Object>>(500,"erro",null);
 		}
     }
 

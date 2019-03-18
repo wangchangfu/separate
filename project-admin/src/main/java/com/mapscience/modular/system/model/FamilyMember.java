@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,59 +18,48 @@ import java.util.Date;
  * @author ${author}
  * @since 2019-03-14
  */
+@ApiModel(value = "家庭成员类")
 @TableName("t_family_member")
 public class FamilyMember extends Model<FamilyMember> {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 主键
-     */
+    @ApiModelProperty(value="家庭成员id")
     private String id;
-    /**
-     * 出生年月
-     */
+
+    @ApiModelProperty(value="出生年月")
     @TableField("borth_date")
     private Date borthDate;
-    /**
-     * 称谓
-     */
+
+    @ApiModelProperty(value="称谓")
     private String call;
-    /**
-     * 创建时间
-     */
+
+    @ApiModelProperty(value="创建时间")
     @TableField("create_time")
     private Date createTime;
-    /**
-     * 关联员工ID
-     */
+
+    @ApiModelProperty(value="关联员工id")
     @TableField("emp_id")
     private String empId;
-    /**
-     * 姓名
-     */
+
+    @ApiModelProperty(value="姓名")
     private String name;
-    /**
-     * 政治面貌
-     */
+
+    @ApiModelProperty(value="政治面貌")
     @TableField("political_look")
     private String politicalLook;
-    /**
-     * 修改时间
-     */
+
+    @ApiModelProperty(value="修改时间")
     @TableField("update_time")
     private Date updateTime;
-    /**
-     * 工作单位及职务
-     */
+    
+    @ApiModelProperty(value="工作经验id")
     @TableField("work_unit")
     private String workUnit;
-    /**
-     * 人员关系表ID
-     */
+
+    @ApiModelProperty(value="人员关系表id")
     @TableField("contact_relationship_id")
     private String contactRelationshipId;
-
 
     public String getId() {
         return id;

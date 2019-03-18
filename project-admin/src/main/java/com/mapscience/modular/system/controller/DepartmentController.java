@@ -5,10 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +13,7 @@ import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.model.Department;
 import com.mapscience.modular.system.service.IDepartmentService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 /**
@@ -26,6 +24,7 @@ import io.swagger.annotations.ApiOperation;
  * @author ${author}
  * @since 2019-01-16
  */
+@Api(tags="部门控制器")
 @RestController
 @RequestMapping("/department")
 public class DepartmentController {
@@ -34,19 +33,19 @@ public class DepartmentController {
 	private IDepartmentService service;
 	 
 	@ApiOperation("查询所有部门")
-	@GetMapping("/getAllDepartment")
-	public ResponseVal getAllDepartment() {
+	@PostMapping("/getAllDepartment")
+	public ResponseVal<List<Department>> getAllDepartment() {
 		try {
 			List<Department> selectList = service.selectList(null);
-			return new ResponseVal(200, "success", selectList);
+			return new ResponseVal<List<Department>>(200, "success", selectList);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseVal(500, "erro", null);
+			return new ResponseVal<List<Department>>(500, "erro", null);
 		}
 	}
 	
 	@ApiOperation("添加部门")
-    @PostMapping("/insertDepartment")
+	@PostMapping("/insertDepartment")
     public ResponseVal insertDepartment(Department entity){
 		try {
 			boolean flag = service.insert(entity);
@@ -62,7 +61,7 @@ public class DepartmentController {
     }
     
 	@ApiOperation("根据id删除部门")
-	@DeleteMapping("/deleteDepartmentById")
+	@PostMapping("/deleteDepartmentById")
 	public ResponseVal deleteDepartmentById(String id) {
 		try {
 			boolean flag = service.deleteById(id);
@@ -78,7 +77,7 @@ public class DepartmentController {
 	}
 	
 	@ApiOperation("修改部门")
-	@PutMapping("/updateDepartment")
+	@PostMapping("/updateDepartment")
 	public ResponseVal updateDepartment(Department entity) {
 		try {
 			boolean flag = service.updateById(entity);
@@ -94,18 +93,18 @@ public class DepartmentController {
 	}
 	
 	@ApiOperation("根据Id查询部门")
-	@GetMapping("/selectDepartmentById")
-	public ResponseVal selectDepartmentById(String id) {
+	@PostMapping("/selectDepartmentById")
+	public ResponseVal<Department> selectDepartmentById(String id) {
 		try {
 			Department selectById = service.selectById(id);
 			if(ObjectUtils.isEmpty(selectById)) {
-				return new ResponseVal(500,"fail",null);
+				return new ResponseVal<Department>(500,"fail",null);
 			}else {
-				return new ResponseVal(200,"success",selectById);
+				return new ResponseVal<Department>(200,"success",selectById);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseVal(500,"erro",null);
+			return new ResponseVal<Department>(500,"erro",null);
 		}
 	}
 
