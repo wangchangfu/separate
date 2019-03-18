@@ -52,7 +52,9 @@ public class CompanyController {
     @ApiOperation("添加公司")
     @PostMapping("/saveCompany")
     public ResponseVal saveCompany(Company company){
+    	
        return this.companyService.saveCompany(company);
+       
     }
     
     @ApiOperation(value = "通过id删除公司")
