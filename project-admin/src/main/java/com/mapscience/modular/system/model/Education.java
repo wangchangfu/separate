@@ -5,6 +5,9 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,94 +19,73 @@ import java.util.Date;
  * @author ${author}
  * @since 2019-01-18
  */
+@ApiModel(value = "教育信息类")
 @TableName("t_education")
 public class Education extends Model<Education> {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * uuid
-     */
+    @ApiModelProperty(value="教育信息id")
     @TableId("education_id")
     private String educationId;
-    /**
-     * 员工id
-     */
+    
+    @ApiModelProperty(value="员工id")
     @TableField("employee_id")
     private String employeeId;
-    /**
-     * 学历类型ID
-     */
+    
+    @ApiModelProperty(value="学历类型id")
     @TableField("education_type_id")
     private String educationTypeId;
-    /**
-     * 学位类型ID
-     */
+    
+    @ApiModelProperty(value="学位类型id")
     @TableField("degree_type_id")
     private String degreeTypeId;
-    /**
-     * 学位名称
-     */
+    
+    @ApiModelProperty(value="学位名称")
     @TableField("degree_name")
     private String degreeName;
-    /**
-     * 入学时间
-     */
+    
+    @ApiModelProperty(value="入学时间")
     @TableField("admission_time")
     private Date admissionTime;
-    /**
-     * 学位授予日期/毕业时间
-     */
+   
+    @ApiModelProperty(value="学位授予日期/毕业时间")
     @TableField("degree_date")
     private Date degreeDate;
-    /**
-     * 毕业专业
-     */
+    
+    @ApiModelProperty(value="毕业专业")
     private String major;
-    /**
-     * 学位授予单位
-     */
+   
+    @ApiModelProperty(value="学位授予单位")
     @TableField("degree_unit")
     private String degreeUnit;
-    /**
-     * 学历证书编号
-     */
+    
+    @ApiModelProperty(value="学历证书编号")
     @TableField("educationctif_code")
     private String educationctifCode;
-    /**
-     * 学位证书编号
-     */
+    
+    @ApiModelProperty(value="学位证书编号")
     @TableField("certif_code")
     private String certifCode;
-    /**
-     * 教育类型ID
-     */
+    
+    @ApiModelProperty(value="教育类型id")
     @TableField("record_type_id")
     private String recordTypeId;
-    /**
-     * 是否最高学历
-     */
+   
+    @ApiModelProperty(value="是否最高学历")
     @TableField("is_highest_degree")
     private Integer isHighestDegree;
-
-
-
-
-    /**
-     * 备注
-     */
+  
+    @ApiModelProperty(value="备注")
     private String remark;
-    /**
-     * 保存时间
-     */
+  
+    @ApiModelProperty(value="保存时间")
     @TableField("create_time")
     private Date createTime;
-    /**
-     * 修改时间
-     */
+    
+    @ApiModelProperty(value="修改时间")
     @TableField("update_time")
     private Date updateTime;
-
 
     public String getEducationId() {
         return educationId;

@@ -68,17 +68,17 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> impl
      * @return
      */
     @Override
-    public ResponseVal findComTree(Company company) {
+    public ResponseVal<List<Company>> findComTree(Company company) {
         try{
         //查询所有的公司
         List<Company> list = this.getList();
 
         //将list转为tree
         List<Company> bulid = bulid(list);
-        return new ResponseVal(200,"查询成功",bulid);
+        return new ResponseVal<List<Company>>(200,"查询成功",bulid);
         }catch (Exception e){
             logger.error("查询公司树出错："+e);
-            return new ResponseVal(500,"查询出错");
+            return new ResponseVal<List<Company>>(500,"查询出错");
         }
 
     }

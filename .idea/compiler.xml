@@ -11,12 +11,5 @@
         <module name="project-generator" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="generator" target="1.8" />
-      <module name="project-admin" target="1.8" />
-      <module name="project-core" target="1.8" />
-      <module name="project-generator" target="1.8" />
-      <module name="separate" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

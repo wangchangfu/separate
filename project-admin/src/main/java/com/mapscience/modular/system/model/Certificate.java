@@ -5,6 +5,10 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 /**
@@ -15,66 +19,54 @@ import java.io.Serializable;
  * @author ${author}
  * @since 2019-01-18
  */
+@ApiModel(value = "员工证照类")
 @TableName("t_certificate")
 public class Certificate extends Model<Certificate> {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * uuid
-     */
+    @ApiModelProperty(value="员工证照id")
     @TableId("certificate_id")
     private String certificateId;
-    /**
-     * 员工id
-     */
+
+    @ApiModelProperty(value="员工id")
     @TableField("employee_id")
     private String employeeId;
-    /**
-     * 证书/证件类型
-     */
+
+    @ApiModelProperty(value="证书/证件类型")
     @TableField("cer_type")
     private String cerType;
-    /**
-     * 证书/证件名称
-     */
+
+    @ApiModelProperty(value="证书/证件名称")
     @TableField("cer_name")
     private String cerName;
-    /**
-     * 发证机构
-     */
+
+    @ApiModelProperty(value="发证机构")
     @TableField("issuing_agency")
     private String issuingAgency;
-    /**
-     * 发证日期
-     */
+
+    @ApiModelProperty(value="发证日期")
     @TableField("issuing_date")
     private Date issuingDate;
-    /**
-     * 有效期
-     */
+
+    @ApiModelProperty(value="有效期")
     @TableField("expiry_date")
     private Date expiryDate;
-    /**
-     * 备注
-     */
+
+    @ApiModelProperty(value="备注")
     private String remark;
-    /**
-     * 证书图片
-     */
+
+    @ApiModelProperty(value="证书图片")
     @TableField("cer_image")
     private String cerImage;
-    /**
-     * 保存时间
-     */
+
+    @ApiModelProperty(value="保存时间")
     @TableField("create_time")
     private Date createTime;
-    /**
-     * 更新时间
-     */
+
+    @ApiModelProperty(value="更新时间")
     @TableField("update_time")
     private Date updateTime;
-
 
     public String getCertificateId() {
         return certificateId;
