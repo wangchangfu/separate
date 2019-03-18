@@ -68,22 +68,6 @@ public class MenuController {
         return  this.menuService.saveMenu(t);
     }
 
-    /**
-     * 根据菜单ID返回菜单树
-     * @param menu
-     * @return
-     */
-    @ApiOperation(value = "根据菜单ID返回菜单树")
-    @RequestMapping("modelIndex")
-    @ResponseBody
-    public ResponseVal modelIndex(@RequestBody Menu menu) {
-        //获取当前用户
-        ShiroUser shiroUser = ShiroKit.getUser();
-        String account = shiroUser.getAccount();
-        //查询当前用户角色
-        List<Menu> menus = this.menuService.findMenus(menu,shiroUser.getId());
 
-        return new ResponseVal(HttpStatus.OK.value(),"查找成功",menus);
-    }
 }
 

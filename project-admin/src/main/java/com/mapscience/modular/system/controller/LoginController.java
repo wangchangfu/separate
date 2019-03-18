@@ -73,7 +73,7 @@ public class LoginController extends BaseController {
                 // 从Header中Authorization返回AccessToken，时间戳为当前时间戳
                 String token = JwtUtil.sign(user.getUsername(), currentTimeMillis);
                 users.setToken(token);
-                return new ResponseVal(200, "登陆成功", users);
+                return new ResponseVal("登陆成功", users);
             }else{
                 return new ResponseVal(HttpStatus.INTERNAL_SERVER_ERROR.value(),"密码错误");
             }
@@ -93,7 +93,7 @@ public class LoginController extends BaseController {
         //User users = userService.getById("efe62f43460711e9b753000c292bf6bc");
         if (JedisUtil.exists(Constant.PREFIX_SHIRO_REFRESH_TOKEN + users.getUsername())) {
             if (JedisUtil.delKey(Constant.PREFIX_SHIRO_REFRESH_TOKEN + users.getUsername()) > 0) {
-                return new ResponseVal(200, "删除成功");
+                return new ResponseVal( 0,"删除成功");
             }
         }
         return super.responseBody(ProjectStatusEnum.KICK_OUT_ERROR);
