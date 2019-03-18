@@ -13,4 +13,10 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface RoleMapper extends BaseMapper<Role> {
 
+
+    /**
+     * 添加角色
+     * @param rule
+     */
+    void addRole(Role rule);
 }

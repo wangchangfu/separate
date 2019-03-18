@@ -9,6 +9,8 @@ import com.mapscience.core.util.AesCipherUtil;
 import com.mapscience.modular.system.dto.UserDTO;
 import com.mapscience.modular.system.model.User;
 import com.mapscience.modular.system.service.IUserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +28,7 @@ import java.util.Date;
  * @author ${author}
  * @since 2019-03-05
  */
+@Api(tags="管理员表控制器")
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -38,6 +41,7 @@ public class UserController {
      * @param user
      * @return
      */
+    @ApiOperation(value = "添加管理员")
     @RequestMapping(value = "/addUser" ,method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public ResponseVal addUser(@RequestBody User user){
@@ -64,6 +68,7 @@ public class UserController {
      * @param user
      * @return
      */
+    @ApiOperation(value = "按照公司查找管理员")
     @RequestMapping(value = "/findByComUser" ,method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public ResponseVal findByComUser(UserDTO user){
