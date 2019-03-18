@@ -30,7 +30,7 @@ public class CompanyTypeServiceImpl extends ServiceImpl<CompanyTypeMapper, Compa
     public ResponseVal findComType() {
         List<CompanyType> comType = this.baseMapper.findComType();
             if (ObjectUtil.isNotEmpty(comType)){
-                return new ResponseVal("查询成功",comType);
+                return new ResponseVal(200, "查询成功",comType);
             }
         return new ResponseVal(HttpStatus.FOUND.value(),"暂无数据");
     }
