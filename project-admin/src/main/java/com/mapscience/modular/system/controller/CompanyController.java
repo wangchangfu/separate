@@ -2,6 +2,7 @@ package com.mapscience.modular.system.controller;
 
 
 import com.mapscience.core.common.ResponseVal;
+import com.mapscience.core.util.JedisUtil;
 import com.mapscience.modular.system.model.Company;
 import com.mapscience.modular.system.service.ICompanyService;
 
@@ -102,15 +103,22 @@ public class CompanyController {
 		}
 	}
 	
-    @ApiOperation("查询公司部门树")
+	@ApiOperation("查询公司部门树")
     @PostMapping("/findCompanyAndDepartmentTree")
     public ResponseVal<List<Object>> findCompanyAndDepartmentTree(){
     	try {
-			List<Object> findCompanyAndDepartmentTree = companyService.findCompanyAndDepartmentTree();
-			return new ResponseVal<List<Object>>(0,"success",findCompanyAndDepartmentTree);
+    		@SuppressWarnings("unchecked")
+			List<Object> objectList = (List<Object>) JedisUtil.getObject("organize:companyAndDepartmentTree");
+        	return new ResponseVal<List<Object>>(0,"success", objectList);
 		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseVal<List<Object>>(500,"erro",null);
+			try {
+				List<Object> findCompanyAndDepartmentTree = companyService.findCompanyAndDepartmentTree();
+				JedisUtil.setObject("organize:companyAndDepartmentTree", findCompanyAndDepartmentTree);
+				return new ResponseVal<List<Object>>(0,"success",findCompanyAndDepartmentTree);
+			} catch (Exception e2) {
+				e2.printStackTrace();
+				return new ResponseVal<List<Object>>(500,"erro",null);
+			}
 		}
     }
 
