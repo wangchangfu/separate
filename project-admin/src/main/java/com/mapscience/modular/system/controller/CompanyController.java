@@ -107,7 +107,6 @@ public class CompanyController {
     @PostMapping("/findCompanyAndDepartmentTree")
     public ResponseVal<List<Object>> findCompanyAndDepartmentTree(){
     	try {
-    		
     		@SuppressWarnings("unchecked")
 			List<Object> objectList = (List<Object>) JedisUtil.getObject("organize:companyAndDepartmentTree");
         	return new ResponseVal<List<Object>>(0,"success", objectList);
