@@ -50,13 +50,10 @@ public interface ICompanyService extends IService<Company> {
     Company findComById(String s);
 
     ResponseVal findComList(Company company);
-<<<<<<< HEAD
 
     Company getCompanyByCompanyName(String companyName);
 
     Company getCompanyByRemark(String remark);
-=======
-    
+
     List<Object> findCompanyAndDepartmentTree();
->>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
 }

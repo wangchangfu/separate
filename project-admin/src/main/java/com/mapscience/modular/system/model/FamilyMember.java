@@ -1,21 +1,16 @@
 package com.mapscience.modular.system.model;
 
-<<<<<<< HEAD
-import java.util.Date;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
-import com.baomidou.mybatisplus.annotations.TableField;
-=======
->>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 import java.util.Date;
+
 
 /**
  * <p>
@@ -31,30 +26,30 @@ public class FamilyMember extends Model<FamilyMember> {
 
     private static final long serialVersionUID = 1L;
 
-<<<<<<< HEAD
+
     /**
      * 主键
      */
     @TableField("id")
-=======
+
     @ApiModelProperty(value="家庭成员id")
->>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
+
     private String id;
 
     @ApiModelProperty(value="出生年月")
     @TableField("borth_date")
     @Excel(name = "出生日期")
     private Date borthDate;
-<<<<<<< HEAD
+
     /**
      * 称谓
      */
     @TableField("call")
     @Excel(name = "称谓")
-=======
+
 
     @ApiModelProperty(value="称谓")
->>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
+
     private String call;
 
     @ApiModelProperty(value="创建时间")
@@ -64,16 +59,14 @@ public class FamilyMember extends Model<FamilyMember> {
     @ApiModelProperty(value="关联员工id")
     @TableField("emp_id")
     private String empId;
-<<<<<<< HEAD
+
     /**
      * 姓名
      */
     @TableField("name")
     @Excel(name = "姓名")
-=======
 
     @ApiModelProperty(value="姓名")
->>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
     private String name;
 
     @ApiModelProperty(value="政治面貌")

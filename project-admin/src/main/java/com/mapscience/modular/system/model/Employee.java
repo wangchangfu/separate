@@ -41,11 +41,8 @@ public class Employee extends Model<Employee> {
     /**
      * 证件类型ID
      */
-<<<<<<< HEAD
 
-=======
     @ApiModelProperty(value="证件类型ID")
->>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
     @TableField("credentials_stype_id")
     private String credentialsStypeId;
 
@@ -151,11 +148,6 @@ public class Employee extends Model<Employee> {
     @Excel(name = "专业技术职务")
     private String technicalPositionId;
 
-<<<<<<< HEAD
-
-
-
-=======
     /**
      * 专长
      */
@@ -163,7 +155,6 @@ public class Employee extends Model<Employee> {
     @TableField("zhuanchang")
     @Excel(name="熟悉专业有何专长")
     private String zhuanchang;
->>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
     /**
      * 职（执）业资格
      */
@@ -254,12 +245,8 @@ public class Employee extends Model<Employee> {
     /**
      * 登录账号
      */
-<<<<<<< HEAD
     @TableField("account")
-=======
     @ApiModelProperty(value="登录账号")
-    @TableField(exist = false)
->>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
     private String account;
     /**
      * 密码
@@ -270,20 +257,10 @@ public class Employee extends Model<Employee> {
     /**
      * 简拼
      */
-<<<<<<< HEAD
     @TableField("jianpin")
-=======
     @ApiModelProperty(value="简拼")
-    @TableField(exist = false)
->>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
     private String jianpin;
 
-    /**
-     * 专长
-     */
-    @TableField("zhuanchang")
-    @Excel(name = "熟悉专业有何专长")
-    private String zhuanchang;
 
     /**
      * 开户行
@@ -300,12 +277,9 @@ public class Employee extends Model<Employee> {
     /**
      * 类型 1是普通用户 2 超级用户（查看自己公司）3可以查看自己子公司 4 全部 5程序猿的
      */
-<<<<<<< HEAD
+
     @TableField("type")
-=======
     @ApiModelProperty(value="类型")
-    @TableField(exist = false)
->>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
     private Integer type;
     /**
      * 开户行地址
