@@ -1,7 +1,7 @@
 package com.mapscience.modular.system.service;
 
-import com.mapscience.modular.system.model.UserRole;
 import com.baomidou.mybatisplus.service.IService;
+import com.mapscience.modular.system.model.UserRole;
 
 /**
  * <p>
@@ -14,4 +14,14 @@ import com.baomidou.mybatisplus.service.IService;
 public interface IUserRoleService extends IService<UserRole> {
 
     UserRole findByEmp(String employeeId);
+
+    /**
+     * 添加关联
+     * @param s
+     * @param roleId
+     */
+    String addUserRole(String s, String roleId);
+
+
+    void deleteByRoleId(String id);
 }

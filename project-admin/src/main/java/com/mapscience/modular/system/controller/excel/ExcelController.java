@@ -9,6 +9,7 @@ import com.mapscience.core.util.excel.EasyPOIExcelUtile;
 import com.mapscience.modular.system.dto.EmployeeDTO;
 import com.mapscience.modular.system.model.*;
 import com.mapscience.modular.system.service.*;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -26,6 +27,7 @@ import java.util.*;
 /**
  * 操作表格
  */
+@Api(tags="表格导入导出")
 @Controller
 @RequestMapping("/excel")
 public class ExcelController {
@@ -56,6 +58,7 @@ public class ExcelController {
 	 * @param type    导出模板类型 1 员工信息 2 教育经历 3 证书证件 4 工作经历
 	 * @param ids     导出员工的ID
 	 */
+	@ApiOperation("导出模板类型 1 员工信息 2 教育经历 3 证书证件 4 工作经历")
 	@RequestMapping("getModelExcel")
 	@ResponseBody
 	public ResponseVal exportEmploy(HttpServletRequest request, Integer method, Integer type, String ids,
@@ -70,6 +73,7 @@ public class ExcelController {
 	 * @param response
 	 * @return
 	 */
+	@ApiOperation("导出空表格")
 	@RequestMapping("export")
 	@ResponseBody
 	public ResponseVal export(HttpServletResponse response) {
@@ -85,6 +89,7 @@ public class ExcelController {
 	 * @param files   innerText
 	 * @return
 	 */
+	@ApiOperation("导入excel信息")
 	@ResponseBody
 	@RequestMapping(value = "importExcelEmp", method = RequestMethod.POST)
 	public ResponseVal importExcelEmp(HttpServletRequest request,

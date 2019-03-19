@@ -4,6 +4,7 @@ package com.mapscience.modular.system.controller;
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.model.CompanyDirector;
 import com.mapscience.modular.system.service.ICompanyDirectorService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
@@ -19,6 +20,7 @@ import java.util.List;
  * @author ${author}
  * @since 2019-01-16
  */
+@Api(tags="公司权力机构信息")
 @RestController
 @RequestMapping("/companyDirector")
 public class CompanyDirectorController {
@@ -28,10 +30,10 @@ public class CompanyDirectorController {
 	 
 	@ApiOperation("查询所有公司权力机构信息")
 	@GetMapping("/getAllCompanyDirector")
-	public ResponseVal getAllCompanyDirector() {
+	public ResponseVal<CompanyDirector> getAllCompanyDirector() {
 		try {
 			List<CompanyDirector> selectList = service.selectList(null);
-			return new ResponseVal(200, "success", selectList);
+			return new ResponseVal (200, "success", selectList);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseVal(500, "erro", null);

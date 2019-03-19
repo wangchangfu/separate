@@ -44,7 +44,7 @@ public class RoleController {
 
 
     /**
-     * 根据角色分配菜单
+     * 根据角色分配菜单  传参角色ID，菜单以逗号分隔
      * @return
      */
     @ApiOperation(value = "根据角色分配菜单")

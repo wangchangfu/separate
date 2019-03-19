@@ -21,7 +21,7 @@ public interface IUserService extends IService<User> {
      * 添加
      * @param user
      */
-    ResponseVal addUser(User user);
+    ResponseVal addUser(UserDTO user);
 
     /**
      * 查询用户是否存在

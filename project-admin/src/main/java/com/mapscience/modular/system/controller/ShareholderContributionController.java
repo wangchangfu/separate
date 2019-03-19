@@ -4,6 +4,7 @@ package com.mapscience.modular.system.controller;
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.model.ShareholderContribution;
 import com.mapscience.modular.system.service.IShareholderContributionService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * @author ${author}
  * @since 2019-01-18
  */
+@Api(tags="股东出资")
 @RestController
 @RequestMapping("/shareholderContribution")
 public class ShareholderContributionController {
@@ -30,7 +32,7 @@ public class ShareholderContributionController {
 		try {
 			boolean flag = service.insert(entity);
 			if(flag) {
-				return new ResponseVal(200,"success");
+				return new ResponseVal(0,"success");
 			}else {
 				return new ResponseVal(500,"fail");
 			}
@@ -46,7 +48,7 @@ public class ShareholderContributionController {
 		try {
 			boolean flag = service.deleteById(id);
 			if(flag) {
-				return new ResponseVal(200,"success");
+				return new ResponseVal(0,"success");
 			}else {
 				return new ResponseVal(500,"fail");
 			}
@@ -62,7 +64,7 @@ public class ShareholderContributionController {
 		try {
 			boolean flag = service.updateById(entity);
 			if(flag) {
-				return new ResponseVal(200,"success");
+				return new ResponseVal(0,"success");
 			}else {
 				return new ResponseVal(500,"fail");
 			}
@@ -80,7 +82,7 @@ public class ShareholderContributionController {
 			if(ObjectUtils.isEmpty(selectById)) {
 				return new ResponseVal(500,"fail",null);
 			}else {
-				return new ResponseVal(200,"success",selectById);
+				return new ResponseVal("success",selectById);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,11 +1,12 @@
 package com.mapscience.modular.system.model;
 
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -54,6 +55,7 @@ public class Post extends Model<Post> {
      */
     @TableField("post_type_id")
     private String postTypeId;
+
 
 
     public String getPostId() {
@@ -111,6 +113,8 @@ public class Post extends Model<Post> {
     public void setPostTypeId(String postTypeId) {
         this.postTypeId = postTypeId;
     }
+
+
 
     @Override
     protected Serializable pkVal() {

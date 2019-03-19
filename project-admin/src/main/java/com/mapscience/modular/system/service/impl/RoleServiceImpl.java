@@ -29,6 +29,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
     @Override
     public ResponseVal addRole(Role rule) {
         try{
+            rule.setStatus(1);
             rule.setCreateTime(new Date());
             rule.setUpdateTime(new Date());
             this.baseMapper.addRole(rule);

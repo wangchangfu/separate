@@ -25,7 +25,7 @@ public interface RoleMapper extends BaseMapper<Role> {
      * 根据管理员ID查找角色
      * @param userId
      */
-    @Select("select r.* from t_role r left join t_user_role u on u.role_id=r.role_id and r.status=1 where u.emp_id=#{userId}")
+    @Select("select r.* from t_role r left join t_user_role u on u.role_id=r.role_id and r.status=1 where u.user_id=#{userId}")
     Role findByRoleId(String userId);
 
 }
