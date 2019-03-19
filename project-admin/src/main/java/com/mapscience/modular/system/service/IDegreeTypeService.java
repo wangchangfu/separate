@@ -13,4 +13,6 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface IDegreeTypeService extends IService<DegreeType> {
 
+    DegreeType getDegreeByDegreeName(String degreeName);
+
 }

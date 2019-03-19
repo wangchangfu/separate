@@ -27,4 +27,16 @@
         select * from t_work_history where employee_id = #{empId}
     </select>
 
+
+    <insert id="saveWorkHistory" useGeneratedKeys="true" keyProperty="workHistoryId" parameterType="com.mapscience.modular.system.model.WorkHistory">
+        <!--生成uuid-->
+        <selectKey keyProperty="workHistoryId" resultType="java.lang.String" order="BEFORE">
+            select REPLACE(UUID(),'-','')
+        </selectKey>
+        insert into t_work_history (
+        <include refid="Base_Column_List"/>) values(
+        #{workHistoryId},#{workHistoryName},#{employeeId},#{post},#{postRemark},#{witness},#{tel},#{startTime},#{leaveTime},#{createTime},#{updateTime}
+        )
+    </insert>
+
 </mapper>

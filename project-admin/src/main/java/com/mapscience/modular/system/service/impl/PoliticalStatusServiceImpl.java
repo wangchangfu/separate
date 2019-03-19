@@ -4,6 +4,7 @@ import com.mapscience.modular.system.model.PoliticalStatus;
 import com.mapscience.modular.system.mapper.PoliticalStatusMapper;
 import com.mapscience.modular.system.service.IPoliticalStatusService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,4 +18,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class PoliticalStatusServiceImpl extends ServiceImpl<PoliticalStatusMapper, PoliticalStatus> implements IPoliticalStatusService {
 
+    @Autowired
+    private PoliticalStatusMapper politicalStatusMapper;
+
+
+    @Override
+    public PoliticalStatus getPoliticalStatusByName(String politicalStatusName) {
+        return politicalStatusMapper.getPoliticalStatusByName(politicalStatusName);
+    }
 }

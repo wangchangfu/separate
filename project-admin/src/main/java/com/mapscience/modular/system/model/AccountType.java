@@ -1,6 +1,8 @@
 package com.mapscience.modular.system.model;
 
 import java.util.Date;
+
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
@@ -24,11 +26,13 @@ public class AccountType extends Model<AccountType> {
      * uuid主键
      */
     @TableId("account_type_id")
+    @Excel(name = "id")
     private String accountTypeId;
     /**
      * 户口类别名称
      */
     @TableField("account_type_name")
+    @Excel(name = "户口性质")
     private String accountTypeName;
     /**
      * 状态

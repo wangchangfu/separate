@@ -19,6 +19,7 @@ public interface EmployeeMapper extends BaseMapper<Employee> {
 
     /**
      * 根据账号查询用户
+     *
      * @param account
      * @return
      */
@@ -26,6 +27,7 @@ public interface EmployeeMapper extends BaseMapper<Employee> {
 
     /**
      * 根据账户号和密码查询用户信息
+     *
      * @param account
      * @param passWord
      * @return
@@ -42,6 +44,7 @@ public interface EmployeeMapper extends BaseMapper<Employee> {
 
     /**
      * 根据公司统计人员数量
+     *
      * @param companyId
      * @return
      */
@@ -50,15 +53,17 @@ public interface EmployeeMapper extends BaseMapper<Employee> {
 
     /**
      * 模糊查询
+     *
      * @return
      */
-    List<Employee> fuzzyQuery(@Param("comId")String comId, @Param("empName")String empName, @Param("tel")String tel,
-                              @Param("starWorkTime")String starWorkTime, @Param("endWorkTime")String endWorkTime,
-                              @Param("startBirthTime")String startBirthTime, @Param("endBirthTime")String endBirthTime,
-                              @Param("education")String education);
+    List<Employee> fuzzyQuery(@Param("comId") String comId, @Param("empName") String empName, @Param("tel") String tel,
+                              @Param("starWorkTime") String starWorkTime, @Param("endWorkTime") String endWorkTime,
+                              @Param("startBirthTime") String startBirthTime, @Param("endBirthTime") String endBirthTime,
+                              @Param("education") String education);
 
     /**
      * 通过公司id查询员工
+     *
      * @param companyId
      * @return
      */
@@ -66,14 +71,36 @@ public interface EmployeeMapper extends BaseMapper<Employee> {
 
     /**
      * 通过员工id删除员工状态
+     *
      * @param id
      * @return
      */
     int deleteEmployeeStatusById(String id);
 
 
+    /**
+     * 查询所有员工
+     *
+     * @return
+     */
+    List<Employee> getList();
+
+    /**
+     * 根据员工姓名查询
+     *
+     * @param employeeName
+     * @return
+     */
+    Employee getEmployeeByEmployeeName(String employeeName);
 
 
+    /**
+     * 根据身份证号查找
+     *
+     * @param cardId
+     * @return
+     */
+    Employee getEmployeeByCardId(String cardId);
 
 
 }

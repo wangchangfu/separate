@@ -13,4 +13,6 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface EmployeeStateMapper extends BaseMapper<EmployeeState> {
 
+    EmployeeState getEmployeeStateByName(String employeeStateName);
+
 }

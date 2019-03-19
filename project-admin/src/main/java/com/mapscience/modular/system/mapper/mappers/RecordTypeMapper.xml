@@ -16,4 +16,12 @@
         record_type_id, record_type_name, status, crate_time, update_time
     </sql>
 
+    <select id="getRecordTypeByRecordTypeName" resultMap="BaseResultMap">
+        select * from t_record_type where record_type_name = #{recordTypeName}
+    </select>
+
+    <select id="getList" resultMap="BaseResultMap">
+        select * from t_record_type
+    </select>
+
 </mapper>

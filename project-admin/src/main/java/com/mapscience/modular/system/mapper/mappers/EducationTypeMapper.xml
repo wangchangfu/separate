@@ -16,4 +16,13 @@
         education_type_id, education_type_name, status, crate_time, update_time
     </sql>
 
+    <select id="getEducationTypeByEducationTypeName" resultMap="BaseResultMap">
+        select * from t_education_type where education_type_name = #{educationTypeName}
+    </select>
+
+
+    <select id="getList" resultMap="BaseResultMap">
+        select * from t_education_type
+    </select>
+
 </mapper>

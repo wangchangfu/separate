@@ -1,6 +1,8 @@
 package com.mapscience.modular.system.model;
 
 import java.util.Date;
+
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
@@ -23,12 +25,14 @@ public class RecordType extends Model<RecordType> {
     /**
      * uuid
      */
-    @TableId("record_type_id")
+    @TableField("record_type_id")
+    @Excel(name = "id")
     private String recordTypeId;
     /**
      * 类型名称(全日制，自考，函授等)
      */
     @TableField("record_type_name")
+    @Excel(name = "学习方式")
     private String recordTypeName;
     /**
      * 状态 :0是删除1是启用2是增加不显示查询显示

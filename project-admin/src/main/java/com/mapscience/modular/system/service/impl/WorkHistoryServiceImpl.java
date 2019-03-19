@@ -2,6 +2,7 @@ package com.mapscience.modular.system.service.impl;
 
 import java.util.List;
 
+import com.mapscience.core.common.ResponseVal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +23,24 @@ import com.mapscience.modular.system.service.IWorkHistoryService;
 public class WorkHistoryServiceImpl extends ServiceImpl<WorkHistoryMapper, WorkHistory> implements IWorkHistoryService {
 	
 	@Autowired
-    private WorkHistoryMapper mapper;
+    private WorkHistoryMapper workHistoryMapper;
 
 	@Override
 	public List<WorkHistory> getWorkHistoryByEmpId(String empId) {
-		return mapper.getWorkHistoryByEmpId(empId);
+		return workHistoryMapper.getWorkHistoryByEmpId(empId);
+	}
+
+	@Override
+	public ResponseVal saveWorkHistory(WorkHistory workHistory) {
+		try {
+
+			this.baseMapper.saveWorkHistory(workHistory);
+
+			return new ResponseVal(200, "保存成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseVal(500,"保存错误",e);
+		}
 	}
 
 }

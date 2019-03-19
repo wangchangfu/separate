@@ -1,6 +1,8 @@
 package com.mapscience.modular.system.model;
 
 import java.util.Date;
+
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
@@ -24,11 +26,13 @@ public class SourceEntry extends Model<SourceEntry> {
      * uuid主键
      */
     @TableId("source_entry_id")
+    @Excel(name = "id")
     private String sourceEntryId;
     /**
      * 进入来源名称
      */
     @TableField("source_entry_name")
+    @Excel(name = "来源")
     private String sourceEntryName;
     /**
      * 0是删除1是启用2是增加不显示查询显示

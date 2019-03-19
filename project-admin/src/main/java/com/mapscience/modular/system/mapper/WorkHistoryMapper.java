@@ -18,4 +18,7 @@ public interface WorkHistoryMapper extends BaseMapper<WorkHistory> {
 	
 	List<WorkHistory> getWorkHistoryByEmpId(String empId);
 
+	void saveWorkHistory(WorkHistory workHistory);
+
+
 }

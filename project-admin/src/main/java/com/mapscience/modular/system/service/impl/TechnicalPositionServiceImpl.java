@@ -4,6 +4,7 @@ import com.mapscience.modular.system.model.TechnicalPosition;
 import com.mapscience.modular.system.mapper.TechnicalPositionMapper;
 import com.mapscience.modular.system.service.ITechnicalPositionService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,4 +18,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class TechnicalPositionServiceImpl extends ServiceImpl<TechnicalPositionMapper, TechnicalPosition> implements ITechnicalPositionService {
 
+
+    @Autowired
+    private TechnicalPositionMapper technicalPositionMapper;
+
+    @Override
+    public TechnicalPosition getTechnicalPositionByName(String technicalPositionName) {
+        return technicalPositionMapper.getTechnicalPositionByName(technicalPositionName);
+    }
 }

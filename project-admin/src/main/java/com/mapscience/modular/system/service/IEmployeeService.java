@@ -19,13 +19,14 @@ public interface IEmployeeService extends IService<Employee> {
 
     /**
      * 通过登录账户和密码查找用户信息
-
+     *
      * @return
      */
     Employee getEmployeeByAccountAndPasswd(String account, String password);
 
     /**
      * 通过账号获取用
+     *
      * @return
      */
     Employee getByAccount(Employee e);
@@ -42,15 +43,41 @@ public interface IEmployeeService extends IService<Employee> {
 
     /**
      * 统计公司人员
+     *
      * @param company
      * @return
      */
     ResponseVal getEmpCount(Company company);
+
     List<Employee> getEmployeeByCompanyId(String companyId);
 
     /**
      * 通过ids批量删除员工状态
      */
     void batchDeleteEmployeeStatusByIds(String ids);
+
+
+    /**
+     * 查询所有
+     *
+     * @return
+     */
+    List<Employee> getList();
+
+    /**
+     * 根据员工姓名查询
+     *
+     * @param employeeName
+     * @return
+     */
+    Employee getEmployeeByEmployeeName(String employeeName);
+
+    /**
+     * 根据身份证号查找
+     *
+     * @param cardId
+     * @return
+     */
+    Employee getEmployeeByCardId(String cardId);
 
 }
