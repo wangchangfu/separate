@@ -27,4 +27,10 @@ public interface IRoleService extends IService<Role> {
      * @return
      */
     Role findByRoleId(String userId);
+
+    /**
+     * 查询全部角色
+     * @return
+     */
+    ResponseVal findRoleList();
 }

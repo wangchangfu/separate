@@ -1,7 +1,6 @@
 package com.mapscience.modular.system.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.mapscience.modular.system.dto.UserDTO;
 import com.mapscience.modular.system.model.User;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
@@ -36,7 +35,7 @@ public interface UserMapper extends BaseMapper<User> {
      * 按照公司查找
      * @return
      */
-    List<User> findByComUser(UserDTO user);
+    List<User> findByComUser(User user);
 
     /**
      * 根据ID查询管理

@@ -85,10 +85,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
      * @return
      */
     @Override
-    public List<UserDTO> findByComUser(UserDTO user) {
+    public List<User> findByComUser(User user) {
 
-        this.baseMapper.findByComUser(user);
-        return null;
+        List<User> byComUser = this.baseMapper.findByComUser(user);
+        return byComUser;
     }
 
     /**

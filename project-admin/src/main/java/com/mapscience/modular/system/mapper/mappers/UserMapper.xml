@@ -36,9 +36,14 @@
         value(#{userId},#{comId},#{username},#{password},#{salt},#{empId},#{status},#{createTime},#{updateTime})
     </insert>
     
-    <!--<select id="findByComUser" resultMap="BaseResultMap">
-        SELECT * FROM t_user where com_id=#{comId}
-    </select>-->
+    <select id="findByComUser" resultMap="BaseResultMap">
+        SELECT * FROM t_user
+        <where>com_id is not null
+          <if test="comId !=null">
+              and com_id=#{comId}
+          </if>
+        </where>
+    </select>
 
     <select id="getById" resultMap="BaseResultMap">
         select

@@ -55,5 +55,16 @@ public class RoleController {
         return responseVal;
 
     }
+
+    /**
+     * 查询所有的角色
+     * @return
+     */
+    @ApiOperation(value = "查询角色")
+    @RequestMapping(value = "findRoleList" , method = RequestMethod.POST)
+    public ResponseVal<Role> findRoleList(){
+        ResponseVal roleList = this.roleService.findRoleList();
+        return roleList;
+    }
 }
 

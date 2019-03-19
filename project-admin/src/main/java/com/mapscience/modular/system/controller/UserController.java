@@ -4,6 +4,7 @@ package com.mapscience.modular.system.controller;
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.core.common.status.ProjectStatusEnum;
 import com.mapscience.core.exception.ProjectException;
+import com.mapscience.core.util.ObjectUtil;
 import com.mapscience.modular.system.dto.UserDTO;
 import com.mapscience.modular.system.model.User;
 import com.mapscience.modular.system.service.IUserRoleService;
@@ -11,11 +12,14 @@ import com.mapscience.modular.system.service.IUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * <p>
@@ -63,9 +67,12 @@ public class UserController {
     @ApiOperation(value = "按照公司查找管理员")
     @RequestMapping(value = "/findByComUser" ,method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public ResponseVal findByComUser(UserDTO user){
-        this.userService.findByComUser(user);
-        return null;
+    public ResponseVal findByComUser(@RequestBody User user){
+        List<User> byComUser = this.userService.findByComUser(user);
+        if(ObjectUtil.isEmpty(byComUser)){
+            return new ResponseVal(HttpStatus.FOUND.value(),"暂无数据");
+        }
+        return new ResponseVal("查找成功",byComUser);
     }
 
 }

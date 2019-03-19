@@ -35,7 +35,7 @@ public interface IUserService extends IService<User> {
      * @param user
      * @return
      */
-    List<UserDTO> findByComUser(UserDTO user);
+    List<User> findByComUser(User user);
 
     /**
      * 根据ID查询用户
