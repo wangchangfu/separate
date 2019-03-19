@@ -1,5 +1,6 @@
 package com.mapscience.modular.system.service;
 
+import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.model.WorkHistory;
 
 import java.util.List;
@@ -17,5 +18,7 @@ import com.baomidou.mybatisplus.service.IService;
 public interface IWorkHistoryService extends IService<WorkHistory> {
 	
 	List<WorkHistory> getWorkHistoryByEmpId(String empId);
+
+	ResponseVal saveWorkHistory(WorkHistory workHistory);
 
 }

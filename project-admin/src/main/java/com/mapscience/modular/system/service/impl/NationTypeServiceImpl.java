@@ -4,6 +4,7 @@ import com.mapscience.modular.system.model.NationType;
 import com.mapscience.modular.system.mapper.NationTypeMapper;
 import com.mapscience.modular.system.service.INationTypeService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,4 +18,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class NationTypeServiceImpl extends ServiceImpl<NationTypeMapper, NationType> implements INationTypeService {
 
+    @Autowired
+    private NationTypeMapper nationTypeMapper;
+
+    @Override
+    public NationType getNationTypeByName(String nationStypeName) {
+        return nationTypeMapper.getNationTypeByName(nationStypeName);
+    }
 }

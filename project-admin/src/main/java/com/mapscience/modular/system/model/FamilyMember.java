@@ -1,6 +1,8 @@
 package com.mapscience.modular.system.model;
 
 import java.util.Date;
+
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -22,15 +24,19 @@ public class FamilyMember extends Model<FamilyMember> {
     /**
      * 主键
      */
+    @TableField("id")
     private String id;
     /**
      * 出生年月
      */
     @TableField("borth_date")
+    @Excel(name = "出生日期")
     private Date borthDate;
     /**
      * 称谓
      */
+    @TableField("call")
+    @Excel(name = "称谓")
     private String call;
     /**
      * 创建时间
@@ -45,11 +51,14 @@ public class FamilyMember extends Model<FamilyMember> {
     /**
      * 姓名
      */
+    @TableField("name")
+    @Excel(name = "姓名")
     private String name;
     /**
      * 政治面貌
      */
     @TableField("political_look")
+    @Excel(name = "政治面貌")
     private String politicalLook;
     /**
      * 修改时间
@@ -60,6 +69,7 @@ public class FamilyMember extends Model<FamilyMember> {
      * 工作单位及职务
      */
     @TableField("work_unit")
+    @Excel(name = "工作单位及职务")
     private String workUnit;
     /**
      * 人员关系表ID

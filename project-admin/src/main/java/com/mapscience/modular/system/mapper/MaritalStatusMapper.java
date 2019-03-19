@@ -13,4 +13,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface MaritalStatusMapper extends BaseMapper<MaritalStatus> {
 
+
+    MaritalStatus getMaritalStatusByName(String maritalStatusName);
+
 }

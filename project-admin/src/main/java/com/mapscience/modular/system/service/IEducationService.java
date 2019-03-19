@@ -23,4 +23,11 @@ public interface IEducationService extends IService<Education> {
     ResponseVal findEducationt(Company company);
     
     Education getHighestDegreeByEmpId(String empId);
+
+    /**
+     * 插入
+     * @param education
+     * @return
+     */
+    //ResponseVal saveEducation(Education education);
 }

@@ -4,6 +4,7 @@ import com.mapscience.modular.system.model.AccountType;
 import com.mapscience.modular.system.mapper.AccountTypeMapper;
 import com.mapscience.modular.system.service.IAccountTypeService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,4 +18,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class AccountTypeServiceImpl extends ServiceImpl<AccountTypeMapper, AccountType> implements IAccountTypeService {
 
+    @Autowired
+    private AccountTypeMapper accountTypeMapper;
+
+    @Override
+    public AccountType getAccountTypevByName(String accountTypeName) {
+        return accountTypeMapper.getAccountTypevByName(accountTypeName);
+    }
 }

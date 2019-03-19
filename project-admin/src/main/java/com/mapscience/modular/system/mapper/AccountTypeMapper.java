@@ -13,4 +13,6 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface AccountTypeMapper extends BaseMapper<AccountType> {
 
+    AccountType getAccountTypevByName(String accountTypeName);
+
 }

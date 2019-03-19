@@ -1,6 +1,8 @@
 package com.mapscience.modular.system.model;
 
 import java.util.Date;
+
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
@@ -24,11 +26,13 @@ public class PoliticalStatus extends Model<PoliticalStatus> {
      * uuid主键
      */
     @TableId("political_status_id")
+    @Excel(name = "id")
     private String politicalStatusId;
     /**
      * 政治面貌名称
      */
     @TableField("political_status_name")
+    @Excel(name = "政治面貌代码")
     private String politicalStatusName;
     /**
      * 0是删除1是启用2是增加不显示查询显示

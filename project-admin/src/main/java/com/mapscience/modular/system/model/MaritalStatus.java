@@ -1,6 +1,8 @@
 package com.mapscience.modular.system.model;
 
 import java.util.Date;
+
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
@@ -24,11 +26,13 @@ public class MaritalStatus extends Model<MaritalStatus> {
      * uuid主键
      */
     @TableId("marital_status_id")
+    @Excel(name = "id")
     private String maritalStatusId;
     /**
      * 婚姻状况名称
      */
     @TableField("marital_status_name")
+    @Excel(name = "婚姻状况")
     private String maritalStatusName;
     /**
      * 0是删除1是启用2是增加不显示查询显示
@@ -44,6 +48,7 @@ public class MaritalStatus extends Model<MaritalStatus> {
      */
     @TableField("update_time")
     private Date updateTime;
+
 
 
     public String getMaritalStatusId() {
@@ -87,18 +92,19 @@ public class MaritalStatus extends Model<MaritalStatus> {
     }
 
     @Override
+    public String toString() {
+        return "MaritalStatus{" +
+                "maritalStatusId='" + maritalStatusId + '\'' +
+                ", maritalStatusName='" + maritalStatusName + '\'' +
+                ", status=" + status +
+                ", crateTime=" + crateTime +
+                ", updateTime=" + updateTime +
+                '}';
+    }
+
+    @Override
     protected Serializable pkVal() {
         return this.maritalStatusId;
     }
 
-    @Override
-    public String toString() {
-        return "MaritalStatus{" +
-        "maritalStatusId=" + maritalStatusId +
-        ", maritalStatusName=" + maritalStatusName +
-        ", status=" + status +
-        ", crateTime=" + crateTime +
-        ", updateTime=" + updateTime +
-        "}";
-    }
 }

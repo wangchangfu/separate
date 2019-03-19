@@ -13,4 +13,6 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface IPoliticalStatusService extends IService<PoliticalStatus> {
 
+    PoliticalStatus getPoliticalStatusByName(String politicalStatusName);
+
 }

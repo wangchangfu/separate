@@ -54,6 +54,17 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> impl
         }
 
     }
+
+    @Override
+    public Company getCompanyByCompanyName(String companyName) {
+        return this.baseMapper.getCompanyByCompanyName(companyName);
+    }
+
+    @Override
+    public Company getCompanyByRemark(String remark) {
+        return this.baseMapper.getCompanyByRemark(remark);
+    }
+
     /**
      * 查询公司树
      * @param company

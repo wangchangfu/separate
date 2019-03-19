@@ -18,12 +18,14 @@ public interface ICompanyService extends IService<Company> {
 
     /**
      * 查询所有公司
+     *
      * @return
      */
     public List<Company> getList();
 
     /**
      * 查询公司树
+     *
      * @param company
      * @return
      */
@@ -31,6 +33,7 @@ public interface ICompanyService extends IService<Company> {
 
     /**
      * 保存
+     *
      * @param company
      * @return
      */
@@ -38,6 +41,7 @@ public interface ICompanyService extends IService<Company> {
 
     /**
      * 根据员工ID查询公司
+     *
      * @param employeeId
      * @return
      */
@@ -46,4 +50,8 @@ public interface ICompanyService extends IService<Company> {
     Company findComById(String s);
 
     ResponseVal findComList(Company company);
+
+    Company getCompanyByCompanyName(String companyName);
+
+    Company getCompanyByRemark(String remark);
 }

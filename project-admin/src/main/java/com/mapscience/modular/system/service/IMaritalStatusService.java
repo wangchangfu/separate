@@ -13,4 +13,6 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface IMaritalStatusService extends IService<MaritalStatus> {
 
+    MaritalStatus getMaritalStatusByName(String maritalStatusName);
+
 }

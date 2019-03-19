@@ -13,4 +13,7 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface ISourceEntryService extends IService<SourceEntry> {
 
+    SourceEntry getSourceEntryByName(String sourceEntryName);
+
+
 }

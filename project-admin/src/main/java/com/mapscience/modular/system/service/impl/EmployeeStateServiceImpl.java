@@ -4,6 +4,7 @@ import com.mapscience.modular.system.model.EmployeeState;
 import com.mapscience.modular.system.mapper.EmployeeStateMapper;
 import com.mapscience.modular.system.service.IEmployeeStateService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,4 +18,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmployeeStateServiceImpl extends ServiceImpl<EmployeeStateMapper, EmployeeState> implements IEmployeeStateService {
 
+    @Autowired
+    private EmployeeStateMapper employeeStateMapper;
+
+
+    @Override
+    public EmployeeState getEmployeeStateByName(String employeeStateName) {
+        return employeeStateMapper.getEmployeeStateByName(employeeStateName);
+    }
 }

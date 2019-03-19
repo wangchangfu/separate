@@ -16,4 +16,8 @@
         technical_position_id, technical_position_name, status, crate_time, update_time
     </sql>
 
+    <select id="getTechnicalPositionByName" resultMap="BaseResultMap">
+        select * from t_technical_position where technical_position_name = #{technicalPositionName}
+    </select>
+
 </mapper>

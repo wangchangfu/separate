@@ -5,6 +5,7 @@ import com.mapscience.modular.system.mapper.CredentialsTypeMapper;
 import com.mapscience.modular.system.service.ICredentialsTypeService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
  * @since 2019-01-18
  */
 @Service
+@Transactional
 public class CredentialsTypeServiceImpl extends ServiceImpl<CredentialsTypeMapper, CredentialsType> implements ICredentialsTypeService {
 
 }

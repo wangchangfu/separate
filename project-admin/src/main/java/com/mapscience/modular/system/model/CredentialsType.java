@@ -1,6 +1,8 @@
 package com.mapscience.modular.system.model;
 
 import java.util.Date;
+
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
@@ -24,11 +26,13 @@ public class CredentialsType extends Model<CredentialsType> {
      * uuid
      */
     @TableId("credentials_stype_id")
+    @Excel(name = "id")
     private String credentialsStypeId;
     /**
      * 证件类型名称
      */
     @TableField("credentials_stype_name")
+    @Excel(name = "证件类型")
     private String credentialsStypeName;
     /**
      * 状态0是删除1是启用2是增加不显示查询显示
