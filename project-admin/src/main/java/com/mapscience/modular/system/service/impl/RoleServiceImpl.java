@@ -39,5 +39,10 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
         }
     }
 
+    @Override
+    public Role findByRoleId(String userId) {
+        return this.baseMapper.findByRoleId(userId);
+    }
+
 
 }

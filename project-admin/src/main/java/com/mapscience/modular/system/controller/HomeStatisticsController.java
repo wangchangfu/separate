@@ -3,13 +3,17 @@ package com.mapscience.modular.system.controller;
 
 import com.mapscience.core.base.controller.BaseController;
 import com.mapscience.core.common.ResponseVal;
+import com.mapscience.core.util.ObjectUtil;
+import com.mapscience.modular.system.dto.MenuDTO;
 import com.mapscience.modular.system.model.Company;
 import com.mapscience.modular.system.model.CompanyType;
 import com.mapscience.modular.system.model.Menu;
+import com.mapscience.modular.system.model.Role;
 import com.mapscience.modular.system.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -131,19 +135,15 @@ public class HomeStatisticsController extends BaseController {
     @ApiOperation(value = "根据菜单ID返回菜单树")
     @RequestMapping(value = "/modelIndex",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVal modelIndex(@RequestBody Menu menu) {
-        //获取当前用户
-        //ShiroUser shiroUser = ShiroKit.getUser();
-        //String account = shiroUser.getAccount();
-        //查询当前用户角色
-       // List<Menu> menus = this.menuService.findMenus(menu,shiroUser.getId());
-        //根据当前用户查找角色
-        //this.
-        //return new ResponseVal("查找成功",menus);
-
+    public ResponseVal modelIndex(@RequestBody MenuDTO menu) {
+        Role byRoleId = this.roleService.findByRoleId(menu.getUserId());
+        //根据菜单ID查找当前用户的菜单
+        List<Menu> menus = this.menuService.findMenus(menu.getMenuId(),byRoleId.getRoleId());
+        if (ObjectUtil.isEmpty(menus) || menus.size()<0){
+            return new ResponseVal(HttpStatus.FOUND.value(),"暂无数据");
+        }
         //根据菜单ID查询菜单
-        ResponseVal chind = this.menuService.findChind(menu);
-        return chind;
+        return new ResponseVal("查询成功",menus);
     }
 
 }

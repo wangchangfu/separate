@@ -21,4 +21,10 @@ public interface IRoleService extends IService<Role> {
     ResponseVal addRole(Role rule);
 
 
+    /**
+     * 根据管理员ID查询角色
+     * @param userId
+     * @return
+     */
+    Role findByRoleId(String userId);
 }
