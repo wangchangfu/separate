@@ -1,11 +1,14 @@
 package com.mapscience.modular.system.model;
 
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -15,35 +18,42 @@ import java.io.Serializable;
  * @author ${author}
  * @since 2019-03-05
  */
+@ApiModel(value = "角色表")
 @TableName("t_role")
 public class Role extends Model<Role> {
 
     private static final long serialVersionUID = 1L;
 
+    @ApiModelProperty(value="角色主键id")
     @TableId("role_id")
     private String roleId;
     /**
      * 公司ID
      */
+
     @TableField("com_id")
     private String comId;
     /**
      * 角色名
      */
+    @ApiModelProperty(value="角色名")
     @TableField("role_name")
     private String roleName;
     /**
      * 状态   1 启用  2  冻结   3 删除
      */
+    @ApiModelProperty(value="状态")
     private Integer status;
     /**
      * 创建时间
      */
+    @ApiModelProperty(value="创建时间")
     @TableField("create_time")
     private Date createTime;
     /**
      * 更新时间
      */
+    @ApiModelProperty(value="更新时间")
     @TableField("update_time")
     private Date updateTime;
 

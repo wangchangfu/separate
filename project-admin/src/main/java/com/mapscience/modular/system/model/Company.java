@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -20,98 +22,88 @@ import java.util.List;
  * @author ${author}
  * @since 2019-01-16
  */
+@ApiModel(value = "公司实体类")
 @TableName("t_company")
 public class Company extends Model<Company> {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 唯一标识
-     */
+    @ApiModelProperty(value="公司id")
     @TableId("company_id")
     private String companyId;
-    /**
-     * 公司名
-     */
+    
+    @ApiModelProperty(value="公司名")
     @Excel(name = "公司名")
     @TableField("company_name")
     private String companyName;
-    /**
-     * 父id
-     */
+    
+    @ApiModelProperty(value="父id")
     @TableField("parent_id")
     private String parentId;
-    /**
-     * 法定代表人
-     */
+    
+    @ApiModelProperty(value="法定代表人")
     @Excel(name = "法定代表人")
     @TableField("legal_representative")
     private String legalRepresentative;
-    /**
-     * 注册资本（万元）
-     */
+    
+    @ApiModelProperty(value="注册资本（万元）")
     @Excel(name = "注册资本（万元）")
     @TableField("registered_capital")
     private BigDecimal registeredCapital;
-    /**
-     * 公司坐标（格式123,123|经度,纬度）
-     */
+    
+    @ApiModelProperty(value="公司坐标（格式123,123|经度,纬度）")
     private String coordinate;
-    /**
-     * 公司地址
-     */
+   
+    @ApiModelProperty(value="公司地址")
     private String address;
-    /**
-     * 官网地址
-     */
+   
+    @ApiModelProperty(value="官网地址")
     @Excel(name = "官网地址")
     @TableField("website_address")
     private String websiteAddress;
-    /**
-     * 公司图标地址
-     */
+
+    @ApiModelProperty(value="公司图标地址")
     @Excel(name = "公司图标地址")
     @TableField("company_logo")
     private String companyLogo;
-    /**
-     * 公司电话（可以多个如023-44951826,0236-954217451）
-     */
+    
+    @ApiModelProperty(value="公司电话（可以多个如023-44951826,0236-954217451）")
     @Excel(name = "公司电话")
     @TableField("company_phone")
     private String companyPhone;
-    /**
-     * 业务范围
-     */
+
+    @ApiModelProperty(value="业务范围")
     @Excel(name = "业务范围")
     @TableField("company_buss_range")
     private String companyBussRange;
-    /**
-     * 公司发票号
-     */
+
+    @ApiModelProperty(value="公司发票号")
     @Excel(name = "公司发票号")
     @TableField("company_card")
     private String companyCard;
-    /**
-     * 状态
-     */
+
+    @ApiModelProperty(value="状态")
     private Integer status;
-    /**
-     * 描述
-     */
+    
+    @ApiModelProperty(value="描述")
     private String remark;
-    /**
-     * 创建时间
-     */
+    
+    @ApiModelProperty(value="创建时间")
     @TableField("crate_time")
     private Date crateTime;
-    /**
-     * 更新时间
-     */
+    
+    @ApiModelProperty(value="更新时间")
     @TableField("update_time")
     private Date updateTime;
-
+    
+    @ApiModelProperty(value="子公司")
+    @TableField(exist = false)
     public List<Company> children;
-
+    
+    @ApiModelProperty(value="部门或子公司或其他")
+    @TableField(exist = false)
+    public List<Object> objectChildren;
+    
     public String getCompanyId() {
         return companyId;
     }
@@ -241,19 +233,27 @@ public class Company extends Model<Company> {
     }
 
     public List<Company> getChildren() {
-        return children;
-    }
+		return children;
+	}
 
-    public void setChildren(List<Company> children) {
-        this.children = children;
-    }
+	public void setChildren(List<Company> children) {
+		this.children = children;
+	}
 
-    @Override
+	public List<Object> getObjectChildren() {
+		return objectChildren;
+	}
+
+	public void setObjectChildren(List<Object> objectChildren) {
+		this.objectChildren = objectChildren;
+	}
+
+	@Override
     protected Serializable pkVal() {
         return this.companyId;
     }
 
-    @Override
+	@Override
     public String toString() {
         return "Company{" +
         "companyId=" + companyId +

@@ -70,7 +70,7 @@ public class ShiroConfig {
         Map<String, String> filterRuleMap = new HashMap<>(16);
         // 所有请求通过我们自己的JWTFilter
         filterRuleMap.put("/**", "jwt");
-        filterRuleMap.put("/user/addUser","anon");
+        //filterRuleMap.put("/user/addUser","anon");
         //未授权界面：
         //factoryBean.setUnauthorizedUrl("/403");
         factoryBean.setFilterChainDefinitionMap(filterRuleMap);

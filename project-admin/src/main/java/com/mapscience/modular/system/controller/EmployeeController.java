@@ -1,20 +1,5 @@
 package com.mapscience.modular.system.controller;
 
-import java.util.Date;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.http.HttpStatus;
-import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.core.common.constant.Constant;
 import com.mapscience.core.common.status.ProjectStatusEnum;
@@ -24,8 +9,17 @@ import com.mapscience.core.util.JedisUtil;
 import com.mapscience.core.util.JwtUtil;
 import com.mapscience.modular.system.model.Employee;
 import com.mapscience.modular.system.service.IEmployeeService;
-
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.HttpStatus;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -35,6 +29,7 @@ import io.swagger.annotations.ApiOperation;
  * @author ${author}
  * @since 2019-01-16
  */
+@Api(tags="员工信息控制器")
 @RestController
 @RequestMapping("/employee")
 @PropertySource("classpath:jwt.properties")
@@ -109,7 +104,7 @@ public class EmployeeController {
 			entity.setPassWord(s);
 			boolean insert = this.employeeService.insert(entity);
 			if (insert) {
-				return new ResponseVal(200, "success");
+				return new ResponseVal(0, "success");
 			} else {
 				return new ResponseVal(500, "fail");
 			}
@@ -125,7 +120,7 @@ public class EmployeeController {
 		try {
 			boolean updateById = employeeService.updateAllColumnById(entity);
 			if (updateById) {
-				return new ResponseVal(200, "success");
+				return new ResponseVal(0, "success");
 			} else {
 				return new ResponseVal(500, "fail");
 			}
@@ -136,14 +131,14 @@ public class EmployeeController {
 	}
 
 	@ApiOperation(value = "通过id查询员工")
-	@GetMapping("/getEmployeeById")
+	@PostMapping("/getEmployeeById")
 	public ResponseVal findEmployeeById(String id) {
 		try {
 			Employee selectById = employeeService.selectById(id);
 			if (ObjectUtils.isEmpty(selectById)) {
 				return new ResponseVal(500, "fail", null);
 			} else {
-				return new ResponseVal(200, "success", selectById);
+				return new ResponseVal(0, "success", selectById);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -152,11 +147,11 @@ public class EmployeeController {
 	}
 
 	@ApiOperation(value = "模糊查询")
-	@GetMapping("/fuzzyQuery")
+	@PostMapping("/fuzzyQuery")
 	public ResponseVal fuzzyQuery(String comId, String empName, String tel, String starWorkTime, String endWorkTime, String startBirthTime, String endBirthTime, String education) {
 		try {
 			List<Employee> fuzzyQuery = employeeService.fuzzyQuery(comId, empName, tel, starWorkTime, endWorkTime, startBirthTime, endBirthTime, education);
-			return new ResponseVal(200, "success", fuzzyQuery);
+			return new ResponseVal(0, "success", fuzzyQuery);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseVal(500, "erro", null);
@@ -164,11 +159,11 @@ public class EmployeeController {
 	}
 	
 	@ApiOperation(value = "通过公司id查询员工")
-	@GetMapping("/getEmployeeByCompanyId")
+	@PostMapping("/getEmployeeByCompanyId")
 	public ResponseVal getEmployeeByCompanyId(String companyId) {
 		try {
 			List<Employee> getEmployeeByCompanyId = employeeService.getEmployeeByCompanyId(companyId);
-			return new ResponseVal(200, "success", getEmployeeByCompanyId);
+			return new ResponseVal(0, "success", getEmployeeByCompanyId);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseVal(500, "erro", null);
@@ -176,11 +171,11 @@ public class EmployeeController {
 	}
 	
 	@ApiOperation(value = "通过id批量删除员工")
-	@GetMapping("/batchDeleteEmployeeById")
+	@PostMapping("/batchDeleteEmployeeById")
 	public ResponseVal batchDeleteEmployeeByIds(String ids) {
 		try {
 			employeeService.batchDeleteEmployeeStatusByIds(ids);
-			return new ResponseVal(200, "success");
+			return new ResponseVal(0, "success");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseVal(500, "erro");

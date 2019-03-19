@@ -1,14 +1,13 @@
 package com.mapscience.modular.system.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.mapper.EducationMapper;
 import com.mapscience.modular.system.model.Company;
 import com.mapscience.modular.system.model.Education;
 import com.mapscience.modular.system.service.IEducationService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * <p>

@@ -31,8 +31,16 @@ public interface IMenuService extends IService<Menu> {
 
     /**
      * 获取当前用户的菜单
-     * @param menu
+     * @param menuId
      * @return
      */
-    List<Menu> findMenus(Menu menu, String roleId);
+    List<Menu> findMenus(String menuId, String roleId);
+
+
+    /**
+     * 根据菜单Id查找下级菜单
+     * @param m
+     * @return
+     */
+    ResponseVal findChind(Menu m);
 }

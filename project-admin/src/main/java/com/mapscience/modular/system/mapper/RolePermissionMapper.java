@@ -13,4 +13,8 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface RolePermissionMapper extends BaseMapper<RolePermission> {
 
+    /**
+     * 分配菜单
+     */
+    void distrMenu(RolePermission rolePermission);
 }

@@ -97,21 +97,34 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     }
 
     /**
-     * 根据菜单ID查询当前用户的菜单
-     * @param menu
+     * 根据菜单ID查询当前用户菜单
      * @return
      */
     @Override
-    public List<Menu> findMenus(Menu menu, String  roleId) {
-        List<Menu> menus = this.baseMapper.findMenus(menu.getMenuId());
+    public List<Menu> findMenus(String menuId, String roleId) {
+        List<Menu> menus = this.baseMapper.findMenus(menuId,roleId);
         for (Menu m: menus) {
-
-            List<Menu> menus1 = this.baseMapper.findMenus(m.getMenuId());
+            List<Menu> menus1 = this.baseMapper.findMenus(m.getMenuId(),roleId);
             m.setChildren(menus1);
         }
         return menus;
     }
 
+    /**
+     * 根据菜单id查询菜单
+     * @param m
+     * @return
+     */
+    @Override
+    public ResponseVal findChind(Menu m) {
+        List<Menu> menus = this.baseMapper.findChind(m.getMenuId());
+        for (Menu me: menus) {
+
+            List<Menu> menus1 = this.baseMapper.findChind(me.getMenuId());
+            m.setChildren(menus1);
+        }
+        return new ResponseVal("查询成功",menus);
+    }
 
 
 }

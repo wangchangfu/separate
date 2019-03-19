@@ -7,6 +7,8 @@ import com.mapscience.core.shiro.ShiroUser;
 import com.mapscience.core.util.JedisUtil;
 import com.mapscience.modular.system.model.Menu;
 import com.mapscience.modular.system.service.IMenuService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,7 @@ import java.util.List;
  * @author ${author}
  * @since 2019-01-18
  */
+@Api(tags="菜单")
 @Controller
 @RequestMapping("/menu")
 public class MenuController {
@@ -36,6 +39,7 @@ public class MenuController {
      * 查询菜单树
      * @return
      */
+    @ApiOperation(value = "查询菜单树")
     @RequestMapping("menuTree")
     @ResponseBody
     public ResponseVal menuTree(){
@@ -56,6 +60,7 @@ public class MenuController {
      * 菜单添加
      * @return
      */
+    @ApiOperation(value = "菜单添加")
     @ResponseBody
     @RequestMapping(value = "saveMenu",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public ResponseVal saveMenu(@RequestBody Menu t){
@@ -63,21 +68,6 @@ public class MenuController {
         return  this.menuService.saveMenu(t);
     }
 
-    /**
-     * 根据菜单ID返回菜单树
-     * @param menu
-     * @return
-     */
-    @RequestMapping("modelIndex")
-    @ResponseBody
-    public ResponseVal modelIndex(@RequestBody Menu menu) {
-        //获取当前用户
-        ShiroUser shiroUser = ShiroKit.getUser();
-        String account = shiroUser.getAccount();
-        //查询当前用户角色
-        List<Menu> menus = this.menuService.findMenus(menu,shiroUser.getId());
 
-        return new ResponseVal(HttpStatus.OK.value(),"查找成功",menus);
-    }
 }
 

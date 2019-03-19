@@ -1,12 +1,21 @@
 package com.mapscience.modular.system.model;
 
+<<<<<<< HEAD
 import java.util.Date;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotations.TableField;
+=======
+>>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -16,67 +25,74 @@ import java.io.Serializable;
  * @author ${author}
  * @since 2019-03-14
  */
+@ApiModel(value = "家庭成员类")
 @TableName("t_family_member")
 public class FamilyMember extends Model<FamilyMember> {
 
     private static final long serialVersionUID = 1L;
 
+<<<<<<< HEAD
     /**
      * 主键
      */
     @TableField("id")
+=======
+    @ApiModelProperty(value="家庭成员id")
+>>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
     private String id;
-    /**
-     * 出生年月
-     */
+
+    @ApiModelProperty(value="出生年月")
     @TableField("borth_date")
     @Excel(name = "出生日期")
     private Date borthDate;
+<<<<<<< HEAD
     /**
      * 称谓
      */
     @TableField("call")
     @Excel(name = "称谓")
+=======
+
+    @ApiModelProperty(value="称谓")
+>>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
     private String call;
-    /**
-     * 创建时间
-     */
+
+    @ApiModelProperty(value="创建时间")
     @TableField("create_time")
     private Date createTime;
-    /**
-     * 关联员工ID
-     */
+
+    @ApiModelProperty(value="关联员工id")
     @TableField("emp_id")
     private String empId;
+<<<<<<< HEAD
     /**
      * 姓名
      */
     @TableField("name")
     @Excel(name = "姓名")
+=======
+
+    @ApiModelProperty(value="姓名")
+>>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
     private String name;
-    /**
-     * 政治面貌
-     */
+
+    @ApiModelProperty(value="政治面貌")
     @TableField("political_look")
     @Excel(name = "政治面貌")
     private String politicalLook;
-    /**
-     * 修改时间
-     */
+
+    @ApiModelProperty(value="修改时间")
     @TableField("update_time")
     private Date updateTime;
-    /**
-     * 工作单位及职务
-     */
+    
+    @ApiModelProperty(value="工作经验id")
     @TableField("work_unit")
     @Excel(name = "工作单位及职务")
     private String workUnit;
-    /**
-     * 人员关系表ID
-     */
+
+    @ApiModelProperty(value="人员关系表id")
     @TableField("contact_relationship_id")
     private String contactRelationshipId;
-
 
     public String getId() {
         return id;

@@ -1,10 +1,11 @@
 package com.mapscience.modular.system.model;
 
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -47,6 +48,12 @@ public class EmpPosition extends Model<EmpPosition> {
      * 状态:0是删除,1是启用,2是增加,不显示查询显示
      */
     private Integer status;
+
+    /**
+     * 是否负责人
+     */
+    @TableField("leader")
+    private Integer leader;
     /**
      * 创建日期
      */
@@ -121,6 +128,14 @@ public class EmpPosition extends Model<EmpPosition> {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Integer getLeader() {
+        return leader;
+    }
+
+    public void setLeader(Integer leader) {
+        this.leader = leader;
     }
 
     @Override

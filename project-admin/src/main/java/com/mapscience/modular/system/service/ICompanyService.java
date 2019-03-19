@@ -1,8 +1,8 @@
 package com.mapscience.modular.system.service;
 
+import com.baomidou.mybatisplus.service.IService;
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.model.Company;
-import com.baomidou.mybatisplus.service.IService;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public interface ICompanyService extends IService<Company> {
      * @param company
      * @return
      */
-    public ResponseVal findComTree(Company company);
+    public ResponseVal<List<Company>> findComTree(Company company);
 
     /**
      * 保存
@@ -50,8 +50,13 @@ public interface ICompanyService extends IService<Company> {
     Company findComById(String s);
 
     ResponseVal findComList(Company company);
+<<<<<<< HEAD
 
     Company getCompanyByCompanyName(String companyName);
 
     Company getCompanyByRemark(String remark);
+=======
+    
+    List<Object> findCompanyAndDepartmentTree();
+>>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
 }

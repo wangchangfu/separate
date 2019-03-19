@@ -35,6 +35,10 @@
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generate</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.mapscience</groupId>
+            <artifactId>project-admin</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

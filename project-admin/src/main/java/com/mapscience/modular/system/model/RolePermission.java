@@ -1,10 +1,11 @@
 package com.mapscience.modular.system.model;
 
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -41,6 +42,7 @@ public class RolePermission extends Model<RolePermission> {
     @TableField("update_time")
     private Date updateTime;
 
+    public RolePermission() { }
 
     public String getId() {
         return id;
@@ -97,4 +99,5 @@ public class RolePermission extends Model<RolePermission> {
         ", updateTime=" + updateTime +
         "}";
     }
+
 }

@@ -1,20 +1,17 @@
 package com.mapscience.modular.system.controller;
 
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.model.Department;
 import com.mapscience.modular.system.service.IDepartmentService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -24,38 +21,33 @@ import io.swagger.annotations.ApiOperation;
  * @author ${author}
  * @since 2019-01-16
  */
+@Api(tags="部门控制器")
 @RestController
 @RequestMapping("/department")
 public class DepartmentController {
 	
-	 @Autowired
-	 private IDepartmentService service;
+	@Autowired
+	private IDepartmentService service;
 	 
-    /**
-     * 查找所有的部门
-     */
-	@ApiOperation(value = "查找所有的部门")
-	@GetMapping("/getAllDepartment")
-	public ResponseVal getAllDepartment() {
+	@ApiOperation("查询所有部门")
+	@PostMapping("/getAllDepartment")
+	public ResponseVal<List<Department>> getAllDepartment() {
 		try {
 			List<Department> selectList = service.selectList(null);
-			return new ResponseVal(200, "success", selectList);
+			return new ResponseVal<List<Department>>(0, "success", selectList);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseVal(500, "erro", null);
+			return new ResponseVal<List<Department>>(500, "erro", null);
 		}
 	}
 	
-    /**
-     * 增加
-     */
-    @ResponseBody
-    @RequestMapping("insert")
-    public ResponseVal insert(Department entity){
+	@ApiOperation("添加部门")
+	@PostMapping("/insertDepartment")
+    public ResponseVal insertDepartment(Department entity){
 		try {
 			boolean flag = service.insert(entity);
 			if(flag) {
-				return new ResponseVal(200,"success");
+				return new ResponseVal(0,"success");
 			}else {
 				return new ResponseVal(500,"fail");
 			}
@@ -65,16 +57,13 @@ public class DepartmentController {
 		}
     }
     
-	/**
-	 * 根据id删除
-	 */
-	@RequestMapping(value = "deleteById")
-	@ResponseBody
-	public ResponseVal deleteById(String id) {
+	@ApiOperation("根据id删除部门")
+	@PostMapping("/deleteDepartmentById")
+	public ResponseVal deleteDepartmentById(String id) {
 		try {
 			boolean flag = service.deleteById(id);
 			if(flag) {
-				return new ResponseVal(200,"success");
+				return new ResponseVal(0,"success");
 			}else {
 				return new ResponseVal(500,"fail");
 			}
@@ -84,16 +73,13 @@ public class DepartmentController {
 		}
 	}
 	
-	/**
-	 * 根据id修改
-	 */
-	@RequestMapping(value = "updateById")
-	@ResponseBody
-	public ResponseVal updateById(Department entity) {
+	@ApiOperation("修改部门")
+	@PostMapping("/updateDepartment")
+	public ResponseVal updateDepartment(Department entity) {
 		try {
 			boolean flag = service.updateById(entity);
 			if(flag) {
-				return new ResponseVal(200,"success");
+				return new ResponseVal(0,"success");
 			}else {
 				return new ResponseVal(500,"fail");
 			}
@@ -103,22 +89,19 @@ public class DepartmentController {
 		}
 	}
 	
-	/**
-	 * 根据Id查询
-	 */
-	@RequestMapping(value = "selectById")
-	@ResponseBody
-	public ResponseVal selectById(String id) {
+	@ApiOperation("根据Id查询部门")
+	@PostMapping("/selectDepartmentById")
+	public ResponseVal<Department> selectDepartmentById(String id) {
 		try {
 			Department selectById = service.selectById(id);
 			if(ObjectUtils.isEmpty(selectById)) {
-				return new ResponseVal(500,"fail",null);
+				return new ResponseVal<Department>(500,"fail",null);
 			}else {
-				return new ResponseVal(200,"success",selectById);
+				return new ResponseVal<Department>(0,"success",selectById);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseVal(500,"erro",null);
+			return new ResponseVal<Department>(500,"erro",null);
 		}
 	}
 

@@ -17,4 +17,16 @@
         role_id, com_id, role_name, status, create_time, update_time
     </sql>
 
+
+    <!--保存角色-->
+    <insert id="addRole" useGeneratedKeys="true" keyProperty="roleId" parameterType="com.mapscience.modular.system.model.Role">
+
+        <selectKey keyProperty="roleId" resultType="java.lang.String" order="BEFORE">
+            select REPLACE(UUID(),'-','')
+        </selectKey>
+        insert into t_role(role_id, com_id, role_name, status, create_time, update_time)
+        value(#{roleId},#{comId},#{roleName},#{status},#{createTime},#{updateTime})
+    </insert>
+
+
 </mapper>

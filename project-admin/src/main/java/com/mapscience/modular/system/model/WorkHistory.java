@@ -8,6 +8,12 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
 
+<<<<<<< HEAD
+=======
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+>>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
 import java.io.Serializable;
 
 /**
@@ -18,39 +24,48 @@ import java.io.Serializable;
  * @author ${author}
  * @since 2019-01-18
  */
+@ApiModel(value = "工作经验类")
 @TableName("t_work_history")
 public class WorkHistory extends Model<WorkHistory> {
 
     private static final long serialVersionUID = 1L;
 
+<<<<<<< HEAD
     /**
      * uuid
      */
     @TableField("work_history_id")
+=======
+    @ApiModelProperty(value="工作经验id")
+    @TableId("work_history_id")
+>>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
     private String workHistoryId;
-    /**
-     * 公司名称
-     */
+
+    @ApiModelProperty(value="公司名称")
     @TableField("work_history_name")
     @Excel(name = "所在公司")
     private String workHistoryName;
-    /**
-     * 员工ID
-     */
+
+    @ApiModelProperty(value="员工id")
     @TableField("employee_id")
     private String employeeId;
+<<<<<<< HEAD
     /**
      * 担任职位
      */
     @TableField("post")
     @Excel(name = "岗位")
+=======
+
+    @ApiModelProperty(value="担任职位")
+>>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
     private String post;
-    /**
-     * 职位描述
-     */
+
+    @ApiModelProperty(value="职位描述")
     @TableField("post_remark")
     @Excel(name = "职位描述")
     private String postRemark;
+<<<<<<< HEAD
     /**
      * 证明人
      */
@@ -62,29 +77,37 @@ public class WorkHistory extends Model<WorkHistory> {
      */
     @TableField("tel")
     @Excel(name = "证明人电话")
+=======
+
+    @ApiModelProperty(value="证明人")
+    private String witness;
+
+    @ApiModelProperty(value="证明人电话")
+>>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
     private String tel;
-    /**
-     * 入职时间
-     */
+
+    @ApiModelProperty(value="入职时间")
     @TableField("start_time")
     @Excel(name = "起始时间")
     private Date startTime;
-    /**
-     * 离职时间
-     */
+
+    @ApiModelProperty(value="离职时间")
     @TableField("leave_time")
     @Excel(name = "结束时间")
     private Date leaveTime;
-    /**
-     * 创建时间
-     */
+
+    @ApiModelProperty(value="创建时间")
     @TableField("create_time")
     private Date createTime;
+<<<<<<< HEAD
 
 
+=======
+    
+    @ApiModelProperty(value="修改时间")
+>>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
     @TableField("update_time")
     private Date updateTime;
-
 
     public String getWorkHistoryId() {
         return workHistoryId;

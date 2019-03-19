@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,6 +19,7 @@ import java.util.Date;
  * @author ${author}
  * @since 2019-01-16
  */
+@ApiModel(value = "员工信息表")
 @TableName("t_employee")
 public class Employee extends Model<Employee> {
 
@@ -25,114 +28,146 @@ public class Employee extends Model<Employee> {
     /**
      * uuid主键
      */
+    @ApiModelProperty(value="员工id")
     @TableId("employee_id")
     private String employeeId;
     /**
      * 名称
      */
+    @ApiModelProperty(value="员工名称")
     @TableField("employee_name")
     @Excel(name = "姓名")
     private String employeeName;
     /**
      * 证件类型ID
      */
+<<<<<<< HEAD
 
+=======
+    @ApiModelProperty(value="证件类型ID")
+>>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
     @TableField("credentials_stype_id")
     private String credentialsStypeId;
 
     /**
      * 证件号
      */
+    @ApiModelProperty(value="证件号ID")
     @TableField("card_id")
     @Excel(name = "身份证号")
     private String cardId;
     /**
      * 性别
      */
+    @ApiModelProperty(value="性别")
     @Excel(name = "性别")
     @TableField("gender")
     private String gender;
     /**
      * 出生日期,格式yyyy-MM-dd
      */
+    @ApiModelProperty(value="出生日期,格式yyyy-MM-dd")
     @TableField("birth_day")
     @Excel(name = "出生年月", databaseFormat = "yyyyMMddHHmmss", format = "yyyy-MM-dd", isImportField = "true", width = 20)
     private Date birthDay;
     /**
      * 国籍id
      */
+    @ApiModelProperty(value="国籍id")
     @TableField("nationality_type_id")
     private String nationalityTypeId;
     /**
      * 民族id
      */
+    @ApiModelProperty(value="民族id")
     @TableField("nation_type_id")
     @Excel(name = "民族")
     private String nationTypeId;
     /**
      * 婚姻状况id
      */
+    @ApiModelProperty(value="婚姻状况id")
     @TableField("marital_status_id")
     private String maritalStatusId;
     /**
      * 籍贯
      */
+    @ApiModelProperty(value="籍贯")
     @TableField("native_place")
     @Excel(name = "籍贯")
     private String nativePlace;
     /**
      * 出生地
      */
+    @ApiModelProperty(value="出生地")
     @TableField("birth_place")
     @Excel(name = "出生地")
     private String birthPlace;
     /**
      * 政治面貌Id
      */
+    @ApiModelProperty(value="政治面貌Id")
     @TableField("political_status_id")
     @Excel(name = "政治面貌")
     private String politicalStatusId;
     /**
      * 入党日期,yyyy-mm-dd
      */
+    @ApiModelProperty(value="入党日期,yyyy-mm-dd")
     @TableField("admission_day")
     @Excel(name = "入党时间", databaseFormat = "yyyyMMddHHmmss", format = "yyyy", isImportField = "true", width = 20)
     private Date admissionDay;
     /**
      * 参加工作时间,yyyy-mm
      */
+    @ApiModelProperty(value="参加工作时间,yyyy-mm-dd")
     @TableField("join_work_day")
     @Excel(name = "参加工作时间", databaseFormat = "yyyyMMddHHmmss", format = "yyyy-MM-dd", isImportField = "true", width = 20)
     private Date joinWorkDay;
     /**
      * 最高学历
      */
+    @ApiModelProperty(value="最高学历")
     @TableField("highest_education")
     private String highestEducation;
     /**
      * 最高学位
      */
+    @ApiModelProperty(value="最高学位")
     @TableField("highest_degree")
     private String highestDegree;
     /**
      * 健康状况id
      */
+    @ApiModelProperty(value="健康状况id")
     @TableField("health_id")
     @Excel(name = "健康状况")
     private String healthId;
     /**
      * 专业技术职务id
      */
+    @ApiModelProperty(value="专业技术职务id")
     @TableField("technical_position_id")
     @Excel(name = "专业技术职务")
     private String technicalPositionId;
 
+<<<<<<< HEAD
 
 
 
+=======
+    /**
+     * 专长
+     */
+    @ApiModelProperty(value="专长")
+    @TableField("zhuanchang")
+    @Excel(name="熟悉专业有何专长")
+    private String zhuanchang;
+>>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
     /**
      * 职（执）业资格
      */
+    @ApiModelProperty(value="职（执）业资格")
     @TableField("qualification")
     @Excel(name = "资格证书")
     private String qualification;
@@ -140,83 +175,107 @@ public class Employee extends Model<Employee> {
     /**
      * 最近进入系统时间
      */
+    @ApiModelProperty(value="最近进入系统时间")
     @TableField("into_sys_time")
     private Date intoSysTime;
 
     /**
      * 人员状态id
      */
+    @ApiModelProperty(value="人员状态id")
     @TableField("employee_state_id")
     private String employeeStateId;
     /**
      * 进入公司时间
      */
+    @ApiModelProperty(value="进入公司时间")
     @TableField("into_company_time")
     private Date intoCompanyTime;
     /**
      * 进入来源Id
      */
+    @ApiModelProperty(value="进入来源Id")
     @TableField("source_entry_id")
     private String sourceEntryId;
     /**
      * 户口类别ID
      */
+    @ApiModelProperty(value="户口类别ID")
     @TableField("account_type_id")
     private String accountTypeId;
     /**
      * 户口所在地
      */
+    @ApiModelProperty(value="户口所在地")
     @TableField("registered_residence")
     private String registeredResidence;
     /**
      * 现居住地
      */
+    @ApiModelProperty(value="现居住地")
     @TableField("current_residence")
     private String currentResidence;
     /**
      * 电子邮箱
      */
+    @ApiModelProperty(value="电子邮箱")
     @TableField("email")
     private String email;
     /**
      * 办公电话
      */
+    @ApiModelProperty(value="办公电话")
     @TableField("phone")
     private String phone;
     /**
      * 手机号
      */
+    @ApiModelProperty(value="手机号")
     @TableField("tel")
     private String tel;
     /**
      * 紧急联系人
      */
+    @ApiModelProperty(value="紧急联系人")
     @TableField("contact_relationship_name")
     private String contactRelationshipName;
     /**
      * 紧急联系人关系id
      */
+    @ApiModelProperty(value="紧急联系人关系id")
     @TableField("contact_relationship_id")
     private String contactRelationshipId;
     /**
      * 紧急联系人电话
      */
+    @ApiModelProperty(value="紧急联系人电话")
     @TableField("contact_relationship_phone")
     private String contactRelationshipPhone;
     /**
      * 登录账号
      */
+<<<<<<< HEAD
     @TableField("account")
+=======
+    @ApiModelProperty(value="登录账号")
+    @TableField(exist = false)
+>>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
     private String account;
     /**
      * 密码
      */
+    @ApiModelProperty(value="密码")
     @TableField("pass_word")
     private String passWord;
     /**
      * 简拼
      */
+<<<<<<< HEAD
     @TableField("jianpin")
+=======
+    @ApiModelProperty(value="简拼")
+    @TableField(exist = false)
+>>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
     private String jianpin;
 
     /**
@@ -229,32 +288,42 @@ public class Employee extends Model<Employee> {
     /**
      * 开户行
      */
+    @ApiModelProperty(value="开户行")
     @TableField("opening_bank")
     private String openingBank;
     /**
      * 银行账号
      */
+    @ApiModelProperty(value="银行账号")
     @TableField("bank_account")
     private String bankAccount;
     /**
      * 类型 1是普通用户 2 超级用户（查看自己公司）3可以查看自己子公司 4 全部 5程序猿的
      */
+<<<<<<< HEAD
     @TableField("type")
+=======
+    @ApiModelProperty(value="类型")
+    @TableField(exist = false)
+>>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
     private Integer type;
     /**
      * 开户行地址
      */
+    @ApiModelProperty(value="开户行地址")
     @TableField("opening_bank_adress")
     private String openingBankAdress;
     /**
      * 创建时间
      */
+    @ApiModelProperty(value="创建时间")
     @TableField("crate_time")
     @Excel(name = "填表时间")
     private Date crateTime;
     /**
      * 更新时间
      */
+    @ApiModelProperty(value="更新时间")
     @TableField("update_time")
     private Date updateTime;
 

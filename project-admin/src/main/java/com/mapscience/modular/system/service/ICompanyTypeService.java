@@ -1,7 +1,8 @@
 package com.mapscience.modular.system.service;
 
-import com.mapscience.modular.system.model.CompanyType;
 import com.baomidou.mybatisplus.service.IService;
+import com.mapscience.core.common.ResponseVal;
+import com.mapscience.modular.system.model.CompanyType;
 
 /**
  * <p>
@@ -13,4 +14,9 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface ICompanyTypeService extends IService<CompanyType> {
 
+    /**
+     * 查询行业类别
+     * @return
+     */
+    ResponseVal findComType();
 }

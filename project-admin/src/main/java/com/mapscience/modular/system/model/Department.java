@@ -1,10 +1,16 @@
 package com.mapscience.modular.system.model;
 
 import java.util.Date;
+import java.util.List;
+
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 /**
@@ -15,47 +21,43 @@ import java.io.Serializable;
  * @author ${author}
  * @since 2019-01-16
  */
+@ApiModel(value = "部门实体类")
 @TableName("t_department")
 public class Department extends Model<Department> {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 唯一标识
-     */
+    @ApiModelProperty(value="部门id")
     @TableId("department_id")
     private String departmentId;
-    /**
-     * 公司id
-     */
+    
+    @ApiModelProperty(value="公司id")
     @TableField("company_id")
     private String companyId;
-    /**
-     * 部门名称
-     */
+    
+    @ApiModelProperty(value="部门名称")
     @TableField("department_name")
     private String departmentName;
-    /**
-     * 父id
-     */
+   
+    @ApiModelProperty(value="父id")
     @TableField("parent_id")
     private String parentId;
-    /**
-     * 状态 0禁用 1启用
-     */
+    
+    @ApiModelProperty(value="状态 0禁用 1启用")
     private Integer status;
-    /**
-     * 创建时间
-     */
+    
+    @ApiModelProperty(value="创建时间")
     @TableField("crate_time")
     private Date crateTime;
-    /**
-     * 更新时间
-     */
+   
+    @ApiModelProperty(value="更新时间")
     @TableField("update_time")
     private Date updateTime;
-
-
+    
+    @ApiModelProperty(value="子部门或其他")
+    @TableField(exist = false)
+    public List<Object> objectChildren;
+    
     public String getDepartmentId() {
         return departmentId;
     }
@@ -116,8 +118,16 @@ public class Department extends Model<Department> {
     protected Serializable pkVal() {
         return this.departmentId;
     }
+    
+	public List<Object> getObjectChildren() {
+		return objectChildren;
+	}
 
-    @Override
+	public void setObjectChildren(List<Object> objectChildren) {
+		this.objectChildren = objectChildren;
+	}
+
+	@Override
     public String toString() {
         return "Department{" +
         "departmentId=" + departmentId +

@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
@@ -19,6 +21,7 @@ import java.util.List;
  * @author ${author}
  * @since 2019-01-18
  */
+@ApiModel(value = "菜单表")
 @TableName("t_menu")
 public class Menu extends Model<Menu> {
 
@@ -27,40 +30,48 @@ public class Menu extends Model<Menu> {
     /**
      * id
      */
+    @ApiModelProperty(value="主键id")
     @TableId("menu_id")
     private String menuId;
     /**
      * 菜单级别（0、1、2、3、4...）
      */
+    @ApiModelProperty(value="菜单级别")
     private Integer level;
     /**
      * 菜单代码
      */
+    @ApiModelProperty(value="菜单代码")
     @TableField("menu_code")
     private String menuCode;
     /**
      * 菜单名称
      */
+    @ApiModelProperty(value="菜单名称")
     @TableField("menu_name")
     private String menuName;
     /**
      * 隶属上级菜单ID
      */
+    @ApiModelProperty(value="父菜单ID")
     @TableField("parent_id")
     private String parentId;
     private Integer sort;
     /**
      * 状态
      */
+    @ApiModelProperty(value="状态")
     private Integer status;
     /**
      * 跳转链接
      */
+    @ApiModelProperty(value="跳转链接")
     private String url;
     private String remark;
     /**
      * 创建时间
      */
+    @ApiModelProperty(value="创建时间")
     @TableField("create_time")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -68,6 +79,7 @@ public class Menu extends Model<Menu> {
     /**
      * 更新时间
      */
+    @ApiModelProperty(value="更新时间")
     @TableField("update_time")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

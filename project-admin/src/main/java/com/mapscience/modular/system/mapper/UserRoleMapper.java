@@ -1,7 +1,9 @@
 package com.mapscience.modular.system.mapper;
 
-import com.mapscience.modular.system.model.UserRole;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.mapscience.modular.system.model.UserRole;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 /**
@@ -16,4 +18,11 @@ public interface UserRoleMapper extends BaseMapper<UserRole> {
 
     @Select("select * from t_user_role where emp_id=#{employeeId}")
     UserRole findByEmp(String employeeId);
+
+
+    void addUserRole(UserRole u);
+
+
+    @Delete("delete from t_user_role where userId=#{id}")
+    void deleteByRoleId(@Param("id") String id);
 }
