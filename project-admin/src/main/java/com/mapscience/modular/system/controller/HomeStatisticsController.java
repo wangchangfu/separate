@@ -134,14 +134,14 @@ public class HomeStatisticsController extends BaseController {
     public ResponseVal modelIndex(@RequestBody Menu menu) {
         //获取当前用户
         /*ShiroUser shiroUser = ShiroKit.getUser();
-        String account = shiroUser.getAccount();*/
+        String account = shiroUser.getAccount();
         //查询当前用户角色
-        //List<Menu> menus = this.menuService.findMenus(menu,shiroUser.getId());
+        List<Menu> menus = this.menuService.findMenus(menu,shiroUser.getId());*/
         //根据当前用户查找角色
         //this.
         //return new ResponseVal("查找成功",menus);
 
-        //查询角色Id
+        //根据菜单ID查询菜单
         ResponseVal chind = this.menuService.findChind(menu);
         return chind;
     }
