@@ -1,6 +1,8 @@
 package com.mapscience.modular.system.model;
 
 import java.util.Date;
+
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
@@ -24,11 +26,13 @@ public class TechnicalPosition extends Model<TechnicalPosition> {
      * uuid主键
      */
     @TableId("technical_position_id")
+    @Excel(name = "id")
     private String technicalPositionId;
     /**
      * 专业技术职务名称
      */
     @TableField("technical_position_name")
+    @Excel(name = "专业技术职务")
     private String technicalPositionName;
     /**
      * 0是删除1是启用2是增加不显示查询显示

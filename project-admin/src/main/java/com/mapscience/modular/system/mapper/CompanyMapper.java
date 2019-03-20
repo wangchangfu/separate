@@ -18,12 +18,14 @@ public interface CompanyMapper extends BaseMapper<Company> {
 
     /**
      * 查找公司
+     *
      * @return
      */
     List<Company> getList();
 
     /**
      * 保存
+     *
      * @param company
      * @return
      */
@@ -31,6 +33,7 @@ public interface CompanyMapper extends BaseMapper<Company> {
 
     /**
      * 根据管理员ID查找公司
+     *
      * @param employeeId
      * @return
      */
@@ -39,6 +42,7 @@ public interface CompanyMapper extends BaseMapper<Company> {
 
     /**
      * 根据ID查询公司
+     *
      * @param id
      * @return
      */
@@ -46,4 +50,10 @@ public interface CompanyMapper extends BaseMapper<Company> {
     Company findComById(String id);
 
     List<Company> findComList(Company company);
+
+
+    Company getCompanyByCompanyName(String companyName);
+
+
+    Company getCompanyByRemark(String remark);
 }

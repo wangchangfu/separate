@@ -16,4 +16,8 @@
         account_type_id, account_type_name, status, crate_time, update_time
     </sql>
 
+    <select id="getAccountTypevByName" resultMap="BaseResultMap">
+        select * from t_account_type where account_type_name = #{accountTypeName}
+    </select>
+
 </mapper>

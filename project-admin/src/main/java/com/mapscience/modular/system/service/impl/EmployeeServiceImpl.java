@@ -1,3 +1,4 @@
+
 package com.mapscience.modular.system.service.impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
@@ -68,6 +69,25 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
 		}
 	}
 
+
+    /**
+     * 根据公司统计人员信息
+     *
+     * @param company
+     * @return
+     */
+    @Override
+    public ResponseVal getEmpCount(Company company) {
+        if (ObjectUtil.isEmpty(company.getCompanyId())) {
+            company.setCompanyId("1");
+        }
+        Integer empCount = this.baseMapper.getEmpCount(company.getCompanyId());
+        if (empCount < 0) {
+            return new ResponseVal(HttpStatus.FOUND.value(), "暂无数据", 0);
+        }
+        return new ResponseVal(HttpStatus.OK.value(), "查询成功", empCount);
+    }
+
     @Override
     public List<Employee> getEmployeeByCompanyId(String companyId) {
         return employeeMapper.getEmployeeByCompanyId(companyId);
@@ -77,6 +97,42 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
 	public List<Employee> findEmployeeByCompanyId(String companyId) {
 		return employeeMapper.findEmployee(null, companyId);
 	}
+	
+	/**
+     * 查询所有员工
+     *
+     * @return
+     */
+    @Override
+    public List<Employee> getList() {
+        return employeeMapper.getList();
+    }
+
+
+    /**
+     * 根据员工姓名查询
+     *
+     * @param employeeName
+     * @return
+     */
+    @Override
+    public Employee getEmployeeByEmployeeName(String employeeName) {
+        return employeeMapper.getEmployeeByEmployeeName(employeeName);
+    }
+
+
+    /**
+     * 根据身份证号查找员工
+     *
+     * @param cardId
+     * @return
+     */
+    @Override
+    public Employee getEmployeeByCardId(String cardId) {
+        return employeeMapper.getEmployeeByCardId(cardId);
+    }
+
 
 
 }
+

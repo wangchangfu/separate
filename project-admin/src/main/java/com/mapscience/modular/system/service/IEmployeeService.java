@@ -1,3 +1,4 @@
+
 package com.mapscience.modular.system.service;
 
 import com.baomidou.mybatisplus.service.IService;
@@ -19,13 +20,14 @@ public interface IEmployeeService extends IService<Employee> {
 
     /**
      * 通过登录账户和密码查找用户信息
-
+     *
      * @return
      */
     Employee getEmployeeByAccountAndPasswd(String account, String password);
 
     /**
      * 通过账号获取用
+     *
      * @return
      */
     Employee getByAccount(Employee e);
@@ -41,6 +43,14 @@ public interface IEmployeeService extends IService<Employee> {
     void add(Employee em);
 
     
+    /**
+     * 统计公司人员
+     *
+     * @param company
+     * @return
+     */
+    ResponseVal getEmpCount(Company company);
+
     List<Employee> getEmployeeByCompanyId(String companyId);
 
     /**
@@ -49,5 +59,28 @@ public interface IEmployeeService extends IService<Employee> {
     void batchDeleteEmployeeStatusByIds(String ids);
     
     List<Employee> findEmployeeByCompanyId(String companyId);
+    /**
+     * 查询所有
+     *
+     * @return
+     */
+    List<Employee> getList();
+
+    /**
+     * 根据员工姓名查询
+     *
+     * @param employeeName
+     * @return
+     */
+    Employee getEmployeeByEmployeeName(String employeeName);
+
+    /**
+     * 根据身份证号查找
+     *
+     * @param cardId
+     * @return
+     */
+    Employee getEmployeeByCardId(String cardId);
 
 }
+

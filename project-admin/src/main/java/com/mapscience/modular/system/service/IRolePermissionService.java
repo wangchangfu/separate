@@ -1,5 +1,6 @@
 package com.mapscience.modular.system.service;
 
+import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.model.RolePermission;
 import com.baomidou.mybatisplus.service.IService;
 
@@ -13,4 +14,10 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface IRolePermissionService extends IService<RolePermission> {
 
+    /**
+     * 为角色分配菜单
+     * @param roleId
+     * @param menuId
+     */
+    ResponseVal distrMenu(String roleId, String menuId);
 }

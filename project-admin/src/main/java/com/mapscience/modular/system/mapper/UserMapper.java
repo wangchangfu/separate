@@ -1,8 +1,9 @@
 package com.mapscience.modular.system.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.mapscience.modular.system.dto.UserDTO;
 import com.mapscience.modular.system.model.User;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -34,7 +35,7 @@ public interface UserMapper extends BaseMapper<User> {
      * 按照公司查找
      * @return
      */
-    List<User> findByComUser(UserDTO user);
+    List<User> findByComUser(User user);
 
     /**
      * 根据ID查询管理
@@ -43,4 +44,11 @@ public interface UserMapper extends BaseMapper<User> {
      */
 
     User getById(String id);
+
+    /**
+     * 根据Id删除
+     * @param userId
+     */
+    @Delete("delete from t_user where userId=#{userId}")
+    void delectById(@Param("userId") String userId);
 }

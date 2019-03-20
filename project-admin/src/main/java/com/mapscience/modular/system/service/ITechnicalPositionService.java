@@ -13,4 +13,7 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface ITechnicalPositionService extends IService<TechnicalPosition> {
 
+    TechnicalPosition getTechnicalPositionByName(String technicalPositionName);
+
+
 }

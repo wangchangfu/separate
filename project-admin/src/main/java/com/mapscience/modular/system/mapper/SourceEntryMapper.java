@@ -12,5 +12,6 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * @since 2019-01-18
  */
 public interface SourceEntryMapper extends BaseMapper<SourceEntry> {
+    SourceEntry getSourceEntryByName(String sourceEntryName);
 
 }

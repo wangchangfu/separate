@@ -13,4 +13,6 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface TechnicalPositionMapper extends BaseMapper<TechnicalPosition> {
 
+    TechnicalPosition getTechnicalPositionByName(String technicalPositionName);
+
 }

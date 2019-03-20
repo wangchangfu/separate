@@ -13,4 +13,6 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface IAccountTypeService extends IService<AccountType> {
 
+    AccountType getAccountTypevByName(String accountTypeName);
+
 }

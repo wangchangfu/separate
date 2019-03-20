@@ -16,4 +16,15 @@
         id, role_id, menu_id, create_time, update_time
     </sql>
 
+
+    <!--保存菜单-->
+    <insert id="distrMenu" useGeneratedKeys="true" keyProperty="id" parameterType="com.mapscience.modular.system.model.RolePermission">
+
+        <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
+            select REPLACE(UUID(),'-','')
+        </selectKey>
+        insert into t_role_permission(id, role_id, menu_id, create_time, update_time)
+        value(#{id},#{roleId},#{menuId},#{createTime},#{updateTime})
+    </insert>
+
 </mapper>

@@ -13,4 +13,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface NationalityTypeMapper extends BaseMapper<NationalityType> {
 
+
+    NationalityType getnationalityTypeByName(String nationalityStypeName);
+
 }

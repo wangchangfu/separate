@@ -15,5 +15,8 @@
     <sql id="Base_Column_List">
         source_entry_id, source_entry_name, status, crate_time, update_time
     </sql>
+    <select id="getSourceEntryByName" resultMap="BaseResultMap">
+        select * from t_source_entry where source_entry_name = #{sourceEntryName}
+    </select>
 
 </mapper>

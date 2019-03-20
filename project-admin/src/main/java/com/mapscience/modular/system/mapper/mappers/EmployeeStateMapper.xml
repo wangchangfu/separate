@@ -16,4 +16,8 @@
         employee_state_id, employee_state_name, status, crate_time, update_time
     </sql>
 
+    <select id="getEmployeeStateByName" resultMap="BaseResultMap">
+        select * from t_employee_state where employee_state_name = #{employeeStateName}
+    </select>
+
 </mapper>

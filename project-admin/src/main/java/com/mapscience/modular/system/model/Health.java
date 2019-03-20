@@ -1,6 +1,8 @@
 package com.mapscience.modular.system.model;
 
 import java.util.Date;
+
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
@@ -23,16 +25,19 @@ public class Health extends Model<Health> {
     /**
      * uuid主键
      */
-    @TableId("health_id")
+    @TableField("health_id")
+    @Excel(name = "id")
     private String healthId;
     /**
      * 健康状况名称
      */
     @TableField("health_name")
+    @Excel(name = "健康状况")
     private String healthName;
     /**
      * 0是删除1是启用2是增加不显示查询显示
      */
+    @TableField("status")
     private Integer status;
     /**
      * 创建时间

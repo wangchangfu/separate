@@ -1,6 +1,8 @@
 package com.mapscience.modular.system.model;
 
 import java.util.Date;
+
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
@@ -24,11 +26,13 @@ public class EmployeeState extends Model<EmployeeState> {
      * 唯一标识
      */
     @TableId("employee_state_id")
+    @Excel(name = "id")
     private String employeeStateId;
     /**
      * 名称
      */
     @TableField("employee_state_name")
+    @Excel(name = "人员类别")
     private String employeeStateName;
     /**
      * 状态

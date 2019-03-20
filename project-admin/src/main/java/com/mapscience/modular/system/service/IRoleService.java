@@ -20,10 +20,17 @@ public interface IRoleService extends IService<Role> {
      */
     ResponseVal addRole(Role rule);
 
+
     /**
-     * 分配菜单
-     * @param ruleId
-     * @param menuId
+     * 根据管理员ID查询角色
+     * @param userId
+     * @return
      */
-    void distrMenu(String ruleId, String menuId);
+    Role findByRoleId(String userId);
+
+    /**
+     * 查询全部角色
+     * @return
+     */
+    ResponseVal findRoleList();
 }

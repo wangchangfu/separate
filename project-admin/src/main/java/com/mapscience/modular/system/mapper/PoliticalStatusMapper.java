@@ -13,4 +13,6 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface PoliticalStatusMapper extends BaseMapper<PoliticalStatus> {
 
+    PoliticalStatus getPoliticalStatusByName(String politicalStatusName);
+
 }

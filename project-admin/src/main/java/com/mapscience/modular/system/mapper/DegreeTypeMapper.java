@@ -13,4 +13,6 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface DegreeTypeMapper extends BaseMapper<DegreeType> {
 
+    DegreeType getDegreeByDegreeName(String degreeName);
+
 }

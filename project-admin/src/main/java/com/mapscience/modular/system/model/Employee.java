@@ -41,15 +41,17 @@ public class Employee extends Model<Employee> {
     /**
      * 证件类型ID
      */
+
     @ApiModelProperty(value="证件类型ID")
     @TableField("credentials_stype_id")
     private String credentialsStypeId;
+
     /**
      * 证件号
      */
     @ApiModelProperty(value="证件号ID")
     @TableField("card_id")
-    @Excel(name = "证件号码")
+    @Excel(name = "身份证号")
     private String cardId;
     /**
      * 性别
@@ -63,7 +65,7 @@ public class Employee extends Model<Employee> {
      */
     @ApiModelProperty(value="出生日期,格式yyyy-MM-dd")
     @TableField("birth_day")
-    @Excel(name = "出生日期", databaseFormat ="yyyyMMddHHmmss", format = "yyyy-MM-dd", isImportField = "true",width = 20)
+    @Excel(name = "出生年月", databaseFormat = "yyyyMMddHHmmss", format = "yyyy-MM-dd", isImportField = "true", width = 20)
     private Date birthDay;
     /**
      * 国籍id
@@ -110,14 +112,14 @@ public class Employee extends Model<Employee> {
      */
     @ApiModelProperty(value="入党日期,yyyy-mm-dd")
     @TableField("admission_day")
-    @Excel(name = "入党日期", databaseFormat ="yyyyMMddHHmmss", format = "yyyy-MM", isImportField = "true",width = 20)
+    @Excel(name = "入党时间", databaseFormat = "yyyyMMddHHmmss", format = "yyyy", isImportField = "true", width = 20)
     private Date admissionDay;
     /**
      * 参加工作时间,yyyy-mm
      */
     @ApiModelProperty(value="参加工作时间,yyyy-mm-dd")
     @TableField("join_work_day")
-    @Excel(name = "参加工作时间", databaseFormat ="yyyyMMddHHmmss", format = "yyyy-MM-dd", isImportField = "true",width = 20)
+    @Excel(name = "参加工作时间", databaseFormat = "yyyyMMddHHmmss", format = "yyyy-MM-dd", isImportField = "true", width = 20)
     private Date joinWorkDay;
     /**
      * 最高学历
@@ -136,14 +138,14 @@ public class Employee extends Model<Employee> {
      */
     @ApiModelProperty(value="健康状况id")
     @TableField("health_id")
-    @Excel(name="健康状况")
+    @Excel(name = "健康状况")
     private String healthId;
     /**
      * 专业技术职务id
      */
     @ApiModelProperty(value="专业技术职务id")
     @TableField("technical_position_id")
-    @Excel(name="专业技术职务")
+    @Excel(name = "专业技术职务")
     private String technicalPositionId;
 
     /**
@@ -160,12 +162,14 @@ public class Employee extends Model<Employee> {
     @TableField("qualification")
     @Excel(name = "资格证书")
     private String qualification;
+
     /**
      * 最近进入系统时间
      */
     @ApiModelProperty(value="最近进入系统时间")
     @TableField("into_sys_time")
     private Date intoSysTime;
+
     /**
      * 人员状态id
      */
@@ -241,8 +245,8 @@ public class Employee extends Model<Employee> {
     /**
      * 登录账号
      */
+    @TableField("account")
     @ApiModelProperty(value="登录账号")
-    @TableField(exist = false)
     private String account;
     /**
      * 密码
@@ -253,9 +257,10 @@ public class Employee extends Model<Employee> {
     /**
      * 简拼
      */
+    @TableField("jianpin")
     @ApiModelProperty(value="简拼")
-    @TableField(exist = false)
     private String jianpin;
+
 
     /**
      * 开户行
@@ -272,8 +277,9 @@ public class Employee extends Model<Employee> {
     /**
      * 类型 1是普通用户 2 超级用户（查看自己公司）3可以查看自己子公司 4 全部 5程序猿的
      */
+
+    @TableField("type")
     @ApiModelProperty(value="类型")
-    @TableField(exist = false)
     private Integer type;
     /**
      * 开户行地址
@@ -286,6 +292,7 @@ public class Employee extends Model<Employee> {
      */
     @ApiModelProperty(value="创建时间")
     @TableField("crate_time")
+    @Excel(name = "填表时间")
     private Date crateTime;
     /**
      * 更新时间
@@ -293,10 +300,77 @@ public class Employee extends Model<Employee> {
     @ApiModelProperty(value="更新时间")
     @TableField("update_time")
     private Date updateTime;
-    
-    @TableField(exist = false)
-    private String token;
-    public Employee(){}
+
+    @Excel(name = "档案所在地")
+    @TableField("archives_residence")
+    private String archivesResidence;
+
+    @Excel(name = "年度考核结果(非必填项)")
+    @TableField("annual_assessment_results")
+    private String annualAssessmentResults;
+
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "employeeId='" + employeeId + '\'' +
+                ", employeeName='" + employeeName + '\'' +
+                ", credentialsStypeId='" + credentialsStypeId + '\'' +
+                ", cardId='" + cardId + '\'' +
+                ", gender='" + gender + '\'' +
+                ", birthDay=" + birthDay +
+                ", nationalityTypeId='" + nationalityTypeId + '\'' +
+                ", nationTypeId='" + nationTypeId + '\'' +
+                ", maritalStatusId='" + maritalStatusId + '\'' +
+                ", nativePlace='" + nativePlace + '\'' +
+                ", birthPlace='" + birthPlace + '\'' +
+                ", politicalStatusId='" + politicalStatusId + '\'' +
+                ", admissionDay=" + admissionDay +
+                ", joinWorkDay=" + joinWorkDay +
+                ", highestEducation='" + highestEducation + '\'' +
+                ", highestDegree='" + highestDegree + '\'' +
+                ", healthId='" + healthId + '\'' +
+                ", technicalPositionId='" + technicalPositionId + '\'' +
+                ", qualification='" + qualification + '\'' +
+                ", intoSysTime=" + intoSysTime +
+                ", employeeStateId='" + employeeStateId + '\'' +
+                ", intoCompanyTime=" + intoCompanyTime +
+                ", sourceEntryId='" + sourceEntryId + '\'' +
+                ", accountTypeId='" + accountTypeId + '\'' +
+                ", registeredResidence='" + registeredResidence + '\'' +
+                ", currentResidence='" + currentResidence + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", tel='" + tel + '\'' +
+                ", contactRelationshipName='" + contactRelationshipName + '\'' +
+                ", contactRelationshipId='" + contactRelationshipId + '\'' +
+                ", contactRelationshipPhone='" + contactRelationshipPhone + '\'' +
+                ", account='" + account + '\'' +
+                ", passWord='" + passWord + '\'' +
+                ", jianpin='" + jianpin + '\'' +
+                ", zhuanchang='" + zhuanchang + '\'' +
+                ", openingBank='" + openingBank + '\'' +
+                ", bankAccount='" + bankAccount + '\'' +
+                ", type=" + type +
+                ", openingBankAdress='" + openingBankAdress + '\'' +
+                ", crateTime=" + crateTime +
+                ", updateTime=" + updateTime +
+                ", archivesResidence='" + archivesResidence + '\'' +
+                ", annualAssessmentResults='" + annualAssessmentResults + '\'' +
+                '}';
+    }
+
+
+    public Employee() {
+    }
+
+
+    @Override
+    protected Serializable pkVal() {
+        return this.employeeId;
+    }
+
+
     public String getEmployeeId() {
         return employeeId;
     }
@@ -633,64 +707,19 @@ public class Employee extends Model<Employee> {
         this.updateTime = updateTime;
     }
 
-    @Override
-    protected Serializable pkVal() {
-        return this.employeeId;
+    public String getArchivesResidence() {
+        return archivesResidence;
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-        "employeeId=" + employeeId +
-        ", employeeName=" + employeeName +
-        ", credentialsStypeId=" + credentialsStypeId +
-        ", cardId=" + cardId +
-        ", gender=" + gender +
-        ", birthDay=" + birthDay +
-        ", nationalityTypeId=" + nationalityTypeId +
-        ", nationTypeId=" + nationTypeId +
-        ", maritalStatusId=" + maritalStatusId +
-        ", nativePlace=" + nativePlace +
-        ", birthPlace=" + birthPlace +
-        ", politicalStatusId=" + politicalStatusId +
-        ", admissionDay=" + admissionDay +
-        ", joinWorkDay=" + joinWorkDay +
-        ", highestEducation=" + highestEducation +
-        ", highestDegree=" + highestDegree +
-        ", healthId=" + healthId +
-        ", technicalPositionId=" + technicalPositionId +
-        ", qualification=" + qualification +
-        ", intoSysTime=" + intoSysTime +
-        ", employeeStateId=" + employeeStateId +
-        ", intoCompanyTime=" + intoCompanyTime +
-        ", sourceEntryId=" + sourceEntryId +
-        ", accountTypeId=" + accountTypeId +
-        ", registeredResidence=" + registeredResidence +
-        ", currentResidence=" + currentResidence +
-        ", email=" + email +
-        ", phone=" + phone +
-        ", tel=" + tel +
-        ", contactRelationshipName=" + contactRelationshipName +
-        ", contactRelationshipId=" + contactRelationshipId +
-        ", contactRelationshipPhone=" + contactRelationshipPhone +
-        ", account=" + account +
-        ", passWord=" + passWord +
-        ", jianpin=" + jianpin +
-        ", zhuanchang=" + zhuanchang +
-        ", openingBank=" + openingBank +
-        ", bankAccount=" + bankAccount +
-        ", type=" + type +
-        ", openingBankAdress=" + openingBankAdress +
-        ", crateTime=" + crateTime +
-        ", updateTime=" + updateTime +
-        "}";
+    public void setArchivesResidence(String archivesResidence) {
+        this.archivesResidence = archivesResidence;
     }
 
-    public String getToken() {
-        return token;
+    public String getAnnualAssessmentResults() {
+        return annualAssessmentResults;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setAnnualAssessmentResults(String annualAssessmentResults) {
+        this.annualAssessmentResults = annualAssessmentResults;
     }
 }

@@ -16,4 +16,8 @@
         political_status_id, political_status_name, status, crate_time, update_time
     </sql>
 
+    <select id="getPoliticalStatusByName" resultMap="BaseResultMap">
+        select  * from t_political_status where political_status_name = #{politicalStatusName}
+    </select>
+
 </mapper>

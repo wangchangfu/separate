@@ -2,6 +2,7 @@ package com.mapscience.modular.system.service.impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.mapscience.core.common.ResponseVal;
+import com.mapscience.core.util.ObjectUtil;
 import com.mapscience.modular.system.mapper.RoleMapper;
 import com.mapscience.modular.system.model.Role;
 import com.mapscience.modular.system.service.IRoleService;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -29,6 +31,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
     @Override
     public ResponseVal addRole(Role rule) {
         try{
+            rule.setStatus(1);
             rule.setCreateTime(new Date());
             rule.setUpdateTime(new Date());
             this.baseMapper.addRole(rule);
@@ -39,13 +42,26 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
         }
     }
 
+    @Override
+    public Role findByRoleId(String userId) {
+        return this.baseMapper.findByRoleId(userId);
+    }
+
     /**
-     * 分配菜单
-     * @param ruleId
-     * @param menuId
+     * 查询所有的角色
+     * @return
      */
     @Override
-    public void distrMenu(String ruleId, String menuId) {
+    public ResponseVal findRoleList() {
+        try{
+            List<Role> roleList = this.baseMapper.findRoleList();
+            if (ObjectUtil.isEmpty(roleList)){
+                return new ResponseVal(HttpStatus.FOUND.value(),"暂无数据");
+            }
+            return new ResponseVal("查询成功",roleList);
+        }catch (Exception e){
+            return new ResponseVal(HttpStatus.INTERNAL_SERVER_ERROR.value(),"",e.getMessage());
+        }
 
     }
 

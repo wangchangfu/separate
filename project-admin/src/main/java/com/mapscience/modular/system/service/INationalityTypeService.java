@@ -13,4 +13,6 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface INationalityTypeService extends IService<NationalityType> {
 
+    NationalityType getnationalityTypeByName(String nationalityStypeName);
+
 }

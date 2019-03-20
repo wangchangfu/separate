@@ -17,4 +17,6 @@ public interface IHealthService extends IService<Health> {
 
     List<Health> getList();
 
+    Health getHealth(String healthName);
+
 }

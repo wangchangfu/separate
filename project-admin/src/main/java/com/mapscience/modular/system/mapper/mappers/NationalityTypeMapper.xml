@@ -16,4 +16,8 @@
         nationality_stype_id, nationality_stype_name, status, crate_time, update_time
     </sql>
 
+    <select id="getnationalityTypeByName" resultMap="BaseResultMap">
+        select * from t_nationality_type where nationality_stype_name = #{nationalityStypeName}
+    </select>
+
 </mapper>

@@ -13,4 +13,6 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface IEmployeeStateService extends IService<EmployeeState> {
 
+    EmployeeState getEmployeeStateByName(String employeeStateName);
+
 }

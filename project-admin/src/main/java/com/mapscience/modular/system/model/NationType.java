@@ -1,6 +1,8 @@
 package com.mapscience.modular.system.model;
 
 import java.util.Date;
+
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
@@ -24,11 +26,13 @@ public class NationType extends Model<NationType> {
      * uuid主键
      */
     @TableId("nation_stype_id")
+    @Excel(name = "id")
     private String nationStypeId;
     /**
      * 民族名称
      */
     @TableField("nation_stype_name")
+    @Excel(name = "民族")
     private String nationStypeName;
     /**
      * 0是删除1是启用2是增加不显示查询显示

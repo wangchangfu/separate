@@ -1,6 +1,8 @@
 package com.mapscience.modular.system.model;
 
 import java.util.Date;
+
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
@@ -24,11 +26,13 @@ public class DegreeType extends Model<DegreeType> {
      * 唯一标识
      */
     @TableId("degree_type_id")
+    @Excel(name = "id")
     private String degreeTypeId;
     /**
      * 名称
      */
     @TableField("degree_type_name")
+    @Excel(name = "学位")
     private String degreeTypeName;
     /**
      * 状态
@@ -44,6 +48,10 @@ public class DegreeType extends Model<DegreeType> {
      */
     @TableField("update_time")
     private Date updateTime;
+
+    @TableField("code")
+    @Excel(name = "code")
+    private String code;
 
 
     public String getDegreeTypeId() {
@@ -87,18 +95,28 @@ public class DegreeType extends Model<DegreeType> {
     }
 
     @Override
+    public String toString() {
+        return "DegreeType{" +
+                "degreeTypeId='" + degreeTypeId + '\'' +
+                ", degreeTypeName='" + degreeTypeName + '\'' +
+                ", status=" + status +
+                ", crateTime=" + crateTime +
+                ", updateTime=" + updateTime +
+                ", code='" + code + '\'' +
+                '}';
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    @Override
     protected Serializable pkVal() {
         return this.degreeTypeId;
     }
 
-    @Override
-    public String toString() {
-        return "DegreeType{" +
-        "degreeTypeId=" + degreeTypeId +
-        ", degreeTypeName=" + degreeTypeName +
-        ", status=" + status +
-        ", crateTime=" + crateTime +
-        ", updateTime=" + updateTime +
-        "}";
-    }
 }

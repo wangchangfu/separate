@@ -21,7 +21,7 @@ public interface IUserService extends IService<User> {
      * 添加
      * @param user
      */
-    ResponseVal addUser(User user);
+    ResponseVal addUser(UserDTO user);
 
     /**
      * 查询用户是否存在
@@ -35,7 +35,7 @@ public interface IUserService extends IService<User> {
      * @param user
      * @return
      */
-    List<UserDTO> findByComUser(UserDTO user);
+    List<User> findByComUser(User user);
 
     /**
      * 根据ID查询用户

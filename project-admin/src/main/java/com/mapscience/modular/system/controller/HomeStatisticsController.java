@@ -5,13 +5,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.mapscience.core.base.controller.BaseController;
+import com.mapscience.core.common.ResponseVal;
+import com.mapscience.core.util.ObjectUtil;
+import com.mapscience.modular.system.dto.MenuDTO;
+import com.mapscience.modular.system.model.Company;
+import com.mapscience.modular.system.model.CompanyType;
+import com.mapscience.modular.system.model.Menu;
+import com.mapscience.modular.system.model.Role;
+import com.mapscience.modular.system.service.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.mapscience.core.base.controller.BaseController;
 import com.mapscience.core.common.ResponseVal;
@@ -44,6 +57,11 @@ public class HomeStatisticsController extends BaseController {
     private ICompanyService companyService;
 
     /**
+     * 角色
+     */
+    @Autowired
+    private IRoleService roleService;
+    /**
      * 人员
      */
     @Autowired
@@ -63,6 +81,13 @@ public class HomeStatisticsController extends BaseController {
      */
     @Autowired
     private IContractManagementService contractManagementService;
+
+    /**
+     *
+     * 菜单
+     */
+    @Autowired
+    private IMenuService menuService;
     /**
      * 查询公司信息及坐标
      * @param company
@@ -149,18 +174,18 @@ public class HomeStatisticsController extends BaseController {
      * @return
      */
     @ApiOperation(value = "根据菜单ID返回菜单树")
-    @RequestMapping("modelIndex")
+    @RequestMapping(value = "/modelIndex",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVal modelIndex(@RequestBody String menuId, @RequestBody String userId) {
-        //获取当前用户
-        /*ShiroUser shiroUser = ShiroKit.getUser();
-        String account = shiroUser.getAccount();*/
-        //查询当前用户角色
-        //List<Menu> menus = this.menuService.findMenus(menu,shiroUser.getId());
-        //根据当前用户查找角色
-        //this.
-        //return new ResponseVal("查找成功",menus);
-        return null;
+    public ResponseVal modelIndex(@RequestBody MenuDTO menu) {
+        Role byRoleId = this.roleService.findByRoleId(menu.getUserId());
+            //根据菜单ID查找当前用户的菜单
+        List<Menu> menus = this.menuService.findMenus(menu.getMenuId(),byRoleId.getRoleId());
+        if (ObjectUtil.isEmpty(menus) || menus.size()<0){
+            return new ResponseVal(HttpStatus.FOUND.value(),"暂无数据");
+        }
+        //根据菜单ID查询菜单
+        return new ResponseVal("查询成功",menus);
     }
 
 }
+

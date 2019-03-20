@@ -16,4 +16,9 @@
         marital_status_id, marital_status_name, status, crate_time, update_time
     </sql>
 
+    <select id="getMaritalStatusByName" resultMap="BaseResultMap">
+
+        select * from t_marital_status where marital_status_name = #{maritalStatusName}
+    </select>
+
 </mapper>

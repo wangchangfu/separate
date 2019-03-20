@@ -5,6 +5,7 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.mapscience.modular.system.model.User">
         <id column="user_id" property="userId" />
+        <result column="com_id" property="comId" />
         <result column="username" property="username" />
         <result column="password" property="password" />
         <result column="salt" property="salt" />
@@ -16,7 +17,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        user_id, username, password, salt, emp_id, status, create_time, update_time
+        user_id,com_id, username, password, salt, emp_id, status, create_time, update_time
     </sql>
 
     <!--查找用户-->
@@ -31,13 +32,18 @@
         <selectKey keyProperty="userId" resultType="java.lang.String" order="BEFORE">
             select REPLACE(UUID(),'-','')
         </selectKey>
-        insert into t_user(user_id, username, password, salt, emp_id, status, create_time, update_time)
-        value(#{userId},#{username},#{password},#{salt},#{empId},#{status},#{createTime},#{updateTime})
+        insert into t_user(user_id,com_id, username, password, salt, emp_id, status, create_time, update_time)
+        value(#{userId},#{comId},#{username},#{password},#{salt},#{empId},#{status},#{createTime},#{updateTime})
     </insert>
     
-    <!--<select id="findByComUser" resultMap="BaseResultMap">
-        SELECT * FROM t_user where com_id=#{comId}
-    </select>-->
+    <select id="findByComUser" resultMap="BaseResultMap">
+        SELECT * FROM t_user
+        <where>com_id is not null
+          <if test="comId !=null">
+              and com_id=#{comId}
+          </if>
+        </where>
+    </select>
 
     <select id="getById" resultMap="BaseResultMap">
         select

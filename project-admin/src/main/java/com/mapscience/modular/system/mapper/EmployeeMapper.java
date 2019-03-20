@@ -1,12 +1,14 @@
+
+
 package com.mapscience.modular.system.mapper;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.mapscience.modular.system.model.Company;
-import com.mapscience.modular.system.model.Employee;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-import java.util.List;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.mapscience.modular.system.model.Employee;
 
 /**
  * <p>
@@ -74,4 +76,34 @@ public interface EmployeeMapper extends BaseMapper<Employee> {
     
     List<Employee> findEmployee(@Param("employee")Employee employee, @Param("companyId")String companyId);
 
+
+
+    /**
+     * 查询所有员工
+     *
+     * @return
+     */
+    List<Employee> getList();
+    /**
+     * 根据员工姓名查询
+     *
+     * @param employeeName
+     * @return
+     */
+    Employee getEmployeeByEmployeeName(String employeeName);
+  
+
+   
+
+
+    /**
+     * 根据身份证号查找
+     *
+     * @param cardId
+     * @return
+     */
+    Employee getEmployeeByCardId(String cardId);
+
+
 }
+

@@ -1,6 +1,8 @@
 package com.mapscience.modular.system.model;
 
 import java.util.Date;
+
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
@@ -24,11 +26,13 @@ public class ContactRelationship extends Model<ContactRelationship> {
      * uuid主键
      */
     @TableId("contact_relationship_id")
+    @Excel(name = "id")
     private String contactRelationshipId;
     /**
      * 联系人关系名称
      */
     @TableField("contact_relationship_name")
+    @Excel(name = "与本人关系")
     private String contactRelationshipName;
     /**
      * 0是删除1是启用2是增加不显示查询显示

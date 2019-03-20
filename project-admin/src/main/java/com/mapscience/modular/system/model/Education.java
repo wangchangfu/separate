@@ -1,10 +1,10 @@
 package com.mapscience.modular.system.model;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -32,13 +32,23 @@ public class Education extends Model<Education> {
     @ApiModelProperty(value="员工id")
     @TableField("employee_id")
     private String employeeId;
-    
+
+    /**
+     * 学历类型ID
+     */
+
     @ApiModelProperty(value="学历类型id")
     @TableField("education_type_id")
+    @Excel(name = "全日制学历")
     private String educationTypeId;
-    
+
+    /**
+     * 学位类型ID
+     */
+
     @ApiModelProperty(value="学位类型id")
     @TableField("degree_type_id")
+    @Excel(name = "全日制学位")
     private String degreeTypeId;
     
     @ApiModelProperty(value="学位名称")
@@ -48,16 +58,25 @@ public class Education extends Model<Education> {
     @ApiModelProperty(value="入学时间")
     @TableField("admission_time")
     private Date admissionTime;
-   
+
+    /**
+     * 学位授予日期/毕业时间
+     */
     @ApiModelProperty(value="学位授予日期/毕业时间")
     @TableField("degree_date")
     private Date degreeDate;
-    
+
+    /**
+     * 毕业专业
+     */
+    @TableField("major")
+    @Excel(name = "全日制专业")
     @ApiModelProperty(value="毕业专业")
     private String major;
    
     @ApiModelProperty(value="学位授予单位")
     @TableField("degree_unit")
+    @Excel(name = "全日制毕业院校")
     private String degreeUnit;
     
     @ApiModelProperty(value="学历证书编号")
@@ -75,7 +94,11 @@ public class Education extends Model<Education> {
     @ApiModelProperty(value="是否最高学历")
     @TableField("is_highest_degree")
     private Integer isHighestDegree;
-  
+
+    /**
+     * 备注
+     */
+    @TableField("remark")
     @ApiModelProperty(value="备注")
     private String remark;
   
@@ -103,6 +126,23 @@ public class Education extends Model<Education> {
             this.value = value;  
         }  
     }  
+
+
+
+    public String getDegreeUnit() {
+        return degreeUnit;
+    }
+
+    public void setDegreeUnit(String degreeUnit) {
+        this.degreeUnit = degreeUnit;
+    }
+
+
+
+    @Override
+    protected Serializable pkVal() {
+        return this.educationId;
+    }
 
     public String getEducationId() {
         return educationId;
@@ -168,12 +208,12 @@ public class Education extends Model<Education> {
         this.major = major;
     }
 
-    public String getDegreeUnit() {
+    public String getFullTimeDegreeUnit() {
         return degreeUnit;
     }
 
-    public void setDegreeUnit(String degreeUnit) {
-        this.degreeUnit = degreeUnit;
+    public void setFullTimeDegreeUnit(String fullTimeDegreeUnit) {
+        this.degreeUnit = fullTimeDegreeUnit;
     }
 
     public String getEducationctifCode() {
@@ -199,7 +239,6 @@ public class Education extends Model<Education> {
     public void setRecordTypeId(String recordTypeId) {
         this.recordTypeId = recordTypeId;
     }
-
 
     public Integer getIsHighestDegree() {
         return isHighestDegree;
@@ -234,29 +273,24 @@ public class Education extends Model<Education> {
     }
 
     @Override
-    protected Serializable pkVal() {
-        return this.educationId;
-    }
-
-    @Override
     public String toString() {
         return "Education{" +
-        "educationId=" + educationId +
-        ", employeeId=" + employeeId +
-        ", educationTypeId=" + educationTypeId +
-        ", degreeTypeId=" + degreeTypeId +
-        ", degreeName=" + degreeName +
-        ", admissionTime=" + admissionTime +
-        ", degreeDate=" + degreeDate +
-        ", major=" + major +
-        ", degreeUnit=" + degreeUnit +
-        ", educationctifCode=" + educationctifCode +
-        ", certifCode=" + certifCode +
-        ", recordTypeId=" + recordTypeId +
-        ", isHighestDegree=" + isHighestDegree +
-        ", remark=" + remark +
-        ", createTime=" + createTime +
-        ", updateTime=" + updateTime +
-        "}";
+                "educationId='" + educationId + '\'' +
+                ", employeeId='" + employeeId + '\'' +
+                ", educationTypeId='" + educationTypeId + '\'' +
+                ", degreeTypeId='" + degreeTypeId + '\'' +
+                ", degreeName='" + degreeName + '\'' +
+                ", admissionTime=" + admissionTime +
+                ", degreeDate=" + degreeDate +
+                ", major='" + major + '\'' +
+                ", fullTimeDegreeUnit='" + degreeUnit + '\'' +
+                ", educationctifCode='" + educationctifCode + '\'' +
+                ", certifCode='" + certifCode + '\'' +
+                ", recordTypeId='" + recordTypeId + '\'' +
+                ", isHighestDegree=" + isHighestDegree +
+                ", remark='" + remark + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                '}';
     }
 }

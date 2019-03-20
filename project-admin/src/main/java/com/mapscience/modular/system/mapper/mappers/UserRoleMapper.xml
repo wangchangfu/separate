@@ -16,4 +16,9 @@
         id, user_id, role_id, create_time, update_time
     </sql>
 
+    <!--保存-->
+    <insert id="addUserRole" parameterType="com.mapscience.modular.system.model.UserRole">
+        insert into t_user_role(id, user_id, role_id, create_time, update_time) value (#{id}, #{userId}, #{roleId}, #{createTime}, #{updateTime})
+    </insert>
+
 </mapper>

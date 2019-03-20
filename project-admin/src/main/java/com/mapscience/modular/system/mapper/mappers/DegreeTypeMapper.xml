@@ -16,4 +16,9 @@
         degree_type_id, degree_type_name, status, crate_time, update_time
     </sql>
 
+    <select id="getDegreeByDegreeName" resultMap="BaseResultMap">
+
+        select * from t_degree_type where degree_type_name = #{degreeName}
+    </select>
+
 </mapper>
