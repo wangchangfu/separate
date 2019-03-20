@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-<<<<<<< HEAD
-=======
   <component name="FrameworkDetectionExcludesConfiguration">
     <type id="Spring" />
   </component>
->>>>>>> e77839ebb54e3c6acdddc30b23b5b07e828a0b5b
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
