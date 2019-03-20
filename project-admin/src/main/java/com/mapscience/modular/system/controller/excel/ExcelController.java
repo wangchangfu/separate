@@ -34,7 +34,7 @@ import java.util.*;
 /**
  * 操作表格
  */
-@Api(tags="表格导入导出")
+@Api(tags = "表格导入导出")
 @Controller
 @RequestMapping("/excel")
 @Transactional
@@ -164,14 +164,10 @@ public class ExcelController {
                 String sheetName = sh.getSheetName();
 
                 if ("基本信息".equals(sheetName)) {
-                    //List<EmployeeDTO> employeeDTOList = ExcelImportUtil.importExcel(files.getInputStream(), EmployeeDTO.class, params);
-
-                    // 表头在第几行
-
                     List<EmployeeDTO> list = ExcelImportUtil.importExcel(files.getInputStream(), EmployeeDTO.class, params);
                     for (EmployeeDTO employeeDTO : list) {
                         Employee employee = new Employee();
-                       // System.out.println(employeeDTO.getNationalityTypeId());
+                        // System.out.println(employeeDTO.getNationalityTypeId());
                         //姓名
                         employee.setEmployeeName(employeeDTO.getEmployeeName());
                         //证件类型ID
@@ -238,7 +234,6 @@ public class ExcelController {
                         //进入来源Id
                         SourceEntry sourceEntryByName = sourceEntryService.getSourceEntryByName(employeeDTO.getSourceEntryId());
                         if (sourceEntryByName != null) {
-
                             employee.setSourceEntryId(sourceEntryByName.getSourceEntryId());
                         }
                         //户口类别ID
@@ -265,32 +260,11 @@ public class ExcelController {
                             employeeService.updateById(employee);
                         } else {
                             employeeService.insert(employee);
-                            /*EmpPosition empPosition = new EmpPosition();
-                            empPosition.setEmpId(employee.getEmployeeId());
-                            empPosition.setStatus(1);
-                            empPosition.setCrateTime(new Date());
-                            empPosition.setUpdateTime(new Date());
-                            Company companyByRemark = companyService.getCompanyByRemark(employeeDTO.getCompanyName());
-                            if (companyByRemark != null) {
-                                empPosition.setComId(companyByRemark.getCompanyId());
-                                empPositionService.insert(empPosition);
-                            } else {
-                                Company company = new Company();
-                                company.setCompanyName(employeeDTO.getCompanyName());
-                                company.setRemark(employeeDTO.getCompanyName());
-                                company.setStatus(1);
-                                company.setCrateTime(new Date());
-                                company.setUpdateTime(new Date());
-                                companyService.insert(company);
-                                Company companyByCompanyName = companyService.getCompanyByCompanyName(employeeDTO.getCompanyName());
-                                empPosition.setComId(companyByCompanyName.getCompanyId());
-                                empPositionService.insert(empPosition);
-                            }*/
                         }
 
                         //插入员工与公司关系表
                         Company companyByCompanyName = companyService.getCompanyByCompanyName(employeeDTO.getCompanyName());
-                        if (companyByCompanyName!=null){
+                        if (companyByCompanyName != null) {
                             EmpPosition empPosition = new EmpPosition();
                             empPosition.setEmpId(employee.getEmployeeId());
                             empPosition.setComId(companyByCompanyName.getCompanyId());
@@ -299,8 +273,6 @@ public class ExcelController {
                             empPosition.setUpdateTime(new Date());
                             empPositionService.insert(empPosition);
                         }
-
-
 
                     }
 
@@ -327,7 +299,6 @@ public class ExcelController {
                             if (educationTypeByEducationTypeName != null) {
                                 education.setEducationTypeId(educationTypeByEducationTypeName.getEducationTypeId());
                             }
-
                         }
                         //学位类型ID
                         if (educationDTO.getDegreeTypeId() != null) {
@@ -413,7 +384,6 @@ public class ExcelController {
                             //System.out.println(workHistory);
                             workHistoryService.insert(workHistory);
                         }
-
 
 
                     }

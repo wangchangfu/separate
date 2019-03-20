@@ -65,7 +65,7 @@ public class Employee extends Model<Employee> {
      */
     @ApiModelProperty(value="出生日期,格式yyyy-MM-dd")
     @TableField("birth_day")
-    @Excel(name = "出生年月", databaseFormat = "yyyyMMddHHmmss", format = "yyyy-MM-dd", isImportField = "true", width = 20)
+    @Excel(name = "出生年月(yyyy/m)", databaseFormat = "yyyyMMddHHmmss", format = "yyyy-MM-dd", isImportField = "true", width = 20)
     private Date birthDay;
     /**
      * 国籍id
@@ -112,14 +112,14 @@ public class Employee extends Model<Employee> {
      */
     @ApiModelProperty(value="入党日期,yyyy-mm-dd")
     @TableField("admission_day")
-    @Excel(name = "入党时间", databaseFormat = "yyyyMMddHHmmss", format = "yyyy", isImportField = "true", width = 20)
+    @Excel(name = "入党时间(yyyy/m)", databaseFormat = "yyyyMMddHHmmss", format = "yyyy", isImportField = "true", width = 20)
     private Date admissionDay;
     /**
      * 参加工作时间,yyyy-mm
      */
     @ApiModelProperty(value="参加工作时间,yyyy-mm-dd")
     @TableField("join_work_day")
-    @Excel(name = "参加工作时间", databaseFormat = "yyyyMMddHHmmss", format = "yyyy-MM-dd", isImportField = "true", width = 20)
+    @Excel(name = "参加工作时间(yyyy/m)", databaseFormat = "yyyyMMddHHmmss", format = "yyyy-MM-dd", isImportField = "true", width = 20)
     private Date joinWorkDay;
     /**
      * 最高学历
@@ -160,7 +160,7 @@ public class Employee extends Model<Employee> {
      */
     @ApiModelProperty(value="职（执）业资格")
     @TableField("qualification")
-    @Excel(name = "资格证书")
+    @Excel(name = "职（执）业资格")
     private String qualification;
 
     /**
