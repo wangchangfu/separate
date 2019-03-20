@@ -43,4 +43,11 @@ public interface IUserService extends IService<User> {
      * @return
      */
     User getById(String id);
+
+    /**
+     * 按照管理员ID查找管理员
+     * @param user
+     * @return
+     */
+    ResponseVal findByIdUser(User user);
 }

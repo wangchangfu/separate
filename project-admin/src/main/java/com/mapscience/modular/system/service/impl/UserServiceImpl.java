@@ -60,8 +60,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             }
             return new ResponseVal(0,"保存成功");
         }catch (Exception e){
-            /*this.baseMapper.delectById(userId);
-            this.userRoleService.deleteByRoleId(sr);*/
+
            return new ResponseVal(HttpStatus.INTERNAL_SERVER_ERROR.value(),"保存出错",e.getMessage());
         }
 
@@ -100,5 +99,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public User getById(String id) {
         User byId = this.baseMapper.getById(id);
         return byId;
+    }
+
+    @Override
+    public ResponseVal findByIdUser(User user) {
+        try{
+            User byIdUser = this.baseMapper.findByIdUser(user.getUserId());
+            if(ObjectUtil.isEmpty(byIdUser)){
+                return new ResponseVal(HttpStatus.FOUND.value(),"没有次管理员");
+            }
+            return new ResponseVal("查找成功",byIdUser);
+        }catch (Exception e){
+            return new ResponseVal(HttpStatus.INTERNAL_SERVER_ERROR.value(),"数据错误",e.getMessage());
+        }
+
     }
 }

@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,20 +18,24 @@ import java.util.Date;
  * @author ${author}
  * @since 2019-03-05
  */
+@ApiModel(value = "管理员表")
 @TableName("t_user")
 public class User extends Model<User> {
 
     private static final long serialVersionUID = 1L;
 
+    @ApiModelProperty(value="主键id")
     @TableId("user_id")
     private String userId;
     /**
      * 账号 
      */
+    @ApiModelProperty(value="账号")
     private String username;
     /**
      * 密码
      */
+    @ApiModelProperty(value="密码")
     private String password;
     /**
      * MD5密码盐
@@ -40,15 +46,18 @@ public class User extends Model<User> {
     /**
      * 员工ID
      */
+    @ApiModelProperty(value="员工ID")
     @TableField("emp_id")
     private String empId;
     /**
      * 员工姓名
      */
+    @ApiModelProperty(value="员工ID")
     private String empName;
     /**
      * 状态 1 启动 2 冻结 3 删除
      */
+    @ApiModelProperty(value="状态")
     private Integer status;
     /**
      * 创建时间
@@ -59,6 +68,7 @@ public class User extends Model<User> {
     /**
      * 公司id
      */
+    @ApiModelProperty(value="公司id")
     @TableField("com_id")
     private String comId;
     /**

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.mapscience.modular.system.model.User;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -49,6 +50,9 @@ public interface UserMapper extends BaseMapper<User> {
      * 根据Id删除
      * @param userId
      */
-    @Delete("delete from t_user where userId=#{userId}")
+    @Delete("delete from t_user where user_id=#{userId}")
     void delectById(@Param("userId") String userId);
+
+    @Select("select * from t_user where user_id=#{userId}")
+    User findByIdUser(@Param("userId") String userId);
 }

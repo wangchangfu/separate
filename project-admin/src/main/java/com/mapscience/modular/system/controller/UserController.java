@@ -1,6 +1,7 @@
 package com.mapscience.modular.system.controller;
 
 
+import com.mapscience.core.base.controller.BaseController;
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.core.common.status.ProjectStatusEnum;
 import com.mapscience.core.exception.ProjectException;
@@ -32,7 +33,7 @@ import java.util.List;
 @Api(tags="管理员表控制器")
 @Controller
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends BaseController {
 
     @Autowired
     private IUserService userService;
@@ -73,6 +74,13 @@ public class UserController {
             return new ResponseVal(HttpStatus.FOUND.value(),"暂无数据");
         }
         return new ResponseVal("查找成功",byComUser);
+    }
+
+    @ApiOperation(value="按照管理员ID查找管理员信息")
+    @RequestMapping(value = "/findByIdUser" ,method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public ResponseVal<User> findByIdUser(@RequestBody User user){
+        return this.userService.findByIdUser(user);
     }
 
 }
