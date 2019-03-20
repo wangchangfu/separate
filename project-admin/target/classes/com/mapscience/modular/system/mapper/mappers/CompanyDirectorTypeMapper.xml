@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapscience.modular.system.mapper.CompanyDirectorTypeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.mapscience.modular.system.model.CompanyDirectorType">
+        <id column="company_director_type_id" property="companyDirectorTypeId" />
+        <result column="company_director_name" property="companyDirectorName" />
+        <result column="sort" property="sort" />
+        <result column="status" property="status" />
+        <result column="crate_time" property="crateTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        company_director_type_id, company_director_name, sort, status, crate_time, update_time
+    </sql>
+
+</mapper>

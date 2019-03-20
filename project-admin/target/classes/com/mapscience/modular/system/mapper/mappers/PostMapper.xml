@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapscience.modular.system.mapper.PostMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.mapscience.modular.system.model.Post">
+        <id column="post_id" property="postId" />
+        <result column="post_name" property="postName" />
+        <result column="status" property="status" />
+        <result column="crate_time" property="crateTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="post_level_id" property="postLevelId" />
+        <result column="post_type_id" property="postTypeId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        post_id, post_name, status, crate_time, update_time, post_level_id, post_type_id
+    </sql>
+
+</mapper>

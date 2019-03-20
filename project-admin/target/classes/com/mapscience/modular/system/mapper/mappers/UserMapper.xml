@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapscience.modular.system.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.mapscience.modular.system.model.User">
+        <id column="user_id" property="userId" />
+        <result column="com_id" property="comId" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="salt" property="salt" />
+        <result column="emp_id" property="empId" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        user_id,com_id, username, password, salt, emp_id, status, create_time, update_time
+    </sql>
+
+    <!--查找用户-->
+    <select id="getByAccount" resultMap="BaseResultMap">
+        select *
+        from t_user where username=#{username}
+    </select>
+
+    <!--保存用户-->
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="userId" parameterType="com.mapscience.modular.system.model.User">
+
+        <selectKey keyProperty="userId" resultType="java.lang.String" order="BEFORE">
+            select REPLACE(UUID(),'-','')
+        </selectKey>
+        insert into t_user(user_id,com_id, username, password, salt, emp_id, status, create_time, update_time)
+        value(#{userId},#{comId},#{username},#{password},#{salt},#{empId},#{status},#{createTime},#{updateTime})
+    </insert>
+    
+    <select id="findByComUser" resultMap="BaseResultMap">
+        SELECT * FROM t_user
+        <where>com_id is not null
+          <if test="comId !=null">
+              and com_id=#{comId}
+          </if>
+        </where>
+    </select>
+
+    <select id="getById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user where user_id=#{userId}
+    </select>
+
+</mapper>

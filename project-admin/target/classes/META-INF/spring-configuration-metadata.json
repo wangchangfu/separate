@@ -1,0 +1,88 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.mapscience.config.datasource.MultiDataSourceConfig",
+      "name": "project.muti-datasource",
+      "sourceMethod": "public com.mapscience.core.config.properties.MutiDataSourceProperties mutiDataSourceProperties() ",
+      "type": "com.mapscience.core.config.properties.MutiDataSourceProperties"
+    },
+    {
+      "sourceType": "com.mapscience.config.redis.JedisConfig",
+      "name": "redis",
+      "type": "com.mapscience.config.redis.JedisConfig"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.mapscience.core.config.properties.MutiDataSourceProperties",
+      "name": "project.muti-datasource.data-source-names",
+      "type": "java.lang.String[]"
+    },
+    {
+      "sourceType": "com.mapscience.core.config.properties.MutiDataSourceProperties",
+      "name": "project.muti-datasource.driver-class-name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.mapscience.core.config.properties.MutiDataSourceProperties",
+      "name": "project.muti-datasource.password",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.mapscience.core.config.properties.MutiDataSourceProperties",
+      "name": "project.muti-datasource.url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.mapscience.core.config.properties.MutiDataSourceProperties",
+      "name": "project.muti-datasource.username",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.mapscience.core.config.properties.MutiDataSourceProperties",
+      "name": "project.muti-datasource.validation-query",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.mapscience.config.redis.JedisConfig",
+      "name": "redis.host",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.mapscience.config.redis.JedisConfig",
+      "name": "redis.max-active",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.mapscience.config.redis.JedisConfig",
+      "name": "redis.max-idle",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.mapscience.config.redis.JedisConfig",
+      "name": "redis.max-wait",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.mapscience.config.redis.JedisConfig",
+      "name": "redis.min-idle",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.mapscience.config.redis.JedisConfig",
+      "name": "redis.password",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.mapscience.config.redis.JedisConfig",
+      "name": "redis.port",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.mapscience.config.redis.JedisConfig",
+      "name": "redis.timeout",
+      "type": "java.lang.Integer"
+    }
+  ]
+}

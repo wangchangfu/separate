@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapscience.modular.system.mapper.LogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.mapscience.modular.system.model.Log">
+        <id column="log_id" property="logId" />
+        <result column="merchant_id" property="merchantId" />
+        <result column="tiltle" property="tiltle" />
+        <result column="code" property="code" />
+        <result column="date" property="date" />
+        <result column="text" property="text" />
+        <result column="crate_time" property="crateTime" />
+        <result column="ip" property="ip" />
+        <result column="return_text" property="returnText" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        log_id, merchant_id, tiltle, code, date, text, crate_time, ip, return_text
+    </sql>
+
+</mapper>
