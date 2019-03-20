@@ -5,6 +5,7 @@ import com.mapscience.core.common.constant.state.ManagerStatus;
 import com.mapscience.core.shiro.ShiroUser;
 import com.mapscience.core.util.SpringContextHolder;
 import com.mapscience.modular.system.mapper.MenuMapper;
+import com.mapscience.modular.system.mapper.RoleMapper;
 import com.mapscience.modular.system.mapper.UserMapper;
 import com.mapscience.modular.system.model.User;
 import org.apache.shiro.authc.CredentialsException;
@@ -29,6 +30,9 @@ public class ShiroFactroy implements IShiro {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private RoleMapper roleMapper;
 
     @Autowired
     private MenuMapper menuMapper;
