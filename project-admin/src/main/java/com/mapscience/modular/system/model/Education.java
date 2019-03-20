@@ -86,6 +86,23 @@ public class Education extends Model<Education> {
     @ApiModelProperty(value="修改时间")
     @TableField("update_time")
     private Date updateTime;
+    
+    public enum 是否最高学历 {  
+    	是(1), 否(0);
+    	
+        private int value; 
+        
+        private 是否最高学历(int value) {  
+            this.value = value;  
+        }  
+        
+        public int getValue() {  
+            return value;  
+        }  
+        public void setValue(int value) {  
+            this.value = value;  
+        }  
+    }  
 
     public String getEducationId() {
         return educationId;

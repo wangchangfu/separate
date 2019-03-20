@@ -40,17 +40,14 @@ public interface IEmployeeService extends IService<Employee> {
      */
     void add(Employee em);
 
-    /**
-     * 统计公司人员
-     * @param company
-     * @return
-     */
-    ResponseVal getEmpCount(Company company);
+    
     List<Employee> getEmployeeByCompanyId(String companyId);
 
     /**
      * 通过ids批量删除员工状态
      */
     void batchDeleteEmployeeStatusByIds(String ids);
+    
+    List<Employee> findEmployeeByCompanyId(String companyId);
 
 }

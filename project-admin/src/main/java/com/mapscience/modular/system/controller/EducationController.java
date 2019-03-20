@@ -32,9 +32,9 @@ public class EducationController {
 
 	@ApiOperation(value = "通过员工id查询最高学历")
 	@PostMapping("/getHighestDegreeByEmpId")
-	public ResponseVal<Education> getHighestDegreeByEmpId(String empId) {
+	public ResponseVal<Education> getHighestDegreeByEmpId(String employeeId) {
 		try {
-			Education getHighestDegreeByEmpId = service.getHighestDegreeByEmpId(empId);
+			Education getHighestDegreeByEmpId = service.getHighestDegreeByEmpId(employeeId);
 			if (ObjectUtils.isEmpty(getHighestDegreeByEmpId)) {
 				return new ResponseVal<Education>(500, "fail", null);
 			} else {

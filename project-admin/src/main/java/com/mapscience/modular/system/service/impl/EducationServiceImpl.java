@@ -1,13 +1,17 @@
 package com.mapscience.modular.system.service.impl;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
+
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.mapper.EducationMapper;
 import com.mapscience.modular.system.model.Company;
 import com.mapscience.modular.system.model.Education;
+import com.mapscience.modular.system.model.Education.是否最高学历;
 import com.mapscience.modular.system.service.IEducationService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * <p>
@@ -23,18 +27,22 @@ public class EducationServiceImpl extends ServiceImpl<EducationMapper, Education
 	@Autowired
     private EducationMapper mapper;
 	
-    /**
-     * 查询学历分布
-     * @param company
-     * @return
-     */
-    @Override
-    public ResponseVal findEducationt(Company company) {
-        return null;
-    }
 
 	@Override
-	public Education getHighestDegreeByEmpId(String empId) {
-		return mapper.getHighestDegreeByEmpId(empId);
+	public Education getHighestDegreeByEmpId(String employeeId) {
+		Education rs = null;
+		Education education = new Education();
+		education.setEmployeeId(employeeId);
+		education.setIsHighestDegree(是否最高学历.是.getValue());
+		List<Education> findEducation = mapper.findEducation(education, null);
+		if(!ObjectUtils.isEmpty(findEducation)) {
+			rs = findEducation.get(0);
+		}
+		return rs;
+	}
+
+	@Override
+	public List<Education> findEducationByCompanyId(String companyId) {
+		return mapper.findEducation(null, companyId);
 	}
 }

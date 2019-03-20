@@ -1,6 +1,7 @@
 package com.mapscience.modular.system.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.mapscience.modular.system.model.Company;
 import com.mapscience.modular.system.model.Employee;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -70,10 +71,7 @@ public interface EmployeeMapper extends BaseMapper<Employee> {
      * @return
      */
     int deleteEmployeeStatusById(String id);
-
-
-
-
-
+    
+    List<Employee> findEmployee(@Param("employee")Employee employee, @Param("companyId")String companyId);
 
 }

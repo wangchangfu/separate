@@ -23,5 +23,18 @@
     <sql id="Base_Column_List">
         contract_management_id, employee_id, employee_state_id, contract_num, signing_com_id, contract_type, status, term, contract_file, start_time, end_time, create_time, update_time
     </sql>
+    
+    <select id="findContract" resultMap="BaseResultMap">
+        select * from t_contract_management where 1=1
+        <if test="contractManagement.signingComId != null and contractManagement.signingComId !=''">
+        and signing_com_id = #{contractManagement.signingComId}
+        </if>
+        <if test="contractManagement.contractType != null and contractManagement.contractType !=''">
+        and contract_type = #{contractManagement.contractType}
+        </if>
+        <if test="year != null">
+        and year(start_time) = #{year}
+        </if>
+    </select>
 
 </mapper>

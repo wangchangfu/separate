@@ -1,6 +1,11 @@
 package com.mapscience.modular.system.mapper;
 
 import com.mapscience.modular.system.model.ContractManagement;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
@@ -12,5 +17,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * @since 2019-01-18
  */
 public interface ContractManagementMapper extends BaseMapper<ContractManagement> {
+	
+	List<ContractManagement> findContract(@Param("contractManagement")ContractManagement contractManagement, @Param("year")Integer year);
 
 }

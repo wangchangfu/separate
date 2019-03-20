@@ -31,5 +31,22 @@
     <select id="getHighestDegreeByEmpId" resultMap="BaseResultMap">
         select * from t_education where is_highest_degree = 1 and employee_id = #{empId}
     </select>
+    
+    <select id="findEducation" resultMap="BaseResultMap">
+        select * from t_education ed
+        <choose>
+		    <when test="companyId != null and companyId !=''">
+		    	join t_emp_position em on ed.employee_id = em.emp_id where em.com_id = #{companyId}
+		    </when>
+		    <otherwise>
+		    	where 1=1
+		    </otherwise>
+	    </choose>
+	    <if test="education != null">
+		     <if test="education.isHighestDegree != null and education.isHighestDegree !=''">
+		     	and ed.is_highest_degree = #{education.isHighestDegree}
+		     </if>
+        </if>
+    </select>
 
 </mapper>

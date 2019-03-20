@@ -1,8 +1,8 @@
 package com.mapscience.modular.system.service;
 
+import java.util.List;
+
 import com.baomidou.mybatisplus.service.IService;
-import com.mapscience.core.common.ResponseVal;
-import com.mapscience.modular.system.model.Company;
 import com.mapscience.modular.system.model.Education;
 
 /**
@@ -15,12 +15,7 @@ import com.mapscience.modular.system.model.Education;
  */
 public interface IEducationService extends IService<Education> {
 
-    /**
-     * 学历分布
-     * @param company
-     * @return
-     */
-    ResponseVal findEducationt(Company company);
+	List<Education> findEducationByCompanyId(String companyId);
     
     Education getHighestDegreeByEmpId(String empId);
 }

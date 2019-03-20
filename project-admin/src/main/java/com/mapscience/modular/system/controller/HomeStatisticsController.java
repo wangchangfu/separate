@@ -1,21 +1,33 @@
 package com.mapscience.modular.system.controller;
 
 
-import com.mapscience.core.base.controller.BaseController;
-import com.mapscience.core.common.ResponseVal;
-import com.mapscience.modular.system.model.Company;
-import com.mapscience.modular.system.model.CompanyType;
-import com.mapscience.modular.system.service.*;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
+import com.mapscience.core.base.controller.BaseController;
+import com.mapscience.core.common.ResponseVal;
+import com.mapscience.modular.system.model.Company;
+import com.mapscience.modular.system.model.CompanyType;
+import com.mapscience.modular.system.model.ContractManagement;
+import com.mapscience.modular.system.model.Education;
+import com.mapscience.modular.system.model.Employee;
+import com.mapscience.modular.system.service.ICompanyService;
+import com.mapscience.modular.system.service.ICompanyTypeService;
+import com.mapscience.modular.system.service.IContractManagementService;
+import com.mapscience.modular.system.service.IEducationService;
+import com.mapscience.modular.system.service.IEmployeeService;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 前端大屏控制器
@@ -44,6 +56,7 @@ public class HomeStatisticsController extends BaseController {
     /**
      * 学历分布
      */
+    @Autowired
     private IEducationService educationService;
     /**
      * 合同
@@ -65,39 +78,57 @@ public class HomeStatisticsController extends BaseController {
 
 
     /**
-     * 查询员工合同分布
+     * 通过公司id查询员工合同分布
      * @return
      */
-    @ApiOperation(value = "查询员工合同分布")
-    @RequestMapping(value = "findContract",method = RequestMethod.POST)
+    @ApiOperation(value = "通过公司id查询员工合同分布")
+    @RequestMapping(value = "findContractByCompanyId",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVal findContract(Company company){
-        return this.contractManagementService.findContract(company);
+    public ResponseVal findContractByCompanyId(String companyId, 
+    		@RequestParam(required=false, defaultValue="固定期,无固定,实习协议,劳务合同,其他") String contractType,
+    		@RequestParam(required=false, defaultValue="3") int numberOfYearAgo){
+    	try {
+    		ArrayList<HashMap<String, Integer>> findContractByCompanyId = contractManagementService.findContractByCompanyId(companyId, contractType, numberOfYearAgo);
+    		return new ResponseVal(0,"success",findContractByCompanyId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseVal(500,"erro",null);
+		}
     }
 
 
     /**
-     * 员工学历分布
-     * @param company
+     * 通过公司id查询员工学历分布
      * @return
      */
-    @ApiOperation(value = "员工学历分布")
-    @RequestMapping(value = "findEducationt",method = RequestMethod.POST)
+    @ApiOperation(value = "通过公司id查询员工学历分布")
+    @RequestMapping(value = "findEducationByCompanyId",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVal findEducationt(Company company){
-        return this.educationService.findEducationt(company);
+    public ResponseVal<List<Education>> findEducationByCompanyId(String companyId){
+    	try {
+    		List<Education> findEducationByCompanyId = educationService.findEducationByCompanyId(companyId);
+    		return new ResponseVal<List<Education>>(0,"success",findEducationByCompanyId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseVal<List<Education>>(500,"erro",null);
+		}
     }
 
     /**
-     * 统计公司人员
-     * @param company
+     * 通过公司id查询查询公司人员
      * @return
      */
-    @ApiOperation(value = "统计公司人员")
-    @RequestMapping(value = "getEmpCount",method = RequestMethod.POST)
+    @ApiOperation(value = "通过公司id查询查询公司人员")
+    @RequestMapping(value = "findEmployeeByCompanyId",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVal getEmpCount(Company company){
-        return this.employeeService.getEmpCount(company);
+    public ResponseVal<List<Employee>> findEmployeeByCompanyId(String companyId){
+    	try {
+    		List<Employee> findEmployeeByCompanyId = employeeService.findEmployeeByCompanyId(companyId);
+    		return new ResponseVal<List<Employee>>(0,"success",findEmployeeByCompanyId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseVal<List<Employee>>(500,"erro",null);
+		}
     }
 
 

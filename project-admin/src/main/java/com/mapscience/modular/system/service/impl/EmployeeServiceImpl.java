@@ -68,27 +68,15 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
 		}
 	}
 
-    /**
-     * 根据公司统计人员信息
-     * @param company
-     * @return
-     */
-    @Override
-    public ResponseVal getEmpCount(Company company) {
-        if(ObjectUtil.isEmpty(company.getCompanyId())){
-            company.setCompanyId("1");
-        }
-        Integer empCount = this.baseMapper.getEmpCount(company.getCompanyId());
-        if (empCount <0){
-            return new ResponseVal(HttpStatus.FOUND.value(),"暂无数据",0);
-        }
-        return new ResponseVal(HttpStatus.OK.value(),"查询成功",empCount);
-    }
-
     @Override
     public List<Employee> getEmployeeByCompanyId(String companyId) {
         return employeeMapper.getEmployeeByCompanyId(companyId);
     }
+
+	@Override
+	public List<Employee> findEmployeeByCompanyId(String companyId) {
+		return employeeMapper.findEmployee(null, companyId);
+	}
 
 
 }

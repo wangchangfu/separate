@@ -29,6 +29,7 @@ public class Company extends Model<Company> {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value="公司id")
+    @Excel(name = "公司id")
     @TableId("company_id")
     private String companyId;
     
@@ -38,23 +39,31 @@ public class Company extends Model<Company> {
     private String companyName;
     
     @ApiModelProperty(value="父id")
+    @Excel(name = "父id")
     @TableField("parent_id")
     private String parentId;
     
     @ApiModelProperty(value="法定代表人")
-    @Excel(name = "法定代表人")
     @TableField("legal_representative")
     private String legalRepresentative;
     
     @ApiModelProperty(value="注册资本（万元）")
-    @Excel(name = "注册资本（万元）")
     @TableField("registered_capital")
     private BigDecimal registeredCapital;
     
-    @ApiModelProperty(value="公司坐标（格式123,123|经度,纬度）")
-    private String coordinate;
+    @ApiModelProperty(value="纬度")
+    @Excel(name = "纬度")
+    @TableField("latitude")
+    private String latitude;
+    
+    @ApiModelProperty(value="经度")
+    @Excel(name = "经度")
+    @TableField("longitude")
+    private String longitude;
    
     @ApiModelProperty(value="公司地址")
+    @Excel(name = "公司地址")
+    @TableField("address")
     private String address;
    
     @ApiModelProperty(value="官网地址")
@@ -73,19 +82,20 @@ public class Company extends Model<Company> {
     private String companyPhone;
 
     @ApiModelProperty(value="业务范围")
-    @Excel(name = "业务范围")
     @TableField("company_buss_range")
     private String companyBussRange;
 
     @ApiModelProperty(value="公司发票号")
-    @Excel(name = "公司发票号")
     @TableField("company_card")
     private String companyCard;
 
     @ApiModelProperty(value="状态")
+    @Excel(name = "状态")
+    @TableField("status")
     private Integer status;
     
     @ApiModelProperty(value="描述")
+    @TableField("remark")
     private String remark;
     
     @ApiModelProperty(value="创建时间")
@@ -142,14 +152,6 @@ public class Company extends Model<Company> {
 
     public void setRegisteredCapital(BigDecimal registeredCapital) {
         this.registeredCapital = registeredCapital;
-    }
-
-    public String getCoordinate() {
-        return coordinate;
-    }
-
-    public void setCoordinate(String coordinate) {
-        this.coordinate = coordinate;
     }
 
     public String getAddress() {
@@ -248,30 +250,36 @@ public class Company extends Model<Company> {
 		this.objectChildren = objectChildren;
 	}
 
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
 	@Override
     protected Serializable pkVal() {
         return this.companyId;
     }
 
 	@Override
-    public String toString() {
-        return "Company{" +
-        "companyId=" + companyId +
-        ", companyName=" + companyName +
-        ", parentId=" + parentId +
-        ", legalRepresentative=" + legalRepresentative +
-        ", registeredCapital=" + registeredCapital +
-        ", coordinate=" + coordinate +
-        ", address=" + address +
-        ", websiteAddress=" + websiteAddress +
-        ", companyLogo=" + companyLogo +
-        ", companyPhone=" + companyPhone +
-        ", companyBussRange=" + companyBussRange +
-        ", companyCard=" + companyCard +
-        ", status=" + status +
-        ", remark=" + remark +
-        ", crateTime=" + crateTime +
-        ", updateTime=" + updateTime +
-        "}";
-    }
+	public String toString() {
+		return "Company [companyId=" + companyId + ", companyName=" + companyName + ", parentId=" + parentId
+				+ ", legalRepresentative=" + legalRepresentative + ", registeredCapital=" + registeredCapital
+				+ ", latitude=" + latitude + ", longitude=" + longitude + ", address=" + address + ", websiteAddress="
+				+ websiteAddress + ", companyLogo=" + companyLogo + ", companyPhone=" + companyPhone
+				+ ", companyBussRange=" + companyBussRange + ", companyCard=" + companyCard + ", status=" + status
+				+ ", remark=" + remark + ", crateTime=" + crateTime + ", updateTime=" + updateTime + ", children="
+				+ children + ", objectChildren=" + objectChildren + "]";
+	}
+	
 }

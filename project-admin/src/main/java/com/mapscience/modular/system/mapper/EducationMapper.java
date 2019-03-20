@@ -1,7 +1,11 @@
 package com.mapscience.modular.system.mapper;
 
-import com.mapscience.modular.system.model.Education;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.mapscience.modular.system.model.Education;
 
 /**
  * <p>
@@ -13,6 +17,6 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface EducationMapper extends BaseMapper<Education> {
 	
-	Education getHighestDegreeByEmpId(String empId);
+	List<Education> findEducation(@Param("education")Education education, @Param("companyId")String companyId);
 
 }
