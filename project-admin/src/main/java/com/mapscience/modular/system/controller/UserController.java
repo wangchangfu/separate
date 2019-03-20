@@ -76,6 +76,11 @@ public class UserController extends BaseController {
         return new ResponseVal("查找成功",byComUser);
     }
 
+    /**
+     * 按照按照管理员ID查找管理员信息
+     * @param user
+     * @return
+     */
     @ApiOperation(value="按照管理员ID查找管理员信息")
     @RequestMapping(value = "/findByIdUser" ,method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
