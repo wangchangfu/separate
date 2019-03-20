@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapscience.modular.system.mapper.WorkHistoryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.mapscience.modular.system.model.WorkHistory">
+        <id column="work_history_id" property="workHistoryId" />
+        <result column="work_history_name" property="workHistoryName" />
+        <result column="employee_id" property="employeeId" />
+        <result column="post" property="post" />
+        <result column="post_remark" property="postRemark" />
+        <result column="witness" property="witness" />
+        <result column="tel" property="tel" />
+        <result column="start_time" property="startTime" />
+        <result column="leave_time" property="leaveTime" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        work_history_id, work_history_name, employee_id, post, post_remark, witness, tel, start_time, leave_time, create_time, update_time
+    </sql>
+    
+    <!--通过员工id查询最高学历-->
+    <select id="getWorkHistoryByEmpId" resultMap="BaseResultMap">
+        select * from t_work_history where employee_id = #{empId}
+    </select>
+
+
+    <insert id="saveWorkHistory" useGeneratedKeys="true" keyProperty="workHistoryId" parameterType="com.mapscience.modular.system.model.WorkHistory">
+        <!--生成uuid-->
+        <selectKey keyProperty="workHistoryId" resultType="java.lang.String" order="BEFORE">
+            select REPLACE(UUID(),'-','')
+        </selectKey>
+        insert into t_work_history (
+        <include refid="Base_Column_List"/>) values(
+        #{workHistoryId},#{workHistoryName},#{employeeId},#{post},#{postRemark},#{witness},#{tel},#{startTime},#{leaveTime},#{createTime},#{updateTime}
+        )
+    </insert>
+
+</mapper>

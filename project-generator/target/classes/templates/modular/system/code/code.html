@@ -1,0 +1,102 @@
+<#include "${base}/modular/admin/common/public.html"/>
+<@header title="代码生成" keywords="代码生成">
+    <!--可以引入当前页面的css、js等-->
+    <link rel="stylesheet" type="text/css" href="${base}/static/modular/code/css/code.css"/>
+    <script type="text/javascript" src="${base}/static/modular/code/js/code.js"></script>
+</@header>
+<@body>
+<div class="layui-tab page-content-wrap">
+    <div class="ibox-title">
+        <h5>代码生成</h5>
+    </div>
+    <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">
+            <form class="layui-form"  style="width: 90%;padding-top: 20px;">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">项目路径：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="项目路径" id="projectPath"  autocomplete="off" class="layui-input" value="${params.projectPath}">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">项目包名：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="项目的包" id="projectPackage" disabled autocomplete="off" class="layui-input" value="${params.projectPackage}">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">核心包名：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="核心包" id="corePackage" disabled autocomplete="off" class="layui-input" value="${params.corePackage}">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">业务名称：</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="bizName" name="业务名称"  autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">模块名称：</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="moduleName" name="模块名称" value="${params.moduleName}"  autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">父级菜单名称：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="id"  autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">表名称：</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="tableName" name="表名称" disabled autocomplete="off" class="layui-input layui-disabled">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">表前缀：</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="ignoreTabelPrefix" name="表前缀" value="${params.ignoreTabelPrefix}"  autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">类名：</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="className" name="类名" disabled autocomplete="off" class="layui-input layui-disabled">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn layui-btn-normal" lay-submit lay-filter="adminInfo" onclick="Code.generate()">代码生成</button>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">数据表：</label>
+                        <div class="list-group" id="tableList">
+                            <#list tables as i>
+                                <a href="javascript:void(0)" class="list-group-item" onclick="Code.selectTable('${i.tableName}')" tableName="${i.tableName}">${i.tableName}-${i.tableComment}</a>
+                            </#list>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">模板：</label>
+                        <div class="list-group" id="templateList">
+                            <#list templates as i>
+                                <a href="javascript:void(0)" class="list-group-item" onclick="Code.selectTemplate('${i.key}')" key="${i.key}">${i.key}-${i.desc}</a>
+                            </#list>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</@body>

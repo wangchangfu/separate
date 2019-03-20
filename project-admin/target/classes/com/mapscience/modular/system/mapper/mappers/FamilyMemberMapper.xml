@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapscience.modular.system.mapper.FamilyMemberMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.mapscience.modular.system.model.FamilyMember">
+        <id column="id" property="id" />
+        <result column="borth_date" property="borthDate" />
+        <result column="call" property="call" />
+        <result column="create_time" property="createTime" />
+        <result column="emp_id" property="empId" />
+        <result column="name" property="name" />
+        <result column="political_look" property="politicalLook" />
+        <result column="update_time" property="updateTime" />
+        <result column="work_unit" property="workUnit" />
+        <result column="contact_relationship_id" property="contactRelationshipId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, borth_date, call, create_time, emp_id, name, political_look, update_time, work_unit, contact_relationship_id
+    </sql>
+    
+     <!--通过员工id查询家庭成员-->
+    <select id="getFamilyMemberByEmpId" resultMap="BaseResultMap">
+        select * from t_family_member where emp_id = #{empId}
+    </select>
+
+</mapper>

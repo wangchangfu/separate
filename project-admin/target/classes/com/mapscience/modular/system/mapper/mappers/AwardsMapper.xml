@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapscience.modular.system.mapper.AwardsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.mapscience.modular.system.model.Awards">
+        <id column="id" property="id" />
+        <result column="organization" property="organization" />
+        <result column="award" property="award" />
+        <result column="award_time" property="awardTime" />
+        <result column="member_id" property="memberId" />
+        <result column="categroy" property="categroy" />
+        <result column="type" property="type" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, organization, award, award_time, member_id, categroy, type, remark
+    </sql>
+
+</mapper>

@@ -35,10 +35,10 @@ public class DefaultTemplateFactory {
     public static CodeProperties getDefaultParams(){
         CodeProperties codeProperties=new CodeProperties();
         codeProperties.setProjectPath(ToolUtil.getWebRootPath("project-admin"));
-        codeProperties.setAuthor("Mr.wcf");
+        codeProperties.setAuthor("tyj");
         codeProperties.setProjectPackage(ProjectGeneratorApplication.class.getPackage().getName());
         codeProperties.setCorePackage(CoreFlag.class.getPackage().getName());
-        codeProperties.setIgnoreTabelPrefix("t_");
+        codeProperties.setIgnoreTabelPrefix("sys_");
         codeProperties.setModuleName("system");
         codeProperties.setParentMenuName("系统管理");
         return codeProperties;

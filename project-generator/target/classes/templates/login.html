@@ -1,0 +1,45 @@
+<#assign basePath=request.contextPath />
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link href="${basePath}/static/modular/login/css/login.css" rel="stylesheet" type="text/css">
+    <script src="${base}/static/common/js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="${basePath}/static/common/plugins/layui/layui.js"></script>
+</head>
+<body class="login">
+<div class="login_m">
+    <div class="login_logo"><img src="${basePath}/static/modular/login/images/logo.png" width="196" height="46"></div>
+    <div class="login_boder">
+        <form action="${basePath}/login" method="post">
+            <div class="login_padding">
+                <h2>用户名</h2>
+                <label>
+                    <input type="text" id="account" name="account" class="txt_input txt_input2" lay-verify="required">
+                </label>
+                <h2>密码</h2>
+                <label>
+                    <input type="password" name="password" id="userpwd" class="txt_input" lay-verify="required">
+                </label>
+                <p class="forgot"><a href="javascript:void(0);">忘记密码?</a></p>
+                <div class="rem_sub">
+                    <div class="rem_sub_l">
+                        <input type="checkbox" name="remember" id="save_me">
+                        <label>记住</label>
+                    </div>
+                    <label>
+                        <input type="submit" class="sub_button" name="button" id="button" value="登录"
+                               style="opacity: 0.7;">
+                    </label>
+                </div>
+            </div>
+        </form>
+    </div><!--login_boder end-->
+</div><!--login_m end-->
+
+<br/>
+<br/>
+
+
+</body>
+</html>

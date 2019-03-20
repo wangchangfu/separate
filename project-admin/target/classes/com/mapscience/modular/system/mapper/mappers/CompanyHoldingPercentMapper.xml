@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapscience.modular.system.mapper.CompanyHoldingPercentMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.mapscience.modular.system.model.CompanyHoldingPercent">
+        <id column="company_holding_percent_id" property="companyHoldingPercentId" />
+        <result column="company_id" property="companyId" />
+        <result column="holding_company_id" property="holdingCompanyId" />
+        <result column="holding_employee_id" property="holdingEmployeeId" />
+        <result column="holding_company_name" property="holdingCompanyName" />
+        <result column="holding_employe_name" property="holdingEmployeName" />
+        <result column="percent" property="percent" />
+        <result column="status" property="status" />
+        <result column="crate_time" property="crateTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        company_holding_percent_id, company_id, holding_company_id, holding_employee_id, holding_company_name, holding_employe_name, percent, status, crate_time, update_time
+    </sql>
+
+</mapper>

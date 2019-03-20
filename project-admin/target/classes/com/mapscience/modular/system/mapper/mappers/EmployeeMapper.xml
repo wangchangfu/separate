@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapscience.modular.system.mapper.EmployeeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.mapscience.modular.system.model.Employee">
+        <id column="employee_id" property="employeeId"/>
+        <result column="employee_name" property="employeeName"/>
+        <result column="credentials_stype_id" property="credentialsStypeId"/>
+        <result column="card_id" property="cardId"/>
+        <result column="gender" property="gender"/>
+        <result column="birth_day" property="birthDay"/>
+        <result column="nationality_type_id" property="nationalityTypeId"/>
+        <result column="nation_type_id" property="nationTypeId"/>
+        <result column="marital_status_id" property="maritalStatusId"/>
+        <result column="native_place" property="nativePlace"/>
+        <result column="birth_place" property="birthPlace"/>
+        <result column="political_status_id" property="politicalStatusId"/>
+        <result column="admission_day" property="admissionDay"/>
+        <result column="join_work_day" property="joinWorkDay"/>
+        <result column="highest_education" property="highestEducation"/>
+        <result column="highest_degree" property="highestDegree"/>
+        <result column="health_id" property="healthId"/>
+        <result column="technical_position_id" property="technicalPositionId"/>
+        <result column="qualification" property="qualification"/>
+        <result column="into_sys_time" property="intoSysTime"/>
+        <result column="employee_state_id" property="employeeStateId"/>
+        <result column="into_company_time" property="intoCompanyTime"/>
+        <result column="source_entry_id" property="sourceEntryId"/>
+        <result column="account_type_id" property="accountTypeId"/>
+        <result column="registered_residence" property="registeredResidence"/>
+        <result column="current_residence" property="currentResidence"/>
+        <result column="email" property="email"/>
+        <result column="phone" property="phone"/>
+        <result column="tel" property="tel"/>
+        <result column="contact_relationship_name" property="contactRelationshipName"/>
+        <result column="contact_relationship_id" property="contactRelationshipId"/>
+        <result column="contact_relationship_phone" property="contactRelationshipPhone"/>
+        <result column="account" property="account"/>
+        <result column="pass_word" property="passWord"/>
+        <result column="jianpin" property="jianpin"/>
+        <result column="zhuanchang" property="zhuanchang"/>
+        <result column="opening_bank" property="openingBank"/>
+        <result column="bank_account" property="bankAccount"/>
+        <result column="type" property="type"/>
+        <result column="opening_bank_adress" property="openingBankAdress"/>
+        <result column="crate_time" property="crateTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        employee_id, employee_name, credentials_stype_id, card_id, gender, birth_day, nationality_type_id, nation_type_id, marital_status_id, native_place, birth_place, political_status_id, admission_day, join_work_day, highest_education, highest_degree, health_id, technical_position_id, qualification, into_sys_time, employee_state_id, into_company_time, source_entry_id, account_type_id, registered_residence, current_residence, email, phone, tel, contact_relationship_name, contact_relationship_id, contact_relationship_phone, account, pass_word, jianpin, zhuanchang, opening_bank, bank_account, type, opening_bank_adress, crate_time, update_time
+    </sql>
+
+
+    <!--通过用户名密码查询用户-->
+    <select id="getEmployeeByAccountAndPasswd" resultMap="BaseResultMap">
+        select * from  t_employee where account=#{arg0} and pass_word=#{arg1}
+    </select>
+
+    <!--通过账号获取用户-->
+    <select id="getByAccount" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_employee where account=#{account}
+    </select>
+
+    <!--模糊查询-->
+    <select id="fuzzyQuery" resultMap="BaseResultMap">
+        select * from t_employee e
+        <choose>
+            <when test="comId != null and comId !=''">
+                join t_emp_position p on e.employee_id = p.Emp_id where p.Com_id = #{comId}
+            </when>
+            <otherwise>
+                where 1=1
+            </otherwise>
+        </choose>
+        <if test="empName != null and empName !=''">
+            and e.employee_name like concat('%',#{empName},'%')
+        </if>
+        <if test="tel != null and tel !=''">
+            and e.tel like concat('%',#{tel},'%')
+        </if>
+        <if test="starWorkTime != null and starWorkTime !='' and endWorkTime != null and endWorkTime !=''">
+            and e.join_work_day between #{starWorkTime} and #{endWorkTime}
+        </if>
+        <if test="startBirthTime != null and endBirthTime !='' and endWorkTime != null and endWorkTime !=''">
+            and e.birth_day between #{startBirthTime} and #{endBirthTime}
+        </if>
+        <if test="education != null and education !=''">
+            and e.highest_education = #{education}
+        </if>
+    </select>
+
+    <!--通过公司id查询员工-->
+    <select id="getEmployeeByCompanyId" resultMap="BaseResultMap">
+        select e.* from t_employee e join t_emp_position p on e.employee_id = p.Emp_id 
+        where p.Com_id = #{companyId}
+    </select>
+
+    <update id="deleteEmployeeStatusById">
+    	update t_employee set employee_state_id = 0 where employee_id = #{id}
+    </update>
+    
+    <select id="findEmployee" resultMap="BaseResultMap">
+        select * from t_employee el
+        <choose>
+		    <when test="companyId != null and companyId !=''">
+		    	join t_emp_position ep on el.employee_id = ep.emp_id where ep.com_id = #{companyId}
+		    </when>
+		    <otherwise>
+		    	where 1=1
+		    </otherwise>
+	    </choose>
+	    <if test="employee != null">
+        </if>
+    </select>
+	
+
+
+    <!--查询所有员工-->
+    <select id="getList" resultMap="BaseResultMap" parameterType="String">
+        select * from  t_employee
+    </select>
+
+    <!--滚局员工姓名查询-->
+    <select id="getEmployeeByEmployeeName" resultMap="BaseResultMap">
+        select * from t_employee where employee_name = #{employeeName}
+    </select>
+
+    <select id="getEmployeeByCardId" resultMap="BaseResultMap">
+        select * from t_employee where card_id = #{cardId}
+    </select>
+
+
+</mapper>
