@@ -8,11 +8,11 @@ import com.mapscience.modular.system.model.Education;
 public class EducationDTO extends Education {
 
     @TableField("employee_name")
-    @Excel(name = "员工姓名")
+    @Excel(name = "员工本人姓名")
     private  String employeeName;
 
     @TableField("card_id")
-    @Excel(name = "身份证号")
+    @Excel(name = "本人身份证号")
     private String cardId;
 
     /**

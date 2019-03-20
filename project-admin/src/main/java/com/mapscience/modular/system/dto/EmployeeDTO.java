@@ -10,7 +10,7 @@ public class EmployeeDTO extends Employee {
     private static final long serialVersionUID = -4965143920295563042L;
 
     @TableField("company_name")
-    @Excel(name = "公司名称")
+    @Excel(name = "公司名称(全称)")
     private String companyName;
 
     @Excel(name = "从业人员岗位层级")

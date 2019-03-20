@@ -38,7 +38,7 @@ public class FamilyMember extends Model<FamilyMember> {
 
     @ApiModelProperty(value="出生年月")
     @TableField("borth_date")
-    @Excel(name = "出生日期")
+    @Excel(name = "出生日期(yyyy/m)")
     private Date borthDate;
 
     /**
