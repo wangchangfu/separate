@@ -77,7 +77,7 @@ public class UserController extends BaseController {
     }
 
     /**
-     * 按照按照管理员ID查找管理员信息
+     * 1按照按照管理员ID查找管理员信息
      * @param user
      * @return
      */
