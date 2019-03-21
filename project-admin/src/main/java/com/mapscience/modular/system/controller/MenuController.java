@@ -2,8 +2,6 @@ package com.mapscience.modular.system.controller;
 
 
 import com.mapscience.core.common.ResponseVal;
-import com.mapscience.core.shiro.ShiroKit;
-import com.mapscience.core.shiro.ShiroUser;
 import com.mapscience.core.util.JedisUtil;
 import com.mapscience.modular.system.model.Menu;
 import com.mapscience.modular.system.service.IMenuService;
@@ -42,7 +40,7 @@ public class MenuController {
     public ResponseVal menuTree(){
         //JedisUtil.getObject("menuTree");
         //获取当前用户
-            ShiroUser shiroUser = ShiroKit.getUser();
+            //ShiroUser shiroUser = ShiroKit.getUser();
 
             String menuTree = JedisUtil.getJson("menuTree");
             if (menuTree==null) {
