@@ -11,7 +11,7 @@ public class FamilyMemberDTO extends FamilyMember {
     private String employeeName;
 
     @TableField("card_id")
-    @Excel(name = "本人身份证号码")
+    @Excel(name = "本人身份证号")
     private String cardId;
 
     public String getEmployeeName() {

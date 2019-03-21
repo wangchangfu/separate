@@ -48,17 +48,13 @@ public class WorkHistory extends Model<WorkHistory> {
     /**
      * 担任职位
      */
+    @ApiModelProperty(value="担任职位")
     @TableField("post")
     @Excel(name = "岗位")
-
-
-    @ApiModelProperty(value="担任职位")
-
     private String post;
 
     @ApiModelProperty(value="职位描述")
     @TableField("post_remark")
-    @Excel(name = "职位描述")
     private String postRemark;
 
     /**
@@ -66,7 +62,6 @@ public class WorkHistory extends Model<WorkHistory> {
      */
     @ApiModelProperty(value="证明人")
     @TableField("witness")
-    @Excel(name = "证明人")
     private String witness;
     /**
      * 证明人电话
