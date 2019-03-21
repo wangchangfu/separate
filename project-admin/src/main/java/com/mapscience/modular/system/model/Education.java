@@ -69,9 +69,9 @@ public class Education extends Model<Education> {
     /**
      * 毕业专业
      */
+    @ApiModelProperty(value="毕业专业")
     @TableField("major")
     @Excel(name = "全日制专业")
-    @ApiModelProperty(value="毕业专业")
     private String major;
    
     @ApiModelProperty(value="学位授予单位")
