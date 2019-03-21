@@ -85,7 +85,6 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/findByIdUser" ,method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public ResponseVal<User> findByIdUser(@RequestBody User user){
-
         return this.userService.findByIdUser(user);
     }
 
