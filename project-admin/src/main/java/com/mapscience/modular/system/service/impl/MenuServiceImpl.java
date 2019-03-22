@@ -137,7 +137,12 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
         for (Menu m: menus) {
             MenuVueDTO menuVueDTO = new MenuVueDTO();
             menuVueDTO.setPath("/infoMsg");
-            menuVueDTO.setRedirect("/infoMsg/infomsg");
+            if (m.getMenuName().equals("信息管理")){
+                menuVueDTO.setRedirect("/infoMsg/infomsg");
+            }
+            if (m.getMenuName().equals("组织架构")){
+                menuVueDTO.setRedirect("/orgStructure/framework");
+            }
             menuVueDTO.setComponent1("Layout");
             Map<String , String > p=new HashMap<>();
             p.put("title",m.getMenuName());
@@ -149,12 +154,22 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
             List<ChildrenMenu> children = new ArrayList<>();
             ChildrenMenu ch = null;
                 if (menus1.size() ==0) {
-                    ch=new ChildrenMenu();
-                    ch.setComponent1(menuVueDTO.getComponent1());
-                    ch.setPath(menuVueDTO.getPath());
-                    ch.setName(menuVueDTO.getPath());
-                    ch.setMeta(p);
-                    children.add(ch);
+                    if (m.getMenuName().equals("信息管理")) {
+                        ch = new ChildrenMenu();
+                        ch.setComponent1("infoMsg/index");
+                        ch.setPath("infomsg");
+                        ch.setName("infomsg");
+                        ch.setMeta(p);
+                        children.add(ch);
+                    }
+                    if (m.getMenuName().equals("组织架构")) {
+                        ch = new ChildrenMenu();
+                        ch.setComponent1("orgStructure/index");
+                        ch.setPath("framework");
+                        ch.setName("framework");
+                        ch.setMeta(p);
+                        children.add(ch);
+                    }
                 }else{
                     for (int i=0;i<menus1.size();i++) {
                         if (menus1.get(i).getMenuName().equals("添加管理员")){
