@@ -58,11 +58,11 @@ mybatis-plus:
 #jedis配置
 redis:
   host: 192.168.1.225
-  port: 6380
-  password: 123456
+  port: 6379
+  password: foozzsres
   timeout: 10000
-  max-active: 200
-  max-wait: -1
+  max-active: 2000
+  max-wait: 2000
   max-idle: 8
   min-idle: 0
 
