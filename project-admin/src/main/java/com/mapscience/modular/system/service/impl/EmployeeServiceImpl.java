@@ -1,19 +1,24 @@
 
 package com.mapscience.modular.system.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.core.util.ObjectUtil;
 import com.mapscience.modular.system.mapper.EmployeeMapper;
 import com.mapscience.modular.system.model.Company;
 import com.mapscience.modular.system.model.Employee;
 import com.mapscience.modular.system.service.IEmployeeService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 /**
  * <p>
@@ -93,11 +98,6 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
         return employeeMapper.getEmployeeByCompanyId(companyId);
     }
 
-	@Override
-	public List<Employee> findEmployeeByCompanyId(String companyId) {
-		return employeeMapper.findEmployee(null, companyId);
-	}
-	
 	/**
      * 查询所有员工
      *
@@ -132,7 +132,27 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
         return employeeMapper.getEmployeeByCardId(cardId);
     }
 
-
+	@Override
+	public ArrayList<HashMap<String, String>> employeeAgeDistributionMap(String companyId, String ageRange, String gender) {
+		String[] ageRangeArr = ageRange.split(",");
+		String[] genderArr = gender.split(",");
+		ArrayList<HashMap<String, String>> newArrayListForReturn = Lists.newArrayList();
+		for(String ge : genderArr) {
+			HashMap<String, String> newHashMap = Maps.newHashMap();
+			newHashMap.put("性别", ge);
+			for (String ag : ageRangeArr) {
+				String[] split = ag.split("-");
+				HashMap<String, String> params = Maps.newHashMap();
+				params.put("companyId", companyId);
+				params.put("gender", ge);
+				params.put("beginAge", split[0]);
+				params.put("endAge", split[1]);
+				newHashMap.put(ag, String.valueOf(employeeMapper.findEmployee(params).size()));
+			}
+			newArrayListForReturn.add(newHashMap);
+		}
+		return newArrayListForReturn;
+	}
 
 }
 

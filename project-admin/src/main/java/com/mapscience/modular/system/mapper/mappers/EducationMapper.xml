@@ -27,11 +27,6 @@
         education_id, employee_id, education_type_id, degree_type_id, degree_name, admission_time, degree_date, major, degree_unit, educationctif_code, certif_code, record_type_id, is_highest_degree, remark, create_time, update_time
     </sql>
     
-    <!--通过员工id查询最高学历-->
-    <select id="getHighestDegreeByEmpId" resultMap="BaseResultMap">
-        select * from t_education where is_highest_degree = 1 and employee_id = #{empId}
-    </select>
-    
     <select id="findEducation" resultMap="BaseResultMap">
         select * from t_education ed
         <choose>
@@ -48,5 +43,10 @@
 		     </if>
         </if>
     </select>
-
+    
+    <!--通过员工id查询最高学历-->
+    <select id="getHighestDegreeByEmpId" resultMap="BaseResultMap">
+        select * from t_education where is_highest_degree = 1 and employee_id = #{empId}
+    </select>
+    
 </mapper>

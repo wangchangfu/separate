@@ -2,6 +2,7 @@
 
 package com.mapscience.modular.system.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -74,7 +75,7 @@ public interface EmployeeMapper extends BaseMapper<Employee> {
      */
     int deleteEmployeeStatusById(String id);
     
-    List<Employee> findEmployee(@Param("employee")Employee employee, @Param("companyId")String companyId);
+    List<Employee> findEmployee(@Param("params")HashMap<String, String> params);
 
 
 

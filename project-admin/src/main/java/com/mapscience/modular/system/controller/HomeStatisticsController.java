@@ -79,10 +79,6 @@ public class HomeStatisticsController extends BaseController {
     }
 
 
-    /**
-     * 通过公司id查询员工合同分布
-     * @return
-     */
     @ApiOperation(value = "通过公司id查询员工合同分布")
     @RequestMapping(value = "findContractByCompanyId",method = RequestMethod.POST)
     @ResponseBody
@@ -98,38 +94,31 @@ public class HomeStatisticsController extends BaseController {
 		}
     }
 
-
-    /**
-     * 通过公司id查询员工学历分布
-     * @return
-     */
     @ApiOperation(value = "通过公司id查询员工学历分布")
     @RequestMapping(value = "findEducationByCompanyId",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVal<List<Education>> findEducationByCompanyId(String companyId){
+    public ResponseVal findEducationByCompanyId(String companyId){
     	try {
-    		List<Education> findEducationByCompanyId = educationService.findEducationByCompanyId(companyId);
-    		return new ResponseVal<List<Education>>(0,"success",findEducationByCompanyId);
+    		HashMap<String, Integer> findEducationByCompanyId = educationService.findEducationByCompanyId(companyId);
+    		return new ResponseVal(0,"success", findEducationByCompanyId);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseVal<List<Education>>(500,"erro",null);
+			return new ResponseVal(500,"erro",null);
 		}
     }
 
-    /**
-     * 通过公司id查询查询公司人员
-     * @return
-     */
-    @ApiOperation(value = "通过公司id查询查询公司人员")
-    @RequestMapping(value = "findEmployeeByCompanyId",method = RequestMethod.POST)
+    @ApiOperation(value = "员工年龄段分布图")
+    @RequestMapping(value = "employeeAgeDistributionMap",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVal<List<Employee>> findEmployeeByCompanyId(String companyId){
+    public ResponseVal employeeAgeDistributionMap(String companyId,
+    		@RequestParam(required=false, defaultValue="0-25,26-30,31-35,36-40,41-45,46-50,51-200") String ageRange,
+    		@RequestParam(required=false, defaultValue="男,女") String gender){
     	try {
-    		List<Employee> findEmployeeByCompanyId = employeeService.findEmployeeByCompanyId(companyId);
-    		return new ResponseVal<List<Employee>>(0,"success",findEmployeeByCompanyId);
+    		ArrayList<HashMap<String, String>> employeeAgeDistributionMap = employeeService.employeeAgeDistributionMap(companyId, ageRange, gender);
+    		return new ResponseVal(0,"success",employeeAgeDistributionMap);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseVal<List<Employee>>(500,"erro",null);
+			return new ResponseVal(500,"erro",null);
 		}
     }
 

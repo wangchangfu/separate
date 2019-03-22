@@ -33,18 +33,10 @@ public class Education extends Model<Education> {
     @TableField("employee_id")
     private String employeeId;
 
-    /**
-     * 学历类型ID
-     */
-
     @ApiModelProperty(value="学历类型id")
     @TableField("education_type_id")
     @Excel(name = "全日制学历")
     private String educationTypeId;
-
-    /**
-     * 学位类型ID
-     */
 
     @ApiModelProperty(value="学位类型id")
     @TableField("degree_type_id")
@@ -59,16 +51,10 @@ public class Education extends Model<Education> {
     @TableField("admission_time")
     private Date admissionTime;
 
-    /**
-     * 学位授予日期/毕业时间
-     */
     @ApiModelProperty(value="学位授予日期/毕业时间")
     @TableField("degree_date")
     private Date degreeDate;
 
-    /**
-     * 毕业专业
-     */
     @ApiModelProperty(value="毕业专业")
     @TableField("major")
     @Excel(name = "全日制专业")
@@ -95,9 +81,6 @@ public class Education extends Model<Education> {
     @TableField("is_highest_degree")
     private Integer isHighestDegree;
 
-    /**
-     * 备注
-     */
     @TableField("remark")
     @ApiModelProperty(value="备注")
     private String remark;
@@ -110,12 +93,12 @@ public class Education extends Model<Education> {
     @TableField("update_time")
     private Date updateTime;
     
-    public enum 是否最高学历 {  
-    	是(1), 否(0);
+    public enum isHighestDegree {  
+    	是最高学历(1), 不是最高学历(0);
     	
         private int value; 
         
-        private 是否最高学历(int value) {  
+        private isHighestDegree(int value) {  
             this.value = value;  
         }  
         
@@ -127,8 +110,6 @@ public class Education extends Model<Education> {
         }  
     }  
 
-
-
     public String getDegreeUnit() {
         return degreeUnit;
     }
@@ -136,8 +117,6 @@ public class Education extends Model<Education> {
     public void setDegreeUnit(String degreeUnit) {
         this.degreeUnit = degreeUnit;
     }
-
-
 
     @Override
     protected Serializable pkVal() {
