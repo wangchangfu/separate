@@ -117,15 +117,24 @@ public class ExcelController {
         for (Employee employee : list) {
             //展示民族
             NationType nationTypeById = nationTypeService.getNationTypeById(employee.getNationTypeId());
-            employee.setNationTypeId(nationTypeById.getNationStypeName());
+            if (nationTypeById!=null){
+
+                employee.setNationTypeId(nationTypeById.getNationStypeName());
+            }
             //展示政治面貌
             PoliticalStatus politicalStatusById = politicalStatusService.getPoliticalStatusById(employee.getPoliticalStatusId());
-            employee.setPoliticalStatusId(politicalStatusById.getPoliticalStatusId());
+            if (politicalStatusById!=null){
+
+                employee.setPoliticalStatusId(politicalStatusById.getPoliticalStatusName());
+            }
             //展示健康状况
-            healthService.getHealthById(employee.getHealthId());
+            Health healthById = healthService.getHealthById(employee.getHealthId());
+            if (healthById!=null){
+                employee.setHealthId(healthById.getHealthName());
+            }
             employeeList.add(employee);
         }
-        EasyPOIExcelUtile.exportExcel(employeeList,"职工信息","基本信息",Employee.class,"人员信息.xlsx",response);
+        EasyPOIExcelUtile.exportExcel(list,"职工信息","基本信息",Employee.class,"人员信息.xlsx",response);
         return new ResponseVal(0, "测试", null);
     }
 
