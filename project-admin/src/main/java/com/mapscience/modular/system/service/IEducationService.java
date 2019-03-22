@@ -15,7 +15,7 @@ import com.mapscience.modular.system.model.Education;
  */
 public interface IEducationService extends IService<Education> {
 
-	HashMap<String, Integer> findEducationByCompanyId(String companyId);
+	HashMap<String, String> findEducationByCompanyId(String companyId);
     
     Education getHighestDegreeByEmpId(String empId);
 

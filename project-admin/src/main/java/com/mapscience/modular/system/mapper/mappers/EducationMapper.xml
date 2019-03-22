@@ -28,25 +28,26 @@
     </sql>
     
     <select id="findEducation" resultMap="BaseResultMap">
-        select * from t_education ed
-        <choose>
-		    <when test="companyId != null and companyId !=''">
-		    	join t_emp_position em on ed.employee_id = em.emp_id where em.com_id = #{companyId}
-		    </when>
-		    <otherwise>
+        select * from t_education edu
+        <if test="params != null">
+        	<choose>
+		   		 <when test="params.companyId != null and params.companyId !=''">
+		    		join t_emp_position emp on edu.employee_id = emp.emp_id where emp.com_id = #{params.companyId}
+		    	</when>
+		   	<otherwise>
 		    	where 1=1
 		    </otherwise>
-	    </choose>
-	    <if test="education != null">
-		     <if test="education.isHighestDegree != null and education.isHighestDegree !=''">
-		     	and ed.is_highest_degree = #{education.isHighestDegree}
-		     </if>
+	   		</choose>
+	   		 <if test="params.employeeId != null and params.employeeId != ''">
+		     		and edu.employee_id = #{params.employeeId}
+     		 </if>
+     		 <if test="params.isHighestDegree != null and params.isHighestDegree != ''">
+		     		and edu.is_highest_degree = #{params.isHighestDegree}
+     		 </if>
+     		 <if test="params.educationTypeId != null and params.educationTypeId != ''">
+		     		and edu.education_type_id = #{params.educationTypeId}
+     		 </if>
         </if>
-    </select>
-    
-    <!--通过员工id查询最高学历-->
-    <select id="getHighestDegreeByEmpId" resultMap="BaseResultMap">
-        select * from t_education where is_highest_degree = 1 and employee_id = #{empId}
     </select>
     
 </mapper>

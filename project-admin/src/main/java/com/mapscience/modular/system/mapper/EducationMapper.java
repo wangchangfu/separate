@@ -1,11 +1,13 @@
 package com.mapscience.modular.system.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.mapscience.modular.system.model.Education;
+import com.mapscience.modular.system.model.Employee;
 
 /**
  * <p>
@@ -17,6 +19,6 @@ import com.mapscience.modular.system.model.Education;
  */
 public interface EducationMapper extends BaseMapper<Education> {
 	
-	List<Education> findEducation(@Param("education")Education education, @Param("companyId")String companyId);
+	List<Education> findEducation(@Param("params")HashMap<String, String> params);
 
 }

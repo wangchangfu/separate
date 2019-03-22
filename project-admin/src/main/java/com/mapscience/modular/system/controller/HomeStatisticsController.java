@@ -102,8 +102,8 @@ public class HomeStatisticsController extends BaseController {
     		@RequestParam(required=false, defaultValue="固定期,无固定,实习协议,劳务合同,其他") String contractType,
     		@RequestParam(required=false, defaultValue="3") int numberOfYearAgo){
     	try {
-    		ArrayList<HashMap<String, Integer>> findContractByCompanyId = contractManagementService.findContractByCompanyId(companyId, contractType, numberOfYearAgo);
-    		return new ResponseVal(0,"success",findContractByCompanyId);
+    		ArrayList<HashMap<String, String>> findContractByCompanyId = contractManagementService.findContractByCompanyId(companyId, contractType, numberOfYearAgo);
+    		return new ResponseVal(200,"success",findContractByCompanyId);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseVal(500,"erro",null);
@@ -115,8 +115,8 @@ public class HomeStatisticsController extends BaseController {
     @ResponseBody
     public ResponseVal findEducationByCompanyId(String companyId){
     	try {
-    		HashMap<String, Integer> findEducationByCompanyId = educationService.findEducationByCompanyId(companyId);
-    		return new ResponseVal(0,"success", findEducationByCompanyId);
+    		HashMap<String, String> findEducationByCompanyId = educationService.findEducationByCompanyId(companyId);
+    		return new ResponseVal(200,"success", findEducationByCompanyId);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseVal(500,"erro",null);
@@ -131,7 +131,7 @@ public class HomeStatisticsController extends BaseController {
     		@RequestParam(required=false, defaultValue="男,女") String gender){
     	try {
     		ArrayList<HashMap<String, String>> employeeAgeDistributionMap = employeeService.employeeAgeDistributionMap(companyId, ageRange, gender);
-    		return new ResponseVal(0,"success",employeeAgeDistributionMap);
+    		return new ResponseVal(200,"success",employeeAgeDistributionMap);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseVal(500,"erro",null);
