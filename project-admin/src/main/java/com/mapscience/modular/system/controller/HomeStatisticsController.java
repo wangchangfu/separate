@@ -78,7 +78,6 @@ public class HomeStatisticsController extends BaseController {
         return  comList;
     }
 
-
     @ApiOperation(value = "通过公司id查询员工合同分布")
     @RequestMapping(value = "findContractByCompanyId",method = RequestMethod.POST)
     @ResponseBody
