@@ -1,5 +1,7 @@
 package com.mapscience.modular.system.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.Map;
 
 public class ChildrenMenu {
@@ -8,7 +10,9 @@ public class ChildrenMenu {
     private String name;
     private String component1;
     private Map meta;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String title;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String icon;
 
     public String getPath() {
