@@ -1,6 +1,7 @@
 package com.mapscience.modular.system.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.mapscience.modular.system.dto.MenuVueDTO;
 import com.mapscience.modular.system.model.Menu;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -49,6 +50,12 @@ public interface MenuMapper extends BaseMapper<Menu> {
 
     List<String> getResUrlsByRoleId(String roleId);
 
-    /*@Select("select m.menu_id,m.menu_name title,m.url path,m.icon from t_menu m left join t_role_permission p on p.menu_id=m.menu_id where p.role_id=#{roleId} and m.parent_id=#{menuId}")
-    List<MenuVueDTO> findByIdListMenu(@Param("menuId") String menuId, @Param("roleId")String roleId);*/
+    /**
+     * 改造前端返回菜单
+     * @param menuId
+     * @param roleId
+     * @return
+     */
+    @Select("select m.menu_id,m.menu_code name,m.menu_name title,m.url path,m.icon from t_menu m left join t_role_permission p on p.menu_id=m.menu_id where p.role_id=#{roleId} and m.parent_id=#{menuId}")
+    List<MenuVueDTO> findByMenuList(@Param("menuId") String menuId, @Param("roleId")String roleId);
 }

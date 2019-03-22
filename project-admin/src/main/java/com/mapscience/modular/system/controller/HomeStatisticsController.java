@@ -168,10 +168,10 @@ public class HomeStatisticsController extends BaseController {
         Role byRoleId = this.roleService.findByRoleId(menu.getUserId());
         if (ObjectUtil.isNotEmpty(byRoleId)) {
             //根据菜单ID查找当前用户的菜单
-            List<MenuVueDTO> menus = this.menuService.findByIdMenuList(menu.getMenuId(), byRoleId.getRoleId());
-
+            //List<MenuVueDTO> menus = this.menuService.findByIdMenuList(menu.getMenuId(), byRoleId.getRoleId());
+            List<MenuVueDTO> menus = this.menuService.findByMenuList(menu.getMenuId(), byRoleId.getRoleId());
             //根据菜单ID查询菜单
-            return new ResponseVal("查询成功", menus);
+            return new ResponseVal(HttpStatus.OK.value(),"查询成功",menus);
         }else{
             return new ResponseVal(HttpStatus.INTERNAL_SERVER_ERROR.value(),"权限不足");
         }

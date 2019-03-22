@@ -52,4 +52,6 @@ public interface IMenuService extends IService<Menu> {
      * @return
      */
     List<MenuVueDTO> findByIdMenuList(String menuId, String roleId);
+
+    List<MenuVueDTO> findByMenuList(String menuId, String roleId);
 }

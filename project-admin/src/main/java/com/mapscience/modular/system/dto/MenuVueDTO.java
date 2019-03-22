@@ -1,5 +1,7 @@
 package com.mapscience.modular.system.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.List;
 import java.util.Map;
 
@@ -7,17 +9,25 @@ public class MenuVueDTO  {
     private static final long serialVersionUID = 38457198757622835L;
 
 
-
-
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String name;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String menuId;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String path;  //
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String redirect;  //重定向
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String component1;  //固定父组件
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Map   meta;
-    //@JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String title;   //名称
-    //@JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String icon;
-    private List<ChildrenMenu> children;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private List<MenuVueDTO> children;
     public String getIcon() {
         return icon;
     }
@@ -27,9 +37,21 @@ public class MenuVueDTO  {
     }
 
 
+    public String getMenuId() {
+        return menuId;
+    }
 
+    public void setMenuId(String menuId) {
+        this.menuId = menuId;
+    }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getPath() {
         return path;
@@ -71,11 +93,12 @@ public class MenuVueDTO  {
         this.title = title;
     }
 
-    public List<ChildrenMenu> getChildren() {
+    public List<MenuVueDTO> getChildren() {
         return children;
     }
 
-    public void setChildren(List<ChildrenMenu> children) {
+    public void setChildren(List<MenuVueDTO> children) {
         this.children = children;
     }
+
 }

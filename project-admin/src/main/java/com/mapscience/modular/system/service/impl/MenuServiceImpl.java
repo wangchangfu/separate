@@ -129,6 +129,71 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
         return new ResponseVal("查询成功",menus);
     }
 
+    /**
+     * 前端返回活菜单
+     * @param menuId
+     * @param roleId
+     * @return
+     */
+    @Override
+    public List<MenuVueDTO> findByMenuList(String menuId, String roleId) {
+
+        List<MenuVueDTO> menus = this.baseMapper.findByMenuList(menuId,roleId);
+
+            for (MenuVueDTO m: menus) {
+                Map<String, String> mpas= new HashMap<>();
+                m.setPath("/"+m.getPath());
+                m.setRedirect(m.getPath()+"/"+m.getName());
+                m.setComponent1("Layout");
+                mpas.put("title",m.getTitle());
+                mpas.put("icon",m.getIcon());
+                m.setMeta(mpas);
+                List<MenuVueDTO> menus1 = findByMenuList_list(m.getMenuId(),roleId);
+                if(menus1.size() ==0){
+                    MenuVueDTO menuVue =new MenuVueDTO();
+                    menuVue.setPath(m.getPath());
+                    menuVue.setName(m.getName());
+                    menuVue.setComponent1(m.getPath()+"/index");
+                    menuVue.setMeta(mpas);
+                    menus1.add(menuVue);
+                    m.setChildren(menus1);
+                }else{
+                    List<MenuVueDTO> newme =new ArrayList<>();
+                        for (int i=0;i<menus1.size();i++){
+                            Map<String, String> mps_1= new HashMap<>();
+                            MenuVueDTO me =new MenuVueDTO();
+                            me.setPath(menus1.get(i).getPath());
+                            me.setName(menus1.get(i).getName());
+                            me.setComponent1(menus1.get(i).getPath()+"/"+menus1.get(i).getName());
+                            mps_1.put("title",menus1.get(i).getTitle());
+                            mps_1.put("icon",menus1.get(i).getIcon());
+                            me.setMeta(mps_1);
+                            newme.add(me);
+                            m.setChildren(newme);
+                        }
+                }
+
+            }
+        return menus;
+    }
+
+    /**
+     *
+     * @param menuId
+     * @param roleId
+     * @return
+     */
+    private List<MenuVueDTO> findByMenuList_list(String menuId, String roleId){
+        List<MenuVueDTO> menus = this.baseMapper.findByMenuList(menuId,roleId);
+        return menus;
+    }
+
+    /**
+     * 前端返回四菜单
+     * @param menuId
+     * @param roleId
+     * @return
+     */
     @Override
     public List<MenuVueDTO> findByIdMenuList(String menuId, String roleId) {
         List<Menu> menus = this.baseMapper.findMenus(menuId,roleId);
@@ -198,7 +263,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
                     }
                 }
 
-            menuVueDTO.setChildren(children);
+           // menuVueDTO.setChildren(children);
             menuVueDTOS.add(menuVueDTO);
         }
         return menuVueDTOS;
