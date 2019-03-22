@@ -26,4 +26,8 @@
         select * from t_health where health_name = #{healthName}
     </select>
 
+    <select id="getHealthById" resultMap="BaseResultMap">
+        select * from t_health where health_id = #{healthId}
+    </select>
+
 </mapper>

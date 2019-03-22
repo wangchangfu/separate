@@ -113,7 +113,28 @@ public class ExcelController {
     public ResponseVal exportEmploy(HttpServletRequest request, Integer method, Integer type, String ids,
                                     HttpServletResponse response) {
         List<Employee> list = employeeService.getList();
-        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("员工信息表", "员工信息"), Employee.class, list);
+       List<Employee> employeeList = new ArrayList<>();
+        for (Employee employee : list) {
+            //展示民族
+            NationType nationTypeById = nationTypeService.getNationTypeById(employee.getNationTypeId());
+            if (nationTypeById!=null){
+
+                employee.setNationTypeId(nationTypeById.getNationStypeName());
+            }
+            //展示政治面貌
+            PoliticalStatus politicalStatusById = politicalStatusService.getPoliticalStatusById(employee.getPoliticalStatusId());
+            if (politicalStatusById!=null){
+
+                employee.setPoliticalStatusId(politicalStatusById.getPoliticalStatusName());
+            }
+            //展示健康状况
+            Health healthById = healthService.getHealthById(employee.getHealthId());
+            if (healthById!=null){
+                employee.setHealthId(healthById.getHealthName());
+            }
+            employeeList.add(employee);
+        }
+        EasyPOIExcelUtile.exportExcel(list,"职工信息","基本信息",Employee.class,"人员信息.xlsx",response);
         return new ResponseVal(0, "测试", null);
     }
 
@@ -211,7 +232,7 @@ public class ExcelController {
                         //最高学位
                         employee.setHighestDegree(employeeDTO.getHighestDegree());
                         //健康状况id
-                        Health health = healthService.getHealth(employeeDTO.getHealthId());
+                        Health health = healthService.getHealthByName(employeeDTO.getHealthId());
                         if (health != null) {
                             employee.setHealthId(health.getHealthId());
                         }

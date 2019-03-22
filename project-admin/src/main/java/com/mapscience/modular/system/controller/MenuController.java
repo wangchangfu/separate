@@ -46,7 +46,7 @@ public class MenuController {
             if (menuTree==null) {
                 return this.menuService.findmenuChildren();
             }
-            return new ResponseVal(0,"",menuTree);
+            return new ResponseVal("查询成功",menuTree);
     }
 
 

@@ -1,39 +1,23 @@
 package com.mapscience.modular.system.controller;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.mapscience.core.base.controller.BaseController;
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.core.util.ObjectUtil;
 import com.mapscience.modular.system.dto.MenuDTO;
-import com.mapscience.modular.system.model.Company;
-import com.mapscience.modular.system.model.CompanyType;
-import com.mapscience.modular.system.model.Education;
-import com.mapscience.modular.system.model.Employee;
-import com.mapscience.modular.system.model.Menu;
-import com.mapscience.modular.system.model.Role;
-import com.mapscience.modular.system.service.ICompanyService;
-import com.mapscience.modular.system.service.ICompanyTypeService;
-import com.mapscience.modular.system.service.IContractManagementService;
-import com.mapscience.modular.system.service.IEducationService;
-import com.mapscience.modular.system.service.IEmployeeService;
-import com.mapscience.modular.system.service.IMenuService;
-import com.mapscience.modular.system.service.IRoleService;
-
+import com.mapscience.modular.system.dto.MenuVueDTO;
+import com.mapscience.modular.system.model.*;
+import com.mapscience.modular.system.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * 前端大屏控制器
@@ -158,15 +142,40 @@ public class HomeStatisticsController extends BaseController {
     @ApiOperation(value = "根据菜单ID返回菜单树")
     @RequestMapping(value = "/modelIndex",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVal modelIndex(@RequestBody MenuDTO menu) {
+    public ResponseVal<List<Menu>> modelIndex(@RequestBody MenuDTO menu) {
         Role byRoleId = this.roleService.findByRoleId(menu.getUserId());
+        if (ObjectUtil.isNotEmpty(byRoleId)) {
             //根据菜单ID查找当前用户的菜单
-        List<Menu> menus = this.menuService.findMenus(menu.getMenuId(),byRoleId.getRoleId());
-        if (ObjectUtil.isEmpty(menus) || menus.size()<0){
-            return new ResponseVal(HttpStatus.FOUND.value(),"暂无数据");
+            List<Menu> menus = this.menuService.findMenus(menu.getMenuId(), byRoleId.getRoleId());
+            if (ObjectUtil.isEmpty(menus) || menus.size() < 0) {
+                return new ResponseVal(HttpStatus.FOUND.value(), "暂无数据");
+            }
+            //根据菜单ID查询菜单
+            return new ResponseVal("查询成功", menus);
+        }else{
+            return new ResponseVal(HttpStatus.INTERNAL_SERVER_ERROR.value(),"权限不足");
         }
-        //根据菜单ID查询菜单
-        return new ResponseVal("查询成功",menus);
+    }
+
+
+    /**
+     * 根据菜单ID返回菜单树测试
+     * @return
+     */
+    @ApiOperation(value = "根据菜单ID返回菜单树")
+    @RequestMapping(value = "/findByIdMenuList",method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseVal findByIdMenuList(@RequestBody MenuDTO menu) {
+        Role byRoleId = this.roleService.findByRoleId(menu.getUserId());
+        if (ObjectUtil.isNotEmpty(byRoleId)) {
+            //根据菜单ID查找当前用户的菜单
+            List<MenuVueDTO> menus = this.menuService.findByIdMenuList(menu.getMenuId(), byRoleId.getRoleId());
+
+            //根据菜单ID查询菜单
+            return new ResponseVal("查询成功", menus);
+        }else{
+            return new ResponseVal(HttpStatus.INTERNAL_SERVER_ERROR.value(),"权限不足");
+        }
     }
 
 }

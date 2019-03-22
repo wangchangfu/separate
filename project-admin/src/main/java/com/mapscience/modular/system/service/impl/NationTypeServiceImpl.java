@@ -25,4 +25,9 @@ public class NationTypeServiceImpl extends ServiceImpl<NationTypeMapper, NationT
     public NationType getNationTypeByName(String nationStypeName) {
         return nationTypeMapper.getNationTypeByName(nationStypeName);
     }
+
+    @Override
+    public NationType getNationTypeById(String nationTypeId) {
+        return this.baseMapper.getNationTypeById(nationTypeId);
+    }
 }
