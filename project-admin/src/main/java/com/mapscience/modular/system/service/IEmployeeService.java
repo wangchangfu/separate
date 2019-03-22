@@ -1,12 +1,14 @@
 
 package com.mapscience.modular.system.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import com.baomidou.mybatisplus.service.IService;
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.modular.system.model.Company;
 import com.mapscience.modular.system.model.Employee;
-
-import java.util.List;
 
 /**
  * <p>
@@ -58,7 +60,6 @@ public interface IEmployeeService extends IService<Employee> {
      */
     void batchDeleteEmployeeStatusByIds(String ids);
     
-    List<Employee> findEmployeeByCompanyId(String companyId);
     /**
      * 查询所有
      *
@@ -81,6 +82,8 @@ public interface IEmployeeService extends IService<Employee> {
      * @return
      */
     Employee getEmployeeByCardId(String cardId);
+    
+    ArrayList<HashMap<String, String>> employeeAgeDistributionMap(String companyId, String ageRange, String gender);
 
 }
 

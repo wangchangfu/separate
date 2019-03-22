@@ -62,6 +62,13 @@ public class Menu extends Model<Menu> {
      */
     @ApiModelProperty(value="状态")
     private Integer status;
+
+    /**
+     * 图标
+     */
+    @ApiModelProperty(value="图标")
+    @TableField("icon")
+    private String icon;
     /**
      * 跳转链接
      */
@@ -89,6 +96,14 @@ public class Menu extends Model<Menu> {
      * 子菜单
      */
     private List<Menu> children;
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
 
     public String getMenuId() {
         return menuId;

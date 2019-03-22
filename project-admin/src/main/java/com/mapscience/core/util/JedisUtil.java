@@ -45,7 +45,12 @@ public class JedisUtil {
                 return null;
             }
         } catch (Exception e) {
+
             throw new ProjectException(500, "获取Jedis资源异常:" + e.getMessage());
+        }finally {
+
+            closePool();
+
         }
     }
 

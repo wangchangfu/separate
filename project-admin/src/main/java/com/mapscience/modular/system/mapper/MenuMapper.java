@@ -49,4 +49,6 @@ public interface MenuMapper extends BaseMapper<Menu> {
 
     List<String> getResUrlsByRoleId(String roleId);
 
+    /*@Select("select m.menu_id,m.menu_name title,m.url path,m.icon from t_menu m left join t_role_permission p on p.menu_id=m.menu_id where p.role_id=#{roleId} and m.parent_id=#{menuId}")
+    List<MenuVueDTO> findByIdListMenu(@Param("menuId") String menuId, @Param("roleId")String roleId);*/
 }

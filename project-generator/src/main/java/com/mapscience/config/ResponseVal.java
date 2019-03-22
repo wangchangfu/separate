@@ -1,4 +1,4 @@
-package com.mapscience.core.common;
+package com.mapscience.config;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

@@ -1,39 +1,23 @@
 package com.mapscience.modular.system.controller;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.mapscience.core.base.controller.BaseController;
 import com.mapscience.core.common.ResponseVal;
 import com.mapscience.core.util.ObjectUtil;
 import com.mapscience.modular.system.dto.MenuDTO;
-import com.mapscience.modular.system.model.Company;
-import com.mapscience.modular.system.model.CompanyType;
-import com.mapscience.modular.system.model.Education;
-import com.mapscience.modular.system.model.Employee;
-import com.mapscience.modular.system.model.Menu;
-import com.mapscience.modular.system.model.Role;
-import com.mapscience.modular.system.service.ICompanyService;
-import com.mapscience.modular.system.service.ICompanyTypeService;
-import com.mapscience.modular.system.service.IContractManagementService;
-import com.mapscience.modular.system.service.IEducationService;
-import com.mapscience.modular.system.service.IEmployeeService;
-import com.mapscience.modular.system.service.IMenuService;
-import com.mapscience.modular.system.service.IRoleService;
-
+import com.mapscience.modular.system.dto.MenuVueDTO;
+import com.mapscience.modular.system.model.*;
+import com.mapscience.modular.system.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * 前端大屏控制器
@@ -95,10 +79,6 @@ public class HomeStatisticsController extends BaseController {
     }
 
 
-    /**
-     * 通过公司id查询员工合同分布
-     * @return
-     */
     @ApiOperation(value = "通过公司id查询员工合同分布")
     @RequestMapping(value = "findContractByCompanyId",method = RequestMethod.POST)
     @ResponseBody
@@ -114,38 +94,31 @@ public class HomeStatisticsController extends BaseController {
 		}
     }
 
-
-    /**
-     * 通过公司id查询员工学历分布
-     * @return
-     */
     @ApiOperation(value = "通过公司id查询员工学历分布")
     @RequestMapping(value = "findEducationByCompanyId",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVal<List<Education>> findEducationByCompanyId(String companyId){
+    public ResponseVal findEducationByCompanyId(String companyId){
     	try {
-    		List<Education> findEducationByCompanyId = educationService.findEducationByCompanyId(companyId);
-    		return new ResponseVal<List<Education>>(0,"success",findEducationByCompanyId);
+    		HashMap<String, Integer> findEducationByCompanyId = educationService.findEducationByCompanyId(companyId);
+    		return new ResponseVal(0,"success", findEducationByCompanyId);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseVal<List<Education>>(500,"erro",null);
+			return new ResponseVal(500,"erro",null);
 		}
     }
 
-    /**
-     * 通过公司id查询查询公司人员
-     * @return
-     */
-    @ApiOperation(value = "通过公司id查询查询公司人员")
-    @RequestMapping(value = "findEmployeeByCompanyId",method = RequestMethod.POST)
+    @ApiOperation(value = "员工年龄段分布图")
+    @RequestMapping(value = "employeeAgeDistributionMap",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVal<List<Employee>> findEmployeeByCompanyId(String companyId){
+    public ResponseVal employeeAgeDistributionMap(String companyId,
+    		@RequestParam(required=false, defaultValue="0-25,26-30,31-35,36-40,41-45,46-50,51-200") String ageRange,
+    		@RequestParam(required=false, defaultValue="男,女") String gender){
     	try {
-    		List<Employee> findEmployeeByCompanyId = employeeService.findEmployeeByCompanyId(companyId);
-    		return new ResponseVal<List<Employee>>(0,"success",findEmployeeByCompanyId);
+    		ArrayList<HashMap<String, String>> employeeAgeDistributionMap = employeeService.employeeAgeDistributionMap(companyId, ageRange, gender);
+    		return new ResponseVal(0,"success",employeeAgeDistributionMap);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseVal<List<Employee>>(500,"erro",null);
+			return new ResponseVal(500,"erro",null);
 		}
     }
 
@@ -169,15 +142,40 @@ public class HomeStatisticsController extends BaseController {
     @ApiOperation(value = "根据菜单ID返回菜单树")
     @RequestMapping(value = "/modelIndex",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVal modelIndex(@RequestBody MenuDTO menu) {
+    public ResponseVal<List<Menu>> modelIndex(@RequestBody MenuDTO menu) {
         Role byRoleId = this.roleService.findByRoleId(menu.getUserId());
+        if (ObjectUtil.isNotEmpty(byRoleId)) {
             //根据菜单ID查找当前用户的菜单
-        List<Menu> menus = this.menuService.findMenus(menu.getMenuId(),byRoleId.getRoleId());
-        if (ObjectUtil.isEmpty(menus) || menus.size()<0){
-            return new ResponseVal(HttpStatus.FOUND.value(),"暂无数据");
+            List<Menu> menus = this.menuService.findMenus(menu.getMenuId(), byRoleId.getRoleId());
+            if (ObjectUtil.isEmpty(menus) || menus.size() < 0) {
+                return new ResponseVal(HttpStatus.FOUND.value(), "暂无数据");
+            }
+            //根据菜单ID查询菜单
+            return new ResponseVal("查询成功", menus);
+        }else{
+            return new ResponseVal(HttpStatus.INTERNAL_SERVER_ERROR.value(),"权限不足");
         }
-        //根据菜单ID查询菜单
-        return new ResponseVal("查询成功",menus);
+    }
+
+
+    /**
+     * 根据菜单ID返回菜单树测试
+     * @return
+     */
+    @ApiOperation(value = "根据菜单ID返回菜单树")
+    @RequestMapping(value = "/findByIdMenuList",method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseVal findByIdMenuList(@RequestBody MenuDTO menu) {
+        Role byRoleId = this.roleService.findByRoleId(menu.getUserId());
+        if (ObjectUtil.isNotEmpty(byRoleId)) {
+            //根据菜单ID查找当前用户的菜单
+            List<MenuVueDTO> menus = this.menuService.findByIdMenuList(menu.getMenuId(), byRoleId.getRoleId());
+
+            //根据菜单ID查询菜单
+            return new ResponseVal("查询成功", menus);
+        }else{
+            return new ResponseVal(HttpStatus.INTERNAL_SERVER_ERROR.value(),"权限不足");
+        }
     }
 
 }

@@ -52,7 +52,26 @@
     <sql id="Base_Column_List">
         employee_id, employee_name, credentials_stype_id, card_id, gender, birth_day, nationality_type_id, nation_type_id, marital_status_id, native_place, birth_place, political_status_id, admission_day, join_work_day, highest_education, highest_degree, health_id, technical_position_id, qualification, into_sys_time, employee_state_id, into_company_time, source_entry_id, account_type_id, registered_residence, current_residence, email, phone, tel, contact_relationship_name, contact_relationship_id, contact_relationship_phone, account, pass_word, jianpin, zhuanchang, opening_bank, bank_account, type, opening_bank_adress, crate_time, update_time
     </sql>
-
+    
+    <select id="findEmployee" resultMap="BaseResultMap">
+        select * from t_employee emp
+       	<if test="params != null">
+        	<choose>
+		   		 <when test="params.companyId != null and params.companyId !=''">
+		    		join t_emp_position epo on emp.employee_id = epo.emp_id where epo.com_id = #{params.companyId}
+		    	</when>
+		   	<otherwise>
+		    	where 1=1
+		    </otherwise>
+	   		</choose>
+	   		<if test="params.gender != null and params.gender != ''">
+       			and emp.gender = #{params.gender}
+      		</if>
+       		<if test="params.beginAge != null and params.beginAge != '' and params.endAge != null and params.endAge != ''">
+       			and round(datediff(curdate(), emp.birth_day)/365.2422) between #{params.beginAge} and #{params.endAge}
+      		</if>
+        </if>
+    </select>
 
     <!--通过用户名密码查询用户-->
     <select id="getEmployeeByAccountAndPasswd" resultMap="BaseResultMap">
@@ -133,6 +152,5 @@
     <select id="getEmployeeByCardId" resultMap="BaseResultMap">
         select * from t_employee where card_id = #{cardId}
     </select>
-
-
+    
 </mapper>
