@@ -4,49 +4,50 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.mapscience.modular.system.model.Education">
-        <id column="education_id" property="educationId"/>
-        <result column="employee_id" property="employeeId"/>
-        <result column="education_type_id" property="educationTypeId"/>
-        <result column="degree_type_id" property="degreeTypeId"/>
-        <result column="degree_name" property="degreeName"/>
-        <result column="admission_time" property="admissionTime"/>
-        <result column="degree_date" property="degreeDate"/>
-        <result column="major" property="major"/>
-        <result column="degree_unit" property="degreeUnit"/>
-        <result column="educationctif_code" property="educationctifCode"/>
-        <result column="certif_code" property="certifCode"/>
-        <result column="record_type_id" property="recordTypeId"/>
-        <result column="is_highest_degree" property="isHighestDegree"/>
-        <result column="remark" property="remark"/>
-        <result column="create_time" property="createTime"/>
-        <result column="update_time" property="updateTime"/>
+        <id column="education_id" property="educationId" />
+        <result column="employee_id" property="employeeId" />
+        <result column="education_type_id" property="educationTypeId" />
+        <result column="degree_type_id" property="degreeTypeId" />
+        <result column="degree_name" property="degreeName" />
+        <result column="admission_time" property="admissionTime" />
+        <result column="degree_date" property="degreeDate" />
+        <result column="major" property="major" />
+        <result column="degree_unit" property="degreeUnit" />
+        <result column="educationctif_code" property="educationctifCode" />
+        <result column="certif_code" property="certifCode" />
+        <result column="record_type_id" property="recordTypeId" />
+        <result column="is_highest_degree" property="isHighestDegree" />
+        <result column="remark" property="remark" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         education_id, employee_id, education_type_id, degree_type_id, degree_name, admission_time, degree_date, major, degree_unit, educationctif_code, certif_code, record_type_id, is_highest_degree, remark, create_time, update_time
     </sql>
-
+    
     <select id="findEducation" resultMap="BaseResultMap">
-        select * from t_education ed
-        <choose>
-            <when test="companyId != null and companyId !=''">
-                join t_emp_position em on ed.employee_id = em.emp_id where em.com_id = #{companyId}
-            </when>
-            <otherwise>
-                where 1=1
-            </otherwise>
-        </choose>
-        <if test="education != null">
-            <if test="education.isHighestDegree != null and education.isHighestDegree !=''">
-                and ed.is_highest_degree = #{education.isHighestDegree}
-            </if>
+        select * from t_education edu
+        <if test="params != null">
+        	<choose>
+		   		 <when test="params.companyId != null and params.companyId !=''">
+		    		join t_emp_position emp on edu.employee_id = emp.emp_id where emp.com_id = #{params.companyId}
+		    	</when>
+		   	<otherwise>
+		    	where 1=1
+		    </otherwise>
+	   		</choose>
+	   		 <if test="params.employeeId != null and params.employeeId != ''">
+		     		and edu.employee_id = #{params.employeeId}
+     		 </if>
+     		 <if test="params.isHighestDegree != null and params.isHighestDegree != ''">
+		     		and edu.is_highest_degree = #{params.isHighestDegree}
+     		 </if>
+     		 <if test="params.educationTypeId != null and params.educationTypeId != ''">
+		     		and edu.education_type_id = #{params.educationTypeId}
+     		 </if>
         </if>
-    </select>
-
-    <!--通过员工id查询最高学历-->
-    <select id="getHighestDegreeByEmpId" resultMap="BaseResultMap">
-        select * from t_education where is_highest_degree = 1 and employee_id = #{empId}
     </select>
 
     <select id="getList" resultMap="BaseResultMap">

@@ -25,15 +25,24 @@
     </sql>
     
     <select id="findContract" resultMap="BaseResultMap">
-        select * from t_contract_management where 1=1
-        <if test="contractManagement.signingComId != null and contractManagement.signingComId !=''">
-        and signing_com_id = #{contractManagement.signingComId}
-        </if>
-        <if test="contractManagement.contractType != null and contractManagement.contractType !=''">
-        and contract_type = #{contractManagement.contractType}
-        </if>
-        <if test="year != null">
-        and year(start_time) = #{year}
+        select * from t_contract_management ctm
+        <if test="params != null">
+        	<choose>
+		   		 <when test="false">
+		    	</when>
+		   	<otherwise>
+		    	where 1=1
+		    </otherwise>
+	   		</choose>
+	   		 <if test="params.signingComId != null and params.signingComId != ''">
+		     		and ctm.signing_com_id = #{params.signingComId}
+     		 </if>
+     		 <if test="params.contractType != null and params.contractType != ''">
+		     		and ctm.contract_type = #{params.contractType}
+     		 </if>
+     		 <if test="params.year != null and params.year != ''">
+		     		and year(ctm.start_time) = #{params.year}
+     		 </if>
         </if>
     </select>
 

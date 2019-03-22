@@ -57,7 +57,7 @@
         select * from t_employee emp
        	<if test="params != null">
         	<choose>
-		   		 <when test="params.companyId != null and params.companyId !=''">
+		   		 <when test="params.companyId != null and params.companyId != ''">
 		    		join t_emp_position epo on emp.employee_id = epo.emp_id where epo.com_id = #{params.companyId}
 		    	</when>
 		   	<otherwise>
@@ -123,22 +123,6 @@
     	update t_employee set employee_state_id = 0 where employee_id = #{id}
     </update>
     
-    <select id="findEmployee" resultMap="BaseResultMap">
-        select * from t_employee el
-        <choose>
-		    <when test="companyId != null and companyId !=''">
-		    	join t_emp_position ep on el.employee_id = ep.emp_id where ep.com_id = #{companyId}
-		    </when>
-		    <otherwise>
-		    	where 1=1
-		    </otherwise>
-	    </choose>
-	    <if test="employee != null">
-        </if>
-    </select>
-	
-
-
     <!--查询所有员工-->
     <select id="getList" resultMap="BaseResultMap" parameterType="String">
         select * from  t_employee

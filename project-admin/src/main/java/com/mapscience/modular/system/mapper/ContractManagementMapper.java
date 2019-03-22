@@ -2,6 +2,7 @@ package com.mapscience.modular.system.mapper;
 
 import com.mapscience.modular.system.model.ContractManagement;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -18,6 +19,6 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface ContractManagementMapper extends BaseMapper<ContractManagement> {
 	
-	List<ContractManagement> findContract(@Param("contractManagement")ContractManagement contractManagement, @Param("year")Integer year);
+	List<ContractManagement> findContract(@Param("params")HashMap<String, String> params);
 
 }

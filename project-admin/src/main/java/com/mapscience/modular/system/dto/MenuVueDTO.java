@@ -1,7 +1,5 @@
 package com.mapscience.modular.system.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import java.util.List;
 import java.util.Map;
 
@@ -15,9 +13,9 @@ public class MenuVueDTO  {
     private String redirect;  //重定向
     private String component1;  //固定父组件
     private Map   meta;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    //@JsonInclude(JsonInclude.Include.NON_NULL)
     private String title;   //名称
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    //@JsonInclude(JsonInclude.Include.NON_NULL)
     private String icon;
     private List<ChildrenMenu> children;
     public String getIcon() {

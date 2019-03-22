@@ -93,7 +93,7 @@ public class LoginController extends BaseController {
         //User users = userService.getById("efe62f43460711e9b753000c292bf6bc");
         if (JedisUtil.exists(Constant.PREFIX_SHIRO_REFRESH_TOKEN + users.getUsername())) {
             if (JedisUtil.delKey(Constant.PREFIX_SHIRO_REFRESH_TOKEN + users.getUsername()) > 0) {
-                return new ResponseVal( 0,"删除成功");
+                return new ResponseVal( 200,"删除成功");
             }
         }
         return super.responseBody(ProjectStatusEnum.KICK_OUT_ERROR);

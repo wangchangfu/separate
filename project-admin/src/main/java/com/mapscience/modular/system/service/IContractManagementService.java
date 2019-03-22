@@ -23,5 +23,5 @@ public interface IContractManagementService extends IService<ContractManagement>
      * @param numberOfYearAgo 多少年前 
      * @return
      */
-	ArrayList<HashMap<String, Integer>> findContractByCompanyId(String companyId, String contractType, int numberOfYearAgo);
+	ArrayList<HashMap<String, String>> findContractByCompanyId(String companyId, String contractType, int numberOfYearAgo);
 }
