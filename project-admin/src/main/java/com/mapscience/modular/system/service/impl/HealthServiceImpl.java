@@ -31,7 +31,12 @@ public class HealthServiceImpl extends ServiceImpl<HealthMapper, Health> impleme
     }
 
     @Override
-    public Health getHealth(String healthName) {
-        return healthMapper.getHealth(healthName);
+    public Health getHealthByName(String healthName) {
+        return healthMapper.getHealthByName(healthName);
+    }
+
+    @Override
+    public Health getHealthById(String healthId) {
+        return this.baseMapper.getHealthById(healthId);
     }
 }

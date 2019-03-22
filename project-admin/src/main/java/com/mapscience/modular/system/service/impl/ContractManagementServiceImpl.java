@@ -29,18 +29,19 @@ public class ContractManagementServiceImpl extends ServiceImpl<ContractManagemen
     private ContractManagementMapper mapper;
 	
 	@Override
-	public ArrayList<HashMap<String, Integer>> findContractByCompanyId(String companyId, String contractType, int numberOfYearAgo) {
+	public ArrayList<HashMap<String, String>> findContractByCompanyId(String companyId, String contractType, int numberOfYearAgo) {
+		ArrayList<HashMap<String, String>> newArrayListForReturn = Lists.newArrayList();
 		String[] contractTypeArr = contractType.split(",");
-		ContractManagement contractManagement = new ContractManagement();
-		contractManagement.setSigningComId(companyId);
+		HashMap<String, String> params = Maps.newHashMap();
+		params.put("SigningComId", companyId);
 		int nowYear = LocalDate.now().getYear();
-		ArrayList<HashMap<String, Integer>> newArrayListForReturn = Lists.newArrayList();
 		for(int i=1;i<=numberOfYearAgo;i++) {
-			HashMap<String, Integer> newHashMap = Maps.newHashMap();
-			newHashMap.put("年份", nowYear-i);
+			HashMap<String, String> newHashMap = Maps.newHashMap();
+			newHashMap.put("年份", nowYear-i+"");
 			for (String string : contractTypeArr) {
-				contractManagement.setContractType(string);
-				newHashMap.put(string, mapper.findContract(contractManagement, nowYear-i).size());
+				params.put("contractType", string);
+				params.put("year", nowYear-i+"");
+				newHashMap.put(string, mapper.findContract(params).size()+"");
 			}
 			newArrayListForReturn.add(newHashMap);
 		}

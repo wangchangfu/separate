@@ -17,6 +17,8 @@ public interface HealthMapper extends BaseMapper<Health> {
 
     List<Health> getList();
 
-    Health getHealth(String healthName);
+    Health getHealthByName(String healthName);
+
+    Health getHealthById(String healthId);
 
 }

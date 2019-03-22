@@ -26,4 +26,9 @@ public class PoliticalStatusServiceImpl extends ServiceImpl<PoliticalStatusMappe
     public PoliticalStatus getPoliticalStatusByName(String politicalStatusName) {
         return politicalStatusMapper.getPoliticalStatusByName(politicalStatusName);
     }
+
+    @Override
+    public PoliticalStatus getPoliticalStatusById(String politicalStatusId) {
+        return this.baseMapper.getPoliticalStatusById(politicalStatusId);
+    }
 }

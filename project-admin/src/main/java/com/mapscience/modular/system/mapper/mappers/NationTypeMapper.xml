@@ -16,8 +16,14 @@
         nation_stype_id, nation_stype_name, status, crate_time, update_time
     </sql>
 
+    <!--根据民族查询-->
     <select id="getNationTypeByName" resultMap="BaseResultMap">
         select * from t_nation_type where nation_stype_name = #{nationStypeName}
+    </select>
+
+    <!--根据民族id查询-->
+    <select id="getNationTypeById" resultMap="BaseResultMap">
+        select * from t_nation_type where nation_stype_id = #{nationStypeId}
     </select>
 
 </mapper>

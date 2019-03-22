@@ -78,29 +78,28 @@ public class HomeStatisticsController extends BaseController {
         return  comList;
     }
 
-
-    @ApiOperation(value = "通过公司id查询员工合同分布")
+    @ApiOperation(value = "在职员工合同分布")
     @RequestMapping(value = "findContractByCompanyId",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVal findContractByCompanyId(String companyId, 
+    public ResponseVal findContractByCompanyId(@RequestParam(required=false)String companyId, 
     		@RequestParam(required=false, defaultValue="固定期,无固定,实习协议,劳务合同,其他") String contractType,
     		@RequestParam(required=false, defaultValue="3") int numberOfYearAgo){
     	try {
-    		ArrayList<HashMap<String, Integer>> findContractByCompanyId = contractManagementService.findContractByCompanyId(companyId, contractType, numberOfYearAgo);
-    		return new ResponseVal(0,"success",findContractByCompanyId);
+    		ArrayList<HashMap<String, String>> findContractByCompanyId = contractManagementService.findContractByCompanyId(companyId, contractType, numberOfYearAgo);
+    		return new ResponseVal(200,"success",findContractByCompanyId);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseVal(500,"erro",null);
 		}
     }
 
-    @ApiOperation(value = "通过公司id查询员工学历分布")
+    @ApiOperation(value = "在职员工学历分布")
     @RequestMapping(value = "findEducationByCompanyId",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVal findEducationByCompanyId(String companyId){
+    public ResponseVal findEducationByCompanyId(@RequestParam(required=false)String companyId){
     	try {
-    		HashMap<String, Integer> findEducationByCompanyId = educationService.findEducationByCompanyId(companyId);
-    		return new ResponseVal(0,"success", findEducationByCompanyId);
+    		HashMap<String, String> findEducationByCompanyId = educationService.findEducationByCompanyId(companyId);
+    		return new ResponseVal(200,"success", findEducationByCompanyId);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseVal(500,"erro",null);
@@ -110,12 +109,12 @@ public class HomeStatisticsController extends BaseController {
     @ApiOperation(value = "员工年龄段分布图")
     @RequestMapping(value = "employeeAgeDistributionMap",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseVal employeeAgeDistributionMap(String companyId,
-    		@RequestParam(required=false, defaultValue="0-25,26-30,31-35,36-40,41-45,46-50,51-200") String ageRange,
-    		@RequestParam(required=false, defaultValue="男,女") String gender){
+    public ResponseVal employeeAgeDistributionMap(@RequestParam(required=false)String companyId,
+    		@RequestParam(required=false, defaultValue="0-25,26-30,31-35,36-40,41-45,46-50,51-200")String ageRange,
+    		@RequestParam(required=false, defaultValue="男,女")String gender){
     	try {
     		ArrayList<HashMap<String, String>> employeeAgeDistributionMap = employeeService.employeeAgeDistributionMap(companyId, ageRange, gender);
-    		return new ResponseVal(0,"success",employeeAgeDistributionMap);
+    		return new ResponseVal(200,"success",employeeAgeDistributionMap);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseVal(500,"erro",null);

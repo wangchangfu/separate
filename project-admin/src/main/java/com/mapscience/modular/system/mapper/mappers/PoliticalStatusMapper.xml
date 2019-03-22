@@ -20,4 +20,8 @@
         select  * from t_political_status where political_status_name = #{politicalStatusName}
     </select>
 
+    <select id="getPoliticalStatusById" resultMap="BaseResultMap">
+        select * from t_political_status where political_status_id = #{politicalStatusId}
+    </select>
+
 </mapper>

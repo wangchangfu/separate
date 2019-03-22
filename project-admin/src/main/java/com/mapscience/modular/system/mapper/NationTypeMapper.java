@@ -13,6 +13,18 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface NationTypeMapper extends BaseMapper<NationType> {
 
+    /**
+     * genuine民族查询
+     * @param nationStypeName
+     * @return
+     */
     NationType getNationTypeByName(String nationStypeName);
+
+    /**
+     * 根据民族id查询
+     * @param nationTypeId
+     * @return
+     */
+    NationType getNationTypeById(String nationTypeId);
 
 }
