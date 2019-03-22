@@ -1,10 +1,8 @@
 package com.mapscience.modular.system.service;
 
-import java.util.List;
+import java.util.HashMap;
 
 import com.baomidou.mybatisplus.service.IService;
-import com.mapscience.core.common.ResponseVal;
-import com.mapscience.modular.system.model.Company;
 import com.mapscience.modular.system.model.Education;
 
 /**
@@ -17,7 +15,7 @@ import com.mapscience.modular.system.model.Education;
  */
 public interface IEducationService extends IService<Education> {
 
-	List<Education> findEducationByCompanyId(String companyId);
+	HashMap<String, Integer> findEducationByCompanyId(String companyId);
     
     Education getHighestDegreeByEmpId(String empId);
 
