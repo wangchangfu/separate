@@ -16,9 +16,11 @@ import com.baomidou.mybatisplus.service.IService;
  * @since 2019-01-18
  */
 public interface IWorkHistoryService extends IService<WorkHistory> {
-	
-	List<WorkHistory> getWorkHistoryByEmpId(String empId);
 
-	ResponseVal saveWorkHistory(WorkHistory workHistory);
+    List<WorkHistory> getWorkHistoryByEmpId(String empId);
+
+    ResponseVal saveWorkHistory(WorkHistory workHistory);
+
+    List<WorkHistory> getList();
 
 }

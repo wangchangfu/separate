@@ -19,4 +19,7 @@ public interface EducationMapper extends BaseMapper<Education> {
 	
 	List<Education> findEducation(@Param("education")Education education, @Param("companyId")String companyId);
 
+
+	List<Education> getList();
+
 }

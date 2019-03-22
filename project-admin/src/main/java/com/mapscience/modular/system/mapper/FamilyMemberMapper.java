@@ -18,4 +18,7 @@ public interface FamilyMemberMapper extends BaseMapper<FamilyMember> {
 	
 	List<FamilyMember> getFamilyMemberByEmpId(String empId);
 
+
+	List<FamilyMember> getList();
+
 }

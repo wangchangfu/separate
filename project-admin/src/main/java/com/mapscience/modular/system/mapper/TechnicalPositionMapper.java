@@ -13,6 +13,21 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface TechnicalPositionMapper extends BaseMapper<TechnicalPosition> {
 
+    /**
+     * 根据专业技术职务名称查找
+     *
+     * @param technicalPositionName
+     * @return
+     */
     TechnicalPosition getTechnicalPositionByName(String technicalPositionName);
+
+    /**
+     * 根据专业技术职务ID查找
+     *
+     * @param technicalPositionId
+     * @return
+     */
+    TechnicalPosition getTechnicalPositionById(String technicalPositionId);
+
 
 }

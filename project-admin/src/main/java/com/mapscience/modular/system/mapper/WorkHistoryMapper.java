@@ -21,4 +21,7 @@ public interface WorkHistoryMapper extends BaseMapper<WorkHistory> {
 	void saveWorkHistory(WorkHistory workHistory);
 
 
+	List<WorkHistory> getList();
+
+
 }

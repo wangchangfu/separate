@@ -5,6 +5,7 @@ package com.mapscience.modular.system.mapper;
 import java.util.HashMap;
 import java.util.List;
 
+import com.mapscience.modular.system.dto.EmployeeDTO;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -85,6 +86,8 @@ public interface EmployeeMapper extends BaseMapper<Employee> {
      * @return
      */
     List<Employee> getList();
+
+    List<EmployeeDTO> getListDTO();
     /**
      * 根据员工姓名查询
      *

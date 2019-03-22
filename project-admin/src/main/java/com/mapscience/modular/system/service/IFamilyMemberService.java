@@ -17,4 +17,6 @@ public interface IFamilyMemberService extends IService<FamilyMember> {
 	
 	List<FamilyMember> getFamilyMemberByEmpId(String empId);
 
+	List<FamilyMember> getList();
+
 }

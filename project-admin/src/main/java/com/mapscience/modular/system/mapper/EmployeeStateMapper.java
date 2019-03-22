@@ -13,6 +13,21 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface EmployeeStateMapper extends BaseMapper<EmployeeState> {
 
+    /**
+     * 根据人员状态名称查找
+     *
+     * @param employeeStateName
+     * @return
+     */
     EmployeeState getEmployeeStateByName(String employeeStateName);
+
+    /**
+     * 根据人员状态id查找
+     *
+     * @param employeeStatuId
+     * @return
+     */
+    EmployeeState getEmployeeStateById(String employeeStatuId);
+
 
 }

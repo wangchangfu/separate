@@ -26,4 +26,8 @@
         select * from t_family_member where emp_id = #{empId}
     </select>
 
+    <select id="getList" resultMap="BaseResultMap">
+        select * from t_family_member;
+    </select>
+
 </mapper>

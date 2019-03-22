@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.mapscience.core.common.ResponseVal;
+import com.mapscience.modular.system.dto.EmployeeDTO;
 import com.mapscience.modular.system.model.Company;
 import com.mapscience.modular.system.model.Employee;
 
@@ -66,6 +67,9 @@ public interface IEmployeeService extends IService<Employee> {
      * @return
      */
     List<Employee> getList();
+
+
+    List<EmployeeDTO> getListDTO();
 
     /**
      * 根据员工姓名查询

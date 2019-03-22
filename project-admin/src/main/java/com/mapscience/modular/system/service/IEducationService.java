@@ -1,6 +1,7 @@
 package com.mapscience.modular.system.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.mapscience.modular.system.model.Education;
@@ -25,4 +26,10 @@ public interface IEducationService extends IService<Education> {
      * @return
      */
     //ResponseVal saveEducation(Education education);
+
+    /**
+     * 查询所有education
+     * @return
+     */
+    List<Education> getList();
 }

@@ -4,11 +4,11 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.mapscience.modular.system.model.EmployeeState">
-        <id column="employee_state_id" property="employeeStateId" />
-        <result column="employee_state_name" property="employeeStateName" />
-        <result column="status" property="status" />
-        <result column="crate_time" property="crateTime" />
-        <result column="update_time" property="updateTime" />
+        <id column="employee_state_id" property="employeeStateId"/>
+        <result column="employee_state_name" property="employeeStateName"/>
+        <result column="status" property="status"/>
+        <result column="crate_time" property="crateTime"/>
+        <result column="update_time" property="updateTime"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -18,6 +18,10 @@
 
     <select id="getEmployeeStateByName" resultMap="BaseResultMap">
         select * from t_employee_state where employee_state_name = #{employeeStateName}
+    </select>
+
+    <select id="getEmployeeStateById" resultMap="BaseResultMap">
+        select * from t_employee_state where employee_state_id = #{employeeStateId}
     </select>
 
 </mapper>

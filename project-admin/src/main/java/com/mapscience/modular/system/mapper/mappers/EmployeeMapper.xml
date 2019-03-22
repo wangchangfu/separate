@@ -144,6 +144,10 @@
         select * from  t_employee
     </select>
 
+    <select id="getListDTO" resultMap="BaseResultMap" parameterType="String">
+        select * from  t_employee
+    </select>
+
     <!--滚局员工姓名查询-->
     <select id="getEmployeeByEmployeeName" resultMap="BaseResultMap">
         select * from t_employee where employee_name = #{employeeName}

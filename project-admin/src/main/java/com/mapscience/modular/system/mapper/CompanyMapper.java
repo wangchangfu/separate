@@ -49,11 +49,39 @@ public interface CompanyMapper extends BaseMapper<Company> {
     @Select("select * from t_company where `status`=1 and company_id='1' ")
     Company findComById(String id);
 
+    /**
+     * 查询全部
+     *
+     * @param company
+     * @return
+     */
     List<Company> findComList(Company company);
 
 
+    /**
+     * 根据公司名查询
+     *
+     * @param companyName
+     * @return
+     */
     Company getCompanyByCompanyName(String companyName);
 
 
+    /**
+     * 根据公司描述查询
+     *
+     * @param remark
+     * @return
+     */
     Company getCompanyByRemark(String remark);
+
+
+    /**
+     * 根据id查询公司
+     * @param comId
+     * @return
+     */
+    List<Company> getCompanyById(String comId);
+
+
 }

@@ -110,32 +110,126 @@ public class ExcelController {
      */
     @RequestMapping("/getModelExcel")
     @ResponseBody
-    public ResponseVal exportEmploy(HttpServletRequest request, Integer method, Integer type, String ids,
-                                    HttpServletResponse response) {
-        List<Employee> list = employeeService.getList();
-       List<Employee> employeeList = new ArrayList<>();
-        for (Employee employee : list) {
-            //展示民族
-            NationType nationTypeById = nationTypeService.getNationTypeById(employee.getNationTypeId());
-            if (nationTypeById!=null){
+    public void exportEmploy(HttpServletRequest request, Integer method, Integer type, String ids,
+                             HttpServletResponse response) {
 
-                employee.setNationTypeId(nationTypeById.getNationStypeName());
-            }
-            //展示政治面貌
-            PoliticalStatus politicalStatusById = politicalStatusService.getPoliticalStatusById(employee.getPoliticalStatusId());
-            if (politicalStatusById!=null){
+        type = 1;
 
-                employee.setPoliticalStatusId(politicalStatusById.getPoliticalStatusName());
+        for (type = 1; type <= 4; type++) {
+            if (type == 1) {
+                List<Employee> list = employeeService.getList();
+                List<EmployeeDTO> employeeDTOList = new ArrayList<>();
+                for (Employee employee : list) {
+                    EmployeeDTO employeeDTO = new EmployeeDTO();
+                    //名称
+                    employeeDTO.setEmployeeName(employee.getEmployeeName());
+                    //证件号
+                    employeeDTO.setCardId(employee.getCardId());
+                    //性别
+                    employeeDTO.setGender(employee.getGender());
+                    //出生日期,格式yyyy-MM-dd
+                    employeeDTO.setBirthDay(employee.getBirthDay());
+                    //民族id
+                    employeeDTO.setNationTypeId(employee.getNationTypeId());
+                    //籍贯
+                    employeeDTO.setNativePlace(employee.getNativePlace());
+                    //出生地
+                    employeeDTO.setBirthPlace(employee.getBirthPlace());
+                    //政治面貌Id
+                    PoliticalStatus politicalStatusById = politicalStatusService.getPoliticalStatusById(employee.getPoliticalStatusId());
+                    if (politicalStatusById != null) {
+                        employeeDTO.setPoliticalStatusId(politicalStatusById.getPoliticalStatusName());
+                    }
+                    //入党日期,yyyy-mm-dd
+                    employeeDTO.setAdmissionDay(employee.getAdmissionDay());
+                    //参加工作时间,yyyy-mm
+                    employeeDTO.setJoinWorkDay(employee.getJoinWorkDay());
+                    //健康状况id
+                    Health healthById = healthService.getHealthById(employee.getHealthId());
+                    if (healthById != null) {
+                        employeeDTO.setHealthId(healthById.getHealthName());
+                    }
+                    //专业技术职务id
+                    TechnicalPosition technicalPositionById = technicalPositionService.getTechnicalPositionById(employee.getTechnicalPositionId());
+                    if (technicalPositionById != null) {
+                        employeeDTO.setTechnicalPositionId(technicalPositionById.getTechnicalPositionName());
+                    }
+                    //职（执）业资格
+                    employeeDTO.setQualification(employee.getQualification());
+                    //最近进入系统时间
+                    employeeDTO.setIntoSysTime(employee.getIntoSysTime());
+                    //人员状态id
+                    EmployeeState employeeStateById = employeeStateService.getEmployeeStateById(employee.getEmployeeStateId());
+                    if (employeeStateById != null) {
+                        employeeDTO.setEmployeeStateId(employeeStateById.getEmployeeStateName());
+                    }
+                    //进入公司时间
+                    //进入来源Id
+                    //户口类别ID
+                    //户口所在地
+                    employeeDTO.setRegisteredResidence(employee.getRegisteredResidence());
+                    //现居住地
+                    //电子邮箱
+                    //办公电话
+                    //手机号
+                    //紧急联系人
+                    //紧急联系人关系id
+                    //紧急联系人电话
+                    //登录账号
+                    //密码
+                    //简拼
+                    //专长
+                    employeeDTO.setZhuanchang(employee.getZhuanchang());
+                    //开户行
+                    //银行账号
+                    //类型 1是普通用户 2 超级用户（查看自己公司）3可以查看自己子公司 4 全部 5程序猿的
+                    //开户行地址
+                    //创建时间
+                    employeeDTO.setCrateTime(employee.getCrateTime());
+                    //更新时间
+                    //档案所在地
+                    employeeDTO.setArchivesResidence(employee.getArchivesResidence());
+                    //年度考核结果
+                    employeeDTO.setAnnualAssessmentResults(employee.getAnnualAssessmentResults());
+                    //公司名称
+                    List<EmpPosition> empPositionByEmployeeId = empPositionService.getEmpPositionByEmployeeId(employee.getEmployeeId());
+                    for (EmpPosition empPosition : empPositionByEmployeeId) {
+                        if (empPosition != null) {
+                            String comId = empPosition.getComId();
+                            Company comById = companyService.findComById(comId);
+                            employeeDTO.setCompanyName(comById.getCompanyName());
+                        }
+                        employeeDTOList.add(employeeDTO);
+                    }
+
+
+                }
+                EasyPOIExcelUtile.exportExcel(employeeDTOList, "职工信息", "基本信息", EmployeeDTO.class, "人员信息.xlsx", response);
+
             }
-            //展示健康状况
-            Health healthById = healthService.getHealthById(employee.getHealthId());
-            if (healthById!=null){
-                employee.setHealthId(healthById.getHealthName());
+
+            if (type == 2) {
+                List<Education> educationList = new ArrayList<>();
+                List<Education> list = educationService.getList();
+               /* for (Education education : list) {
+
+                }*/
+                EasyPOIExcelUtile.exportExcel(list, "教育经历", "教育经历", Education.class, "教育经历.xlsx", response);
             }
-            employeeList.add(employee);
+
+            if (type == 3) {
+                List<FamilyMember> list = familyMemberService.getList();
+                EasyPOIExcelUtile.exportExcel(list, "家庭成员级社会关系", "家庭成员级社会关系", FamilyMember.class, "家庭成员级社会关系.xlsx", response);
+            }
+
+            if (type == 4) {
+                List<WorkHistory> list = workHistoryService.getList();
+                EasyPOIExcelUtile.exportExcel(list, "工作经历", "工作经历", WorkHistory.class, "工作经历.xlsx", response);
+            }
+
+
         }
-        EasyPOIExcelUtile.exportExcel(list,"职工信息","基本信息",Employee.class,"人员信息.xlsx",response);
-        return new ResponseVal(0, "测试", null);
+
     }
 
     /**
@@ -149,7 +243,7 @@ public class ExcelController {
     public ResponseVal export(HttpServletResponse response) {
         EasyPOIExcelUtile.exportExcel(new ArrayList<EmployeeDTO>(), "员工基本信息", "基本信息", EmployeeDTO.class, "员工基本信息.xls",
                 response);
-        return new ResponseVal(0, "测试", null);
+        return new ResponseVal(200, "测试", null);
     }
 
     /**
@@ -372,12 +466,7 @@ public class ExcelController {
 
 
                     }
-					/*boolean insertBatch = educationService.insertBatch(list);
-					if(insertBatch) {
-						return new ResponseVal(200, "success");
-					}else {
-						return new ResponseVal(500, "fail");
-					}*/
+
 
                 } else if ("工作经历".equals(sheetName)) {
 
@@ -447,7 +536,7 @@ public class ExcelController {
 
             }
 
-            return new ResponseVal(0, "上传成功");
+            return new ResponseVal(200, "上传成功");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -477,7 +566,7 @@ public class ExcelController {
             }
             boolean insertBatch = companyService.insertBatch(list);
             if (insertBatch) {
-                return new ResponseVal(0, "success");
+                return new ResponseVal(200, "success");
             } else {
                 return new ResponseVal(500, "fail");
             }
@@ -538,7 +627,7 @@ public class ExcelController {
                 recordType.setUpdateTime(new Date());
                 degreeTypeService.insert(recordType);
             }
-            return new ResponseVal(0, "ok");
+            return new ResponseVal(200, "ok");
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseVal(500, "fail");

@@ -43,4 +43,9 @@ public class WorkHistoryServiceImpl extends ServiceImpl<WorkHistoryMapper, WorkH
 		}
 	}
 
+	@Override
+	public List<WorkHistory> getList() {
+		return this.baseMapper.getList();
+	}
+
 }

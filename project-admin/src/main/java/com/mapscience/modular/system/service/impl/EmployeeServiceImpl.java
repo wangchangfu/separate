@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.mapscience.modular.system.dto.EmployeeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -106,6 +107,11 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
     @Override
     public List<Employee> getList() {
         return employeeMapper.getList();
+    }
+
+    @Override
+    public List<EmployeeDTO> getListDTO() {
+        return this.baseMapper.getListDTO();
     }
 
 
