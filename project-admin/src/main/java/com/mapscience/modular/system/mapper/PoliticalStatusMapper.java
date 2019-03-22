@@ -15,4 +15,8 @@ public interface PoliticalStatusMapper extends BaseMapper<PoliticalStatus> {
 
     PoliticalStatus getPoliticalStatusByName(String politicalStatusName);
 
+
+    PoliticalStatus getPoliticalStatusById(String politicalStatusId);
+
+
 }

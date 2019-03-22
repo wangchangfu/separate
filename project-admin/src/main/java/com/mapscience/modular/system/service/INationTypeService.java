@@ -16,4 +16,6 @@ public interface INationTypeService extends IService<NationType> {
 
     NationType getNationTypeByName(String nationStypeName);
 
+    NationType getNationTypeById(String nationTypeId);
+
 }
