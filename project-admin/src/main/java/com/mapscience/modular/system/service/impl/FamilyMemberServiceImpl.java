@@ -20,13 +20,18 @@ import com.mapscience.modular.system.service.IFamilyMemberService;
  */
 @Service
 public class FamilyMemberServiceImpl extends ServiceImpl<FamilyMemberMapper, FamilyMember> implements IFamilyMemberService {
-	
-	@Autowired
+
+    @Autowired
     private FamilyMemberMapper mapper;
 
-	@Override
-	public List<FamilyMember> getFamilyMemberByEmpId(String empId) {
-		return mapper.getFamilyMemberByEmpId(empId);
-	}
+    @Override
+    public List<FamilyMember> getFamilyMemberByEmpId(String empId) {
+        return mapper.getFamilyMemberByEmpId(empId);
+    }
+
+    @Override
+    public List<FamilyMember> getList() {
+        return this.baseMapper.getList();
+    }
 
 }

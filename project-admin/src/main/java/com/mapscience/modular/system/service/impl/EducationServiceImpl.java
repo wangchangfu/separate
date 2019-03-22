@@ -47,6 +47,15 @@ public class EducationServiceImpl extends ServiceImpl<EducationMapper, Education
 		return rs;
 	}
 
+	/**
+	 * 查询所有Education
+	 * @return
+	 */
+	@Override
+	public List<Education> getList() {
+		return this.baseMapper.getList();
+	}
+
 	@Override
 	public HashMap<String, String> findEducationByCompanyId(String companyId) {
 		HashMap<String, String> newHashMap = Maps.newHashMap();

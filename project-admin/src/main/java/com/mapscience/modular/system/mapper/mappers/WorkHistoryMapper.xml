@@ -39,4 +39,9 @@
         )
     </insert>
 
+
+    <select id="getList" resultMap="BaseResultMap">
+        select * from t_work_history
+    </select>
+
 </mapper>

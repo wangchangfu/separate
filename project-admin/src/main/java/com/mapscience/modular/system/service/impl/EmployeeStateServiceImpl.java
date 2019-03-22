@@ -22,8 +22,25 @@ public class EmployeeStateServiceImpl extends ServiceImpl<EmployeeStateMapper, E
     private EmployeeStateMapper employeeStateMapper;
 
 
+    /**
+     * 根据人员状态名称查找
+     *
+     * @param employeeStateName
+     * @return
+     */
     @Override
     public EmployeeState getEmployeeStateByName(String employeeStateName) {
         return employeeStateMapper.getEmployeeStateByName(employeeStateName);
+    }
+
+    /**
+     * 根据人员状态id查找
+     *
+     * @param employeeStatuId
+     * @return
+     */
+    @Override
+    public EmployeeState getEmployeeStateById(String employeeStatuId) {
+        return this.baseMapper.getEmployeeStateById(employeeStatuId);
     }
 }

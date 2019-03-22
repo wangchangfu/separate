@@ -58,5 +58,8 @@
     <select id="getCompanyByRemark" resultMap="BaseResultMap">
         select * from t_company where remark = #{remark}
     </select>
+    <select id="getCompanyById" resultMap="BaseResultMap">
+        select * from t_company where company_id = #{companyId}
+    </select>
 
 </mapper>

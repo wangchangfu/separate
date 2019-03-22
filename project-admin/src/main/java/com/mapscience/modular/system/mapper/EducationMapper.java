@@ -21,4 +21,7 @@ public interface EducationMapper extends BaseMapper<Education> {
 	
 	List<Education> findEducation(@Param("params")HashMap<String, String> params);
 
+
+	List<Education> getList();
+
 }

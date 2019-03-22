@@ -49,11 +49,38 @@ public interface ICompanyService extends IService<Company> {
 
     Company findComById(String s);
 
+    /**
+     * 查询全部
+     *
+     * @param company
+     * @return
+     */
     ResponseVal findComList(Company company);
 
+    /**
+     * 根据公司名查询
+     *
+     * @param companyName
+     * @return
+     */
     Company getCompanyByCompanyName(String companyName);
 
+    /**
+     * 根据公司描述查询
+     *
+     * @param remark
+     * @return
+     */
     Company getCompanyByRemark(String remark);
 
     List<Object> findCompanyAndDepartmentTree();
+
+    /**
+     * 根据id查询公司
+     * @param comId
+     * @return
+     */
+    List<Company> getCompanyById(String comId);
+
+
 }

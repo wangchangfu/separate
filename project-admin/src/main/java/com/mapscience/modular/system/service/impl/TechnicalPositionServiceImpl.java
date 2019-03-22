@@ -22,8 +22,23 @@ public class TechnicalPositionServiceImpl extends ServiceImpl<TechnicalPositionM
     @Autowired
     private TechnicalPositionMapper technicalPositionMapper;
 
+    /**
+     * 根据专业技术职务名称查找
+     * @param technicalPositionName
+     * @return
+     */
     @Override
     public TechnicalPosition getTechnicalPositionByName(String technicalPositionName) {
         return technicalPositionMapper.getTechnicalPositionByName(technicalPositionName);
+    }
+
+    /**
+     * 根据专业技术职务ID查找
+     * @param technicalPositionId
+     * @return
+     */
+    @Override
+    public TechnicalPosition getTechnicalPositionById(String technicalPositionId) {
+        return this.baseMapper.getTechnicalPositionById(technicalPositionId);
     }
 }

@@ -20,4 +20,8 @@
         select * from t_technical_position where technical_position_name = #{technicalPositionName}
     </select>
 
+    <select id="getTechnicalPositionById" resultMap="BaseResultMap">
+         select * from t_technical_position where technical_position_id = #{technicalPositionId}
+    </select>
+
 </mapper>

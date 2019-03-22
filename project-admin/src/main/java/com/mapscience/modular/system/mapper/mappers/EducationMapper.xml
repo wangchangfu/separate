@@ -49,5 +49,9 @@
      		 </if>
         </if>
     </select>
-    
+
+    <select id="getList" resultMap="BaseResultMap">
+        select * from t_education
+    </select>
+
 </mapper>
