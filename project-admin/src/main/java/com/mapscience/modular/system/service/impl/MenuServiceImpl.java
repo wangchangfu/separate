@@ -2,13 +2,17 @@ package com.mapscience.modular.system.service.impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.mapscience.core.common.ResponseVal;
+import com.mapscience.modular.system.dto.ChildrenMenu;
+import com.mapscience.modular.system.dto.MenuVueDTO;
 import com.mapscience.modular.system.mapper.MenuMapper;
 import com.mapscience.modular.system.model.Menu;
 import com.mapscience.modular.system.service.IMenuService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -119,11 +123,70 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     public ResponseVal findChind(Menu m) {
         List<Menu> menus = this.baseMapper.findChind(m.getMenuId());
         for (Menu me: menus) {
-
             List<Menu> menus1 = this.baseMapper.findChind(me.getMenuId());
             m.setChildren(menus1);
         }
         return new ResponseVal("查询成功",menus);
+    }
+
+    @Override
+    public List<MenuVueDTO> findByIdMenuList(String menuId, String roleId) {
+        List<Menu> menus = this.baseMapper.findMenus(menuId,roleId);
+        List<MenuVueDTO> menuVueDTOS= new ArrayList<>();
+
+        for (Menu m: menus) {
+            MenuVueDTO menuVueDTO = new MenuVueDTO();
+            menuVueDTO.setPath("/infoMsg");
+            menuVueDTO.setRedirect("/infoMsg/infomsg");
+            menuVueDTO.setComponent1("Layout");
+            Map<String , String > p=new HashMap<>();
+            p.put("title",m.getMenuName());
+            p.put("icon",m.getIcon());
+            menuVueDTO.setMeta(p);
+
+
+            List<Menu> menus1 = this.baseMapper.findMenus(m.getMenuId(),roleId);
+            List<ChildrenMenu> children = new ArrayList<>();
+            ChildrenMenu ch = null;
+                if (menus1.size() ==0) {
+                    ch=new ChildrenMenu();
+                    ch.setComponent1(menuVueDTO.getComponent1());
+                    ch.setPath(menuVueDTO.getPath());
+                    ch.setName(menuVueDTO.getPath());
+                    ch.setMeta(p);
+                    children.add(ch);
+                }else{
+                    for (int i=0;i<menus1.size();i++) {
+                        if (menus1.get(i).getMenuName().equals("添加管理员")){
+                            ch=new ChildrenMenu();
+                            ch.setPath("addAdmin");
+                            ch.setName("addAdmin");
+                            ch.setComponent1("limitMsg/addAdmin");
+                            Map<String , String > ps=new HashMap<>();
+                            ps.put("title",menus1.get(i).getMenuName());
+                            ps.put("icon",menus1.get(i).getIcon());
+                            ch.setMeta(ps);
+                            children.add(ch);
+                        }
+                        if (menus1.get(i).getMenuName().equals("角色管理")){
+                            ch=new ChildrenMenu();
+                            ch.setPath("roles");
+                            ch.setName("roles");
+                            ch.setComponent1("limitMsg/roles");
+                            Map<String , String > ps=new HashMap<>();
+                            ps.put("title",menus1.get(i).getMenuName());
+                            ps.put("icon",menus1.get(i).getIcon());
+                            ch.setMeta(ps);
+                            children.add(ch);
+                        }
+
+                    }
+                }
+
+            menuVueDTO.setChildren(children);
+            menuVueDTOS.add(menuVueDTO);
+        }
+        return menuVueDTOS;
     }
 
 

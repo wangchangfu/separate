@@ -2,6 +2,7 @@ package com.mapscience.modular.system.service;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.mapscience.core.common.ResponseVal;
+import com.mapscience.modular.system.dto.MenuVueDTO;
 import com.mapscience.modular.system.model.Menu;
 
 import java.util.List;
@@ -43,4 +44,12 @@ public interface IMenuService extends IService<Menu> {
      * @return
      */
     ResponseVal findChind(Menu m);
+
+    /**
+     * 查找下级菜单
+     * @param menuId
+     * @param roleId
+     * @return
+     */
+    List<MenuVueDTO> findByIdMenuList(String menuId, String roleId);
 }

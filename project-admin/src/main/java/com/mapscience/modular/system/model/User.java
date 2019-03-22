@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -40,6 +41,7 @@ public class User extends Model<User> {
     /**
      * MD5密码盐
      */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String salt;
 
 
@@ -52,6 +54,7 @@ public class User extends Model<User> {
     /**
      * 员工姓名
      */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @ApiModelProperty(value="员工ID")
     private String empName;
     /**

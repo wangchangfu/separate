@@ -1,6 +1,7 @@
 package com.mapscience.modular.code.controller;
 
-import com.mapscience.core.common.ResponseVal;
+
+import com.mapscience.config.ResponseVal;
 import com.mapscience.core.common.status.ProjectStatusEnum;
 import com.mapscience.generator.action.config.WebGeneratorConfig;
 import com.mapscience.generator.action.model.CodeProperties;
