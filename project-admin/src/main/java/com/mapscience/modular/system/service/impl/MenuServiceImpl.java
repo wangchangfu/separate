@@ -142,7 +142,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
 
             for (MenuVueDTO m: menus) {
                 Map<String, String> mpas= new HashMap<>();
-                m.setPath("/"+m.getPath());
+                m.setPath(m.getPath());
                 m.setRedirect(m.getPath()+"/"+m.getName());
                 m.setComponent1("Layout");
                 mpas.put("title",m.getTitle());
