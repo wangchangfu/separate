@@ -33,7 +33,7 @@ public class ContractManagementServiceImpl extends ServiceImpl<ContractManagemen
 		ArrayList<HashMap<String, String>> newArrayListForReturn = Lists.newArrayList();
 		String[] contractTypeArr = contractType.split(",");
 		HashMap<String, String> params = Maps.newHashMap();
-		params.put("SigningComId", companyId);
+		params.put("signingComId", companyId);
 		int nowYear = LocalDate.now().getYear();
 		for(int i=1;i<=numberOfYearAgo;i++) {
 			HashMap<String, String> newHashMap = Maps.newHashMap();
