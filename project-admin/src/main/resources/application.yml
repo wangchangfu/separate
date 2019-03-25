@@ -1,0 +1,70 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    dbName: zzsres
+    url: jdbc:mysql://192.168.1.247:3306/zzsres?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+    filters: wall,mergeStat
+  freemarker:
+      expose-spring-macro-helpers: true
+      allow-request-override: false
+      check-template-location: true
+      charset: UTF-8
+      content-type: text/html
+      expose-request-attributes: true
+      expose-session-attributes: true
+      suffix: .html
+      template-loader-path: classpath:/templates/
+      request-context-attribute: ctx
+      settings:
+        classic_compatible: true
+  profiles:
+    active: @spring.active@
+  mvc:
+    static-path-pattern: /static/**
+    view:
+      prefix: /templates/
+project:
+  muti-datasource:
+    open: true
+    url: jdbc:mysql://192.168.1.247:3306/zzsres?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+    data-source-names:
+      - dataSourceProject
+      - dataSourceBiz
+
+
+mybatis-plus:
+  mapper-locations: classpath*:com/mapscience/modular/*/mapper/mappers/*.xml
+  type-aliases-package: com.mapscience.modular.*.model
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+    id-type: 3
+    #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+    field-strategy: 2
+    #驼峰下划线转换
+    db-column-underline: true
+    #刷新mapper 调试神器
+    refresh-mapper: true
+
+
+
+#jedis配置
+redis:
+  host: 192.168.1.225
+  port: 6379
+  password: foozzsres
+  timeout: 10000
+  max-active: 2000
+  max-wait: 2000
+  max-idle: 8
+  min-idle: 0
+
+#高效管理外部接口
+get-url: http://192.168.1.205:8081/gateway/gateway.ht
